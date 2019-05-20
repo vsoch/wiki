@@ -508,9 +508,10 @@ Since the dr_stage3 has the same origin and orientation as the MNI standard temp
 fslswapdim gm_wm_input_p05.nii -x y z gm_LAS
 </code>
 
-{{http://www.vbmis.com/bmi/project/NYU10/switchRL.png?200}}
+![https://vsoch.github.io/vbmis.com/projects/NYU10/switchRL.png](https://vsoch.github.io/vbmis.com/projects/NYU10/switchRL.png)
 
 **2)** Force neurological (changing header info). 
+
 This first command will return a "NEUROLOGICAL" report when you do:
 <code bash>
 fslorient -getorient gm_LAS.nii.gz
@@ -524,6 +525,7 @@ The values correspond to the sform and qform matrices, which I believe tell us h
 Now the image correctly displays and reads to be in LAS, neurological convention. Now I will give another try to registering the gm_LAS image to the standard template! Linear registration should be OK, so I will use FLIRT.
 
 **3)** Reattempt Registration 
+
 3a) First register the dual regression result to the MNI template
 <code bash>
 flirt -in /../Desktop/gmALE/test/reg/dr_stage3_ic0021_tfce_corrp_tstat1.nii.gz -ref /../Desktop/gmALE/test/reg/MNI152_T1_2mm_brain.nii.gz -out /../Desktop/gmALE/test/reg/dr_stage3_standard.nii.gz -omat /../Desktop/gmALE/test/reg/dr_stage3_standard.mat -bins 256 -cost corratio -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof 12 -interp trilinear
@@ -534,15 +536,16 @@ flirt -in /../Desktop/gmALE/test/reg/gm_LAS.nii.gz -ref /../Desktop/gmALE/test/r
 </code>
 3c) Now attempt to overlay the two output... although the two images now can be displayed together on the standard space, it's obvious that they were incorrectly warped. This was the output, which is just wrong! 
 
-{{http://www.vbmis.com/bmi/project/NYU10/regwrong.png?200}}
+![https://vsoch.github.io/vbmis.com/projects/NYU10/regwrong.png](https://vsoch.github.io/vbmis.com/projects/NYU10/regwrong.png)
 
 I decided to try linear registration, but with only 9 DOF, which is called "Traditional" instead of "Affine" transformation. I think this means that the algorithm can translate,stretch, but not change the voxel size. This also came out, in a word, wrong. 
 
-{{http://www.vbmis.com/bmi/project/NYU10/regwrong2.png?200}}
+![https://vsoch.github.io/vbmis.com/projects/NYU10/regwrong2.png](https://vsoch.github.io/vbmis.com/projects/NYU10/regwrong2.png)
 
 I gave one more effort and tried to do FNIRT, which is nonlinear registration, and had another failed attempt - the output images are completely empty! 
 
-=====SPATIAL CORRELATION - VISUALLY DETERMINED=====
+### SPATIAL CORRELATION - VISUALLY DETERMINED
+
 I think that I'm doing something horribly wrong for this to not work, but I don't want to get stuck here. My goal is to have an understanding of how the gingerALE output relates to the dual regression output. I have first tried to relate the two by putting them into the same space, and I'm having a lot of trouble. This is unfortunately the current state of neuroimaging - there are always different orientations / sizes / spaces, and the goal is to be able to make connections between these different images. It is very easy when data is collected from the same scanner (and common), and not so much if that isn't the case!
 The purpose of MNI space, it seems, is to be able to make these connections, regardless of image size, resolution, and voxel size. If two images are both in MNI space, we can be confident that the coordinates are talking about the same spot in the brain. So for my next attempted solution, I want to forget about getting the images exactly the same, and find a way to relate them in a human friendly way, based on anatomical labels.
 
