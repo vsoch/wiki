@@ -1,6 +1,6 @@
-# vsoch wiki
-
 > This is an archive of @vsoch pre-graduate school wiki. It was migrated from DocuWiki and now is just markdown.
+
+![img/legacy.png](img/legacy.png)
 
 I have created this wiki to serve as a source of knowledge and documentation, scripts and learning.  If you have any questions, or interesting problems that I might be able to help with, please don't hesitate to contact me!
 
@@ -8,10 +8,10 @@ I have created this wiki to serve as a source of knowledge and documentation, sc
 
 ### Data Analysis
 
- - [MATLAB](matlab.md)
+ - [MATLAB](matlab.md) Tools and Tips for Matlab
  - [IMAGING](imaging.md) Includes SPM and visualization tools
  - [GENETICS](genetics.md) Currently only includes a few custom tools for Plink
- - [SPSS](spss.mc) Now called PASW, for statistical analysis
+ - [SPSS](spss.md) Now called PASW, for statistical analysis
 
 ### Data Collection
 
