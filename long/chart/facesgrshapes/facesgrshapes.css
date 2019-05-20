@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+
+a.gallerypic{
+  text-decoration:none;
+  position:fixed;
+  display:block;
+  border:none;
+  padding:none;
+  margin-top:221px;
+  margin-left:22px;
+  float:left;
+}
+
+a.gallerypic span.zoom-icon{
+  visibility:hidden;
+  position:relative;
+  left:40%;
+  top:35%;
+  filter:alpha(opacity=50);
+  -moz-opacity:0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+  z-index:4;
+}
+
+a.gallerypic:hover span.zoom-icon{
+  visibility:visible;
+  position:relative;
+  z-index:3;
+  top:0px
+  left:0px
+}

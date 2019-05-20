@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>
+      Faces > Shapes Amygdala Reactivity
+    </title>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['motionchart']});
+    </script>
+    <script type="text/javascript">
+    var visualization;
+
+    function drawVisualization() {
+      var query = new google.visualization.Query(
+          'https://spreadsheets.google.com/ccc?key=0AkwmdCWNmrCRdElRYkVZQWhOTkM5LWJqdDNUTlJvQVE&hl=en&authkey=CObJupoG');
+      
+      // Send the query with a callback function.
+      query.send(handleQueryResponse);
+    }
+    
+    function handleQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+    
+      var data = response.getDataTable();
+      visualization = new google.visualization.MotionChart(document.getElementById('visualization'));
+
+	var options = {};
+	options['state'] = '{"orderedByY":false,"sizeOption":"_UNISIZE","xZoomedDataMax":7100352000000,"dimensions":{"iconDimensions":["dim0"]},"time":"2001","yZoomedDataMax":1.2888,"nonSelectedAlpha":0.4,"xLambda":1,"yZoomedDataMin":-1.2386,"xAxisOption":"_TIME","iconKeySettings":[{"trailStart":"2001","key":{"dim0":"Neutral_gr_Shapes"}},{"trailStart":"2001","key":{"dim0":"Surprise_gr_Shapes"}},{"trailStart":"2001","key":{"dim0":"Anger_gr_Shapes"}},{"trailStart":"2001","key":{"dim0":"Fear_gr_Shapes"}},{"trailStart":"2001","key":{"dim0":"Faces_gr_Shapes"}}],"yZoomedIn":false,"orderedByX":false,"xZoomedIn":false,"showTrails":true,"playDuration":15000,"xZoomedDataMin":978307200000,"yLambda":1,"yAxisOption":"2","iconType":"BUBBLE","uniColorForNonSelected":false,"colorOption":"_UNIQUE_COLOR","duration":{"multiplier":1,"timeUnit":"Y"}};';
+
+
+	options['width'] = 1200;
+	options['height'] = 600;
+
+      visualization.draw(data, options);
+
+
+       }
+
+    google.setOnLoadCallback(drawVisualization);
+    </script>
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+    <div id="visualization" style="height: 600px; width: 1200px;"></div>
+  </body>
+</html>

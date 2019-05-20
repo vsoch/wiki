@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>
+      Faces > Shapes Amygdala Reactivity
+    </title>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['motionchart']});
+    </script>
+    <script type="text/javascript">
+    var visualization;
+
+    function drawVisualization() {
+      var query = new google.visualization.Query(
+          'https://spreadsheets.google.com/ccc?key=0AkwmdCWNmrCRdGx2VkJicHo4X1lQUExQcE1CV0pOYmc&hl=en&authkey=CIGIxbMJ');
+      
+      // Send the query with a callback function.
+      query.send(handleQueryResponse);
+    }
+    
+    function handleQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+    
+      var data = response.getDataTable();
+      visualization = new google.visualization.MotionChart(document.getElementById('visualization'));
+
+	var options = {};
+	options['state'] = '{"iconKeySettings":[],"stateVersion":3,"time":"notime","xAxisOption":"1","playDuration":15,"iconType":"BUBBLE","sizeOption":"_NOTHING","xZoomedDataMin":null,"xZoomedIn":false,"duration":{"multiplier":1,"timeUnit":"none"},"yZoomedDataMin":null,"xLambda":1,"colorOption":"_NOTHING","nonSelectedAlpha":0.4,"dimensions":{"iconDimensions":[]},"yZoomedIn":false,"yAxisOption":"_NOTHING","yLambda":1,"yZoomedDataMax":null,"showTrails":true,"xZoomedDataMax":null};';
+
+	options['width'] = 800;
+	options['height'] = 400;
+
+      visualization.draw(data, options);
+
+
+       }
+
+    google.setOnLoadCallback(drawVisualization);
+    </script>
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+    <div id="visualization" style="height: 400px; width: 400px;"></div>
+  </body>
+</html>

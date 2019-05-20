@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>
+      Faces > Shapes Amygdala Reactivity
+    </title>
+    <link rel="stylesheet" type="text/css" href="facesgrshapes.css" />
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['motionchart']});
+    </script>
+    <script type="text/javascript">
+    var visualization;
+
+    function drawVisualization() {
+      var query = new google.visualization.Query(
+    //     'https://spreadsheets.google.com/ccc?key=0AkwmdCWNmrCRdElRYkVZQWhOTkM5LWJqdDNUTlJvQVE&hl=en&authkey=CObJupoG');
+    'https://spreadsheets.google.com/ccc?key=0AkwmdCWNmrCRdFdTWHhIZ0lKLUxaNnhjaUtXZHlMMFE&hl=en&authkey=CMHjpLEN');
+	  
+      // Send the query with a callback function.
+      query.send(handleQueryResponse);
+    }
+    
+    function handleQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+    
+      var data = response.getDataTable();
+      visualization = new google.visualization.MotionChart(document.getElementById('visualization'));
+
+	var options = {};
+	options['state'] = '{"sizeOption":"_UNISIZE","orderedByY":false,"dimensions":{"iconDimensions":["dim0"]},"nonSelectedAlpha":0.4,"time":"2001","yZoomedDataMax":0.4385,"iconType":"BUBBLE","xLambda":1,"orderedByX":false,"xZoomedDataMin":978307200000,"xAxisOption":"_TIME","yAxisOption":"2","iconKeySettings":[{"trailStart":"2001","key":{"dim0":"Faces_gr_Shapes"}}],"xZoomedIn":false,"showTrails":true,"yZoomedIn":false,"playDuration":15000,"yLambda":1,"xZoomedDataMax":7100352000000,"uniColorForNonSelected":false,"colorOption":"_UNIQUE_COLOR","duration":{"multiplier":1,"timeUnit":"Y"},"yZoomedDataMin":-0.2685};';
+	
+
+	options['width'] = 1200;
+	options['height'] = 600;
+	options['wmode']='transparent';
+
+    visualization.draw(data, options);
+
+       }
+
+    google.setOnLoadCallback(drawVisualization);
+    </script>
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+  
+  <a href="fgs.png" class="gallerypic" title="">
+  <img src="fgs.png" height="171" width="958" alt="Photo" class="pic" />
+  </a>
+    <div id="visualization" style="height: 600px; width: 1200px; z-index:-2; position: fixed; top: 0px; left: 0px;"></div>
+  </body>
+</html>

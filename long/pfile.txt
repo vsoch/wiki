@@ -1,0 +1,2622 @@
+This looks like a LittleEndian/12x/raw file...
+Total file size should be: 109823512
+Header size: 66072
+
+...........RDB_HEADER_REC..................
+Offset to/size of RDB_HEADER_REC: 0, 2048
+...RDBM revision number: 11
+...Rdy pkt run number: 28160
+...Rdy pkt sequence number: 309
+...Rdy pkt run number in char: 28160
+...Scan date: 07/31/109
+...Scan time: 11:49
+...Logo, used to verify file: INVALIDNMR
+...Data type 0=emp 1=nrec 2=rw: 1
+...unused: 0
+...rhdacqctrl bit mask: 0
+...rhrcctrl bit mask: 0
+...rhexecctrl bit mask: 2
+...scan type bit mask: 16
+...rhtype bit mask: 8
+...rhformat bit mask: 18496
+...rhrecon proc-a-son recon: 929
+...rhdatacq proc-a-son dacq: 0
+...rhnpasses passes for a scan: 13
+...rhnpomp pomp group slices: 1
+...rhnslices slices in a pass: 442
+...rhnecho echoes of a slice: 5
+...rhnavs number of excitations: 1
+...rhnframes yres: 96
+...rhbline baselines: 0
+...rhhnover overscans: 0
+...rhfrsize xres: 208
+...rhptsize: 2
+...rhvquant 3D volumes: 1
+...RX cine heart phases: 1
+...RX cine TR in sec: 1
+...RX cine RR in sec: 1
+...rhinitpass allocate passes: 1
+...rhincrpass tps autopauses: 1
+...rhmethod 0=recon, 1=psd: 1
+...rhdaxres: 208
+...rhdayres: 97
+...rhrcxres: 128
+...rhrcyres: 128
+...rhimsize: 128
+...RC Z res (power of 2 > rhnslices): 0
+...rhrawsize: 109757440
+...rhsspsave: 0
+...rhudasave: 0
+...rhfermr fermi radius: 48
+...rhfermw fermi width: 10
+...rhferme fermi eccentricity: 1
+...rhclipmin 4x IP limit: 0
+...rhclipmax 4x IP limit: 16383
+...rhdoffset default offset: 0
+...rhxoff scroll img in x: 0
+...rhyoff scroll img in y: 0
+...rhnwin hecho window width: 0
+...rhntran hecho trans width: 2
+...PS rhscalei: 0.715617
+...PS rhscaleq: 0
+...RX rotation (0 90 180 270 deg): 3
+...RX transpose (0, n/y transpose): 0
+...rhblank zero image views: 2
+...rhslblank slice blank 3D: 2
+...RX Gradient coil (0=off 1=Schnk 2=Rmr): 0
+...rhddaover unused: 0
+...SARR bit mask 15 bits: 0
+...SARR feeder timing info: 0
+...SARR feeder timing info: 0
+...SARR control of feeder: 0
+...SARR df decimation ratio: 0
+...SARR which feeder algorithm: 0
+...rhdab0s rhdab0e start, stop receiver: 
+  recs[0]: 0, rece[0]: 7
+  recs[1]: 0, rece[1]: 0
+  recs[2]: 0, rece[2]: 0
+  recs[3]: 0, rece[3]: 0
+...rhuser0: 0
+...rhuser1: 0
+...rhuser2: 0
+...rhuser3: 76394
+...rhuser4: 0
+...rhuser5: 3
+...rhuser6: 0
+...rhuser7: 0
+...rhuser8: 0
+...rhuser9: 0
+...rhuser10: 0
+...rhuser11: 0
+...rhuser12: 0
+...rhuser13: 0
+...rhuser14: 0
+...rhuser15: 0
+...rhuser16: 0
+...rhuser17: 0
+...rhuser18: 0
+...rhuser19: 0
+...rhuser20: 0
+...rhuser21: 0
+...rhuser22: 0
+...rhuser23: 0
+...rhuser24: 0
+...rhuser25: 0
+...rhuser26: 0
+...rhuser27: 0
+...rhuser28: 0
+...rhuser29: 0
+...rhuser30: 0
+...rhuser31: 208
+...rhuser32: 2
+...rhuser33: 2.44413
+...rhuser34: 0.000136
+...rhuser35: 0.000164
+...rhuser36: 1
+...rhuser37: 1
+...rhuser38: 50400
+...rhuser39: 0
+...rhuser40: 0
+...rhuser41: 0
+...rhuser42: 0
+...rhuser43: 0
+...rhuser44: 0
+...rhuser45: 0
+...rhuser46: 0
+...rhuser47: 0
+...rhuser48: 0
+...rhvtype bit mask 31 bits: 0
+...RX x flow direction control: 0
+...RX x flow direction control: 0
+...RX x flow direction control: 0
+...RX x flow direction control: 0
+...RX y flow direction control: 0
+...RX y flow direction control: 0
+...RX y flow direction control: 0
+...RX y flow direction control: 0
+...RX z flow direction control: 0
+...RX z flow direction control: 0
+...RX z flow direction control: 0
+...RX z flow direction control: 0
+...RX weight for magnitude image 1: 0
+...RX weight for magnitude image 2: 0
+...RX weight for magnitude image 3: 0
+...RX weight for magnitude image 4: 0
+...RX velocity encoding cm/sec: 0
+...Specwidth filter width kHz: 0
+...Spectro CSI dims: 0
+...rhspecrescsix: 0
+...rhspecrescsiy: 0
+...rhspecrescsiz: 0
+...RX x CSI volume dimension: 0
+...RX y CSI volume dimension: 0
+...RX z CSI volume dimension: 0
+...RX x CSI volume center: 0
+...RX y CSI volume center: 0
+...RX z CSI volume center: 0
+...Number of dwell periods for spectro: 1
+...PS internal use only: 0
+...PS MPS R1 setting (1-7): 13
+...PS MPS R2 setting (1-30): 15
+...PS MPS transmit gain setting (0-200): 128
+...PS MPS center frequency Hz: 1277214240
+...PS APS R1 setting (1-7): 13
+...PS APS R2 setting (1-30): 15
+...PS APS transmit gain setting (0-200): 128
+...PS APS center frequency Hz: 1277214240
+...PS rational scaling: 0
+...PS unused: 0
+...PS noise test 0=16 1=32 bits: 1869903169
+...PS prescan order logic: 2
+...PS bit mask 4 bits: 0
+...PS powerspec: 
+...PS filler1: 0
+...PS filler2: 0
+...PS mean +/- std noise each receiver: 
+ rec[0]: 1 +/- 1.02926 (17.0457%)
+ rec[1]: 1 +/- 1.21035 (12.3266%)
+ rec[2]: 1 +/- 1.27547 (11.1%)
+ rec[3]: 1 +/- 1.37065 (9.6119%)
+ rec[4]: 1 +/- 1.28627 (10.9144%)
+ rec[5]: 1 +/- 1.2049 (12.4383%)
+ rec[6]: 1 +/- 1.24195 (11.7073%)
+ rec[7]: 1 +/- 1.10252 (14.8558%)
+...Spectro full, half echo 0, 1: 0
+...Variable "im_size_y": 0
+...rhtype1 data_collect_type 1 bit mask: 32776
+...rhfreqscale freq_scale k-space step: 1
+...rhphasescale phase_scale k-space step: 1
+
+			8x fields
+...rhovl - overlaps for MOTSA: 0
+...Linear Corr. 0:off, 1:linear, 2:polynomial: 0
+...Fit number of points: 4
+...Fit order: 2
+...Linear phase correction average 0:off, 1:on: 0
+...Const Corr. 0:off, 1:ky spec., 2:polyfit(2/ilv), 3:polyfit(1/ilv): 0
+...Fit number of points: 4
+...Fit order: 2
+...External correction file 0:don't use, 1: use: 0
+...Phase correction coef. image 0:off, 1:linear & constant: 1
+...Interleaves to use for correction: 0=all, 1=only first: 0
+...Bestky view for fractional ky scan: 0
+...Phase correction research control: 0
+...Phase correction threshold points: 2
+...Phase correction beginning point to discard: 0
+...Phase correction middle point to discard: 0
+...Phase correction ending point to discard: 0
+...Threshold percentage: 15
+...Spacial best reference scan index: 26
+...Temporal best reference scan index: 1
+...Spare for phase correction: 3
+...Number of interleaves: 3
+...Ky traversal direction 0: top-down, 1:center-out: 2
+...Alternate read sign 0=no, 1=odd/even, 2=pairs: 0
+...Number of scan repetitions: 13
+...Reference scan 0: off 1: on: 2
+...Constant S term normalization factor: 1
+...Constant polyfit weighting factor: 0
+...Linear S term normalization factor: 1
+...Linear polyfit weighting factor: 0
+...Best ky location: 72.25
+...Control word for VRG filter: 1
+...Control word for VRGF final X resolution: 96
+...Control word for bandpass asymmetry: 1
+...Starting frequency: -250000
+...Ending frequency: 247596
+...Number of iterations used in homodyne processing: 0
+...0: Fast receiver off, 1 - 5: LPF settings: 0
+...Total number of frames for reference scan: 2496
+...Number of frames per pass for a reference scan: 2496
+...Total number of frames for an entire scan: 42432
+...Number of frames per pass: 3264
+...Spectro - user usage tag: 0
+...Spectro - fillmapMSW: 0
+...Spectro - fillmapLSW: 0
+...Adjust view indexes, if set so bestky view = 0: 1
+...First view within an echo group used for fit: 0
+...Last view within an echo group used for fit: 2
+...If = 1, force pts from other egrps to be used: 0
+...If = 2, force slope to be set to pclinslope: 1
+...If = 2, force slope to be set to pcconslope: 1
+...Value to set linear slope to if forced: 0
+...Value to set constant slope to if forced: 0
+...If 1,2,3,4, use that coil's results for all: 0
+...Variable view sharing mode: 0
+...Number of original images: 0
+...TR in microseconds: 0
+...Gender: male or female: 0
+...Slice ZIP factor: 0=off, 2, or 4: 0
+...Coefficient A for flow image 1: 0
+...Coefficient B for flow image 1: 0
+...Coefficient C for flow image 1: 0
+...Coefficient D for flow image 1: 0
+...Coefficient A for flow image 2: 0
+...Coefficient B for flow image 2: 0
+...Coefficient C for flow image 2: 0
+...Coefficient D for flow image 2: 0
+...Coefficient A for flow image 3: 0
+...Coefficient B for flow image 3: 0
+...Coefficient C for flow image 3: 0
+...Coefficient D for flow image 3: 0
+...System utility control variable: 0
+...EPI II diffusion control cv: 0
+...Arrhythmia rejection window (percentage): 10
+...Views per segment for FastCine: 8
+...N-coil recon map: 0
+...TE for first echo: 30000
+...TE for second and later echoes: 50400
+...BW for navigator frames: 4
+...Control flag for dfm (0=off, other=on): 0
+...Uncombined NEX at start of recon: 1
+...Max navigator frames in a pass: 1
+...Xres of navigator frames: 32
+...Point size of navigator frames: 2
+...Number of navigators per frame (tag table): 1
+...Control flag for dfm debug: 0
+...Threshold for navigator correction: 0
+...Bit settings controlling gridding: 0
+...B0 map enable and map size: 0
+...TE difference between b0 map arms: 0
+...Flag to apply motion compensation: 0
+...Variable density transition: 0
+...Variable density transition: 0
+...Max gradient amplitude: 0
+...Max slew rate: 0
+...RX scan field of view: 0
+...A to D sample time microsecs: 0
+...Change factor for variable density: 0
+...RX display field of view: 0
+
+			9x fields
+...Auto-Ncoil FOV: 240
+...MFO FIESTA recon control: 0
+...Auto post-processing opcode: 0
+...Auto-Ncoil select: 0
+...Auto-Ncoil limit: 45
+...Auto post processing options: 0
+...Gradient mode in Gemini project: 2
+...Asset: 0
+...Asset calibration threshold: 10000
+...Asset R: 1
+...Asset coil number: 3
+...Asset phases: 1
+...Table position: -12.7071
+...Patient position: 1
+...Patient entry: 1
+...Landmark: 314.7
+
+			11x fields
+...For fat and water dual recon: 0
+...Num. passes stored in a multi-pass Pfile (0 means 1 pass): 0
+...Last slice number: 0
+...Slice reduction factor: 1
+...Asset slab wrap: 0
+...Coefficient for amount of phase correction: 0.5
+...Navigator echo correction: 0
+...Number of views of navigator echoes: 0
+...Number of navigator echoes for actual correction: 2
+...Start view for phase correction process: 1
+...End view for phase correction process: 1
+...Start shot for delta phase estimation in nav echoes: 1
+...End shot for delta phase estimation in nav echoes: 2
+...0 = modified Hanning, 1 = modified Tukey: 0
+...Degree of apodization; 0.0 = boxcar, 1.0=hanning: 0.1
+...Apodization at ends, 0.0 = max, 1.0 = boxcar: 0
+...Surface coil intensity correction: 1 if enabled: 0
+...Type of Clariview/name of filter: 0
+...Edge parameters for enhanced recon: 0
+...Smooth parameters for enhanced recon: 0
+...Focus parameters for enhanced recon: 0
+...Edge parameters for Clariview: 0
+...Smooth parameters for Clariview: 0
+...Focus parameters for Clariview: 0
+...Reduction parameter for SCIC: 0
+...Gauss parameter for SCIC: 0
+...Threshold parameter for SCIC: 0
+...Total Number of regions acquired by PSD: 0
+...Total Number of input regions for reordering: 0
+...Header field for smart prescan: 3
+...K-space blanking field, left: 0
+...K-space blanking field, right: 0
+...Multi-exciter acquire type information from CV: 0
+...Retrosective FSE phase correction control flag: 0
+...Added for retrospective FSE phase correction: 0
+
+			12x fields
+...1st view to use for dynamic EPI phase correction: 93
+...Last view to use for dynamic EPI phase correction: 100
+...Number of passes to skip for dynamic EPI phase correction: 0
+...Number of extra frames at top of k-space: 0
+...Number of extra frames at bottom of k-space: 0
+...Multiphase type 0 = interleaved, 1 = sequential: 0
+...Number of phases in a multiphase scan: 13
+...PURE flag from psd: 0
+...Rec scale factor ratio for calibration scan: 0
+...Byte offset to start of raw data (i.e size of POOL_HEADER): 66072
+...Byte offset to start of rdb_hdr_per_pass of POOL_HEADER: 2048
+...Byte offset to start of rdb_hdr_unlock_raw of POOL_HEADER: 6144
+...Byte offset to start of rdb_hdr_data_acq_tab of POOL_HEADER: 10240
+...Byte offset to start of rdb_hdr_nex_tab of POOL_HEADER: 55296
+...Byte offset to start of rdb_hdr_nex_abort_tab of POOL_HEADER: 57348
+...Byte offset to start of rdb_hdr_tool of POOL_HEADER: 59400
+...Byte offset to start of rdb_hdr_exam of POOL_HEADER: 61448
+...Byte offset to start of rdb_hdr_series of POOL_HEADER: 62488
+...Byte offset to start of rdb_hdr_image of POOL_HEADER: 64536
+...spare a: 0
+...spare b: 0
+...New WW/WL algo enable/disable flag: 0
+...Image area %: 60
+...Histogram area top: 1
+...Histogram area bottom: 1
+...PURE noise reduction on=1/off=0: 1
+...PURE cfg file value, filter: 1
+...PURE cfg file value, fit_order: 2
+...PURE cfg file value, kernelsize_z: 3
+...PURE cfg file value, kernelsize_xy: 8
+...PURE cfg file value, weight_radius: 32
+...PURE cfg file value, intensity_scale: 2
+...PURE cfg file value, noise_threshold: 75
+...MART deblurring kernel, wienera: 0
+...MART deblurring kernel, wienerb: 0
+...MART deblurring kernel, wienert2: 0
+...MART deblurring kernel, wieneresp: 0
+...MART deblurring kernel, wiener: 0
+...MART deblurring kernel, flipfilter: 0
+...MART deblurring kernel, dbgrecon: 0
+...MART deblurring kernel, ech2skip: 0
+...Tricks type 0 = subtracted, 1 = unsubtracted: 0
+...LC fiesta phase: 0
+...LC fiesta: 0
+...Half echo raw data filter, herawflt: 0
+...Half echo raw data filter, herawflt_befnwin: 0
+...Half echo raw data filter, herawflt_befntran: 0
+...Half echo raw data filter, herawflt_befamp: 0
+...Half echo raw data filter, herawflt_hpfamp: 0
+...Half echo over-sampling: 0
+...PURE Correction threshold: 0
+
+...........RDB_DATA_ACQ_TAB..................
+Offset to/size of RDB_DATA_ACQ_TAB: 10240, 45056
+Slice 0, pass = 0, slice in pass = 1, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -54.45
+  point 2: 122.927, 159.1, -54.45
+  point 3: -117.073, -80.9, -54.45
+Slice 1, pass = 0, slice in pass = 18, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -51.15
+  point 2: 122.927, 159.1, -51.15
+  point 3: -117.073, -80.9, -51.15
+Slice 2, pass = 0, slice in pass = 2, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -47.85
+  point 2: 122.927, 159.1, -47.85
+  point 3: -117.073, -80.9, -47.85
+Slice 3, pass = 0, slice in pass = 19, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -44.55
+  point 2: 122.927, 159.1, -44.55
+  point 3: -117.073, -80.9, -44.55
+Slice 4, pass = 0, slice in pass = 3, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -41.25
+  point 2: 122.927, 159.1, -41.25
+  point 3: -117.073, -80.9, -41.25
+Slice 5, pass = 0, slice in pass = 20, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -37.95
+  point 2: 122.927, 159.1, -37.95
+  point 3: -117.073, -80.9, -37.95
+Slice 6, pass = 0, slice in pass = 4, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -34.65
+  point 2: 122.927, 159.1, -34.65
+  point 3: -117.073, -80.9, -34.65
+Slice 7, pass = 0, slice in pass = 21, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -31.35
+  point 2: 122.927, 159.1, -31.35
+  point 3: -117.073, -80.9, -31.35
+Slice 8, pass = 0, slice in pass = 5, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -28.05
+  point 2: 122.927, 159.1, -28.05
+  point 3: -117.073, -80.9, -28.05
+Slice 9, pass = 0, slice in pass = 22, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -24.75
+  point 2: 122.927, 159.1, -24.75
+  point 3: -117.073, -80.9, -24.75
+Slice 10, pass = 0, slice in pass = 6, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -21.45
+  point 2: 122.927, 159.1, -21.45
+  point 3: -117.073, -80.9, -21.45
+Slice 11, pass = 0, slice in pass = 23, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -18.15
+  point 2: 122.927, 159.1, -18.15
+  point 3: -117.073, -80.9, -18.15
+Slice 12, pass = 0, slice in pass = 7, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -14.85
+  point 2: 122.927, 159.1, -14.85
+  point 3: -117.073, -80.9, -14.85
+Slice 13, pass = 0, slice in pass = 24, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -11.55
+  point 2: 122.927, 159.1, -11.55
+  point 3: -117.073, -80.9, -11.55
+Slice 14, pass = 0, slice in pass = 8, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -8.25
+  point 2: 122.927, 159.1, -8.25
+  point 3: -117.073, -80.9, -8.25
+Slice 15, pass = 0, slice in pass = 25, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -4.95
+  point 2: 122.927, 159.1, -4.95
+  point 3: -117.073, -80.9, -4.95
+Slice 16, pass = 0, slice in pass = 9, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, -1.65
+  point 2: 122.927, 159.1, -1.65
+  point 3: -117.073, -80.9, -1.65
+Slice 17, pass = 0, slice in pass = 26, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 1.65
+  point 2: 122.927, 159.1, 1.65
+  point 3: -117.073, -80.9, 1.65
+Slice 18, pass = 0, slice in pass = 10, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 4.95
+  point 2: 122.927, 159.1, 4.95
+  point 3: -117.073, -80.9, 4.95
+Slice 19, pass = 0, slice in pass = 27, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 8.25
+  point 2: 122.927, 159.1, 8.25
+  point 3: -117.073, -80.9, 8.25
+Slice 20, pass = 0, slice in pass = 11, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 11.55
+  point 2: 122.927, 159.1, 11.55
+  point 3: -117.073, -80.9, 11.55
+Slice 21, pass = 0, slice in pass = 28, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 14.85
+  point 2: 122.927, 159.1, 14.85
+  point 3: -117.073, -80.9, 14.85
+Slice 22, pass = 0, slice in pass = 12, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 18.15
+  point 2: 122.927, 159.1, 18.15
+  point 3: -117.073, -80.9, 18.15
+Slice 23, pass = 0, slice in pass = 29, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 21.45
+  point 2: 122.927, 159.1, 21.45
+  point 3: -117.073, -80.9, 21.45
+Slice 24, pass = 0, slice in pass = 13, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 24.75
+  point 2: 122.927, 159.1, 24.75
+  point 3: -117.073, -80.9, 24.75
+Slice 25, pass = 0, slice in pass = 30, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 28.05
+  point 2: 122.927, 159.1, 28.05
+  point 3: -117.073, -80.9, 28.05
+Slice 26, pass = 0, slice in pass = 14, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 31.35
+  point 2: 122.927, 159.1, 31.35
+  point 3: -117.073, -80.9, 31.35
+Slice 27, pass = 0, slice in pass = 31, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 34.65
+  point 2: 122.927, 159.1, 34.65
+  point 3: -117.073, -80.9, 34.65
+Slice 28, pass = 0, slice in pass = 15, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 37.95
+  point 2: 122.927, 159.1, 37.95
+  point 3: -117.073, -80.9, 37.95
+Slice 29, pass = 0, slice in pass = 32, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 41.25
+  point 2: 122.927, 159.1, 41.25
+  point 3: -117.073, -80.9, 41.25
+Slice 30, pass = 0, slice in pass = 16, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 44.55
+  point 2: 122.927, 159.1, 44.55
+  point 3: -117.073, -80.9, 44.55
+Slice 31, pass = 0, slice in pass = 33, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 47.85
+  point 2: 122.927, 159.1, 47.85
+  point 3: -117.073, -80.9, 47.85
+Slice 32, pass = 0, slice in pass = 17, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 51.15
+  point 2: 122.927, 159.1, 51.15
+  point 3: -117.073, -80.9, 51.15
+Slice 33, pass = 0, slice in pass = 34, transpose = 0, rotation = 3
+  point 1: -117.073, 159.1, 54.45
+  point 2: 122.927, 159.1, 54.45
+  point 3: -117.073, -80.9, 54.45
+Slice 34, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 35, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 36, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 37, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 38, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 39, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 40, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 41, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 42, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 43, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 44, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 45, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 46, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 47, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 48, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 49, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 50, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 51, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 52, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 53, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 54, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 55, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 56, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 57, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 58, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 59, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 60, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 61, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 62, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 63, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 64, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 65, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 66, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 67, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 68, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 69, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 70, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 71, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 72, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 73, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 74, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 75, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 76, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 77, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 78, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 79, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 80, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 81, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 82, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 83, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 84, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 85, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 86, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 87, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 88, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 89, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 90, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 91, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 92, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 93, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 94, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 95, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 96, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 97, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 98, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 99, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 100, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 101, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 102, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 103, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 104, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 105, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 106, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 107, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 108, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 109, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 110, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 111, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 112, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 113, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 114, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 115, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 116, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 117, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 118, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 119, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 120, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 121, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 122, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 123, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 124, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 125, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 126, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 127, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 128, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 129, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 130, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 131, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 132, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 133, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 134, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 135, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 136, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 137, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 138, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 139, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 140, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 141, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 142, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 143, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 144, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 145, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 146, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 147, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 148, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 149, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 150, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 151, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 152, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 153, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 154, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 155, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 156, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 157, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 158, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 159, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 160, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 161, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 162, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 163, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 164, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 165, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 166, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 167, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 168, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 169, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 170, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 171, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 172, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 173, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 174, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 175, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 176, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 177, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 178, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 179, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 180, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 181, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 182, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 183, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 184, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 185, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 186, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 187, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 188, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 189, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 190, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 191, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 192, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 193, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 194, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 195, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 196, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 197, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 198, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 199, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 200, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 201, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 202, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 203, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 204, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 205, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 206, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 207, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 208, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 209, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 210, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 211, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 212, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 213, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 214, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 215, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 216, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 217, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 218, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 219, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 220, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 221, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 222, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 223, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 224, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 225, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 226, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 227, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 228, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 229, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 230, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 231, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 232, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 233, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 234, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 235, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 236, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 237, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 238, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 239, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 240, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 241, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 242, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 243, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 244, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 245, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 246, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 247, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 248, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 249, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 250, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 251, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 252, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 253, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 254, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 255, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 256, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 257, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 258, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 259, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 260, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 261, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 262, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 263, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 264, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 265, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 266, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 267, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 268, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 269, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 270, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 271, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 272, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 273, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 274, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 275, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 276, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 277, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 278, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 279, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 280, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 281, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 282, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 283, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 284, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 285, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 286, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 287, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 288, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 289, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 290, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 291, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 292, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 293, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 294, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 295, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 296, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 297, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 298, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 299, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 300, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 301, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 302, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 303, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 304, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 305, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 306, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 307, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 308, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 309, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 310, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 311, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 312, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 313, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 314, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 315, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 316, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 317, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 318, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 319, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 320, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 321, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 322, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 323, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 324, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 325, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 326, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 327, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 328, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 329, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 330, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 331, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 332, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 333, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 334, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 335, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 336, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 337, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 338, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 339, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 340, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 341, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 342, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 343, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 344, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 345, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 346, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 347, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 348, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 349, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 350, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 351, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 352, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 353, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 354, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 355, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 356, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 357, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 358, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 359, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 360, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 361, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 362, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 363, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 364, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 365, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 366, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 367, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 368, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 369, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 370, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 371, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 372, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 373, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 374, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 375, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 376, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 377, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 378, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 379, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 380, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 381, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 382, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 383, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 384, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 385, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 386, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 387, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 388, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 389, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 390, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 391, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 392, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 393, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 394, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 395, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 396, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 397, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 398, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 399, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 400, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 401, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 402, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 403, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 404, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 405, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 406, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 407, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 408, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 409, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 410, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 411, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 412, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 413, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 414, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 415, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 416, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 417, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 418, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 419, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 420, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 421, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 422, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 423, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 424, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 425, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 426, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 427, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 428, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 429, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 430, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 431, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 432, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 433, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 434, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 435, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 436, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 437, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 438, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 439, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 440, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+Slice 441, pass = 0, slice in pass = 0, transpose = 0, rotation = 0
+  point 1: 0, 0, 0
+  point 2: 0, 0, 0
+  point 3: 0, 0, 0
+
+...........ExamData Type..................
+Offset to/size of ExamData section: 61448, 1040
+...Exam number: 2876
+...Exam description: 
+...Exam date/time stamp: (1249039730) Fri Jul 31 07:28:50 2009
+...Start time (secs) of first axial in exam: 0
+...Cell number at theta: 0
+...Cell spacing: 0
+...Distance from source to detector: 0
+...Distance from source to iso: 0
+...Indicates number of updates to header: 0
+...Exam complete flag: 0
+...Last series number used: 5
+...Number of series archived: 0
+...Number of series existing: 5
+...Number of unstored series: 0
+...Number of unarchived series: 5
+...Number of prospective/scout series: 5
+...Last model number used: 0
+...Number of 3D models: 0
+...Number of cells in detector: 0
+...Magnet strength (in Gauss): 30000
+...Patient weight: 75750
+...Date/Time of last change: Fri Jul 31 07:28:50 2009
+...The make-unique flag: 0
+...Detector type: 0
+...Tube type: 0
+...DAS type: 0
+...Number of decon kernels: 0
+...Number of elements in a decon kernel: 0
+...Decon kernel density: 0
+...Decon kernel stepsize: 0
+...Decon kernel shift count: 0
+...Patient age (years, months or days): 0
+...Patient age notation: 0
+...Patient sex: 0
+...Exam format: 6
+...Trauma flag: 0
+...Non-zero indicates protocol exam: 1
+...Study has complete info (DICOM/genesis): 0
+...Patient History: 
+...Referring physician: 
+...Diagnostician/Radiologist: 
+...Operator: 
+...Exam type: MR
+...Creator suite and host: UTMROC1
+...Process that allocated this record: MRIFCCALLOC
+...Disk ID for this exam: 
+...Hospital name: UNIV OF TEXAS AT AUSTIN
+...Suite ID for this exam: UTMR
+...Genesis version - created: 12
+...Genesis version - now: 12
+...Unique system ID: 000000512232UTMR
+...Unique service ID: 512232UTMR      
+...Mobile location number: 9999
+...Study entity unique ID: 1.2.840.113619.2.176.3596.6865676.15119.1248468052.423 
+...Ref SOP class UID:  
+...Ref SOP instance UID:  
+...Patient name (FF): dst-ptsd-2876
+...Patient ID (FF): dst-ptsd-2876
+...Requisition number (FF): 
+...Date of birth: 
+...Genesis exam UID: 1.2.840.113619.2.176.3596.6865676.15119.1248468052.423 
+...Genesis exam number: 
+...Series keys for this exam: length: 0, data pointer value: 0x0
+...Unstored series keys for this exam: length: 0, data pointer value: 0x0
+...Unarchived series keys for this exam: length: 0, data pointer value: 0x0
+...Prospective/Scout series keys for this exam: length: 0, data pointer value: 0x0
+...3D model keys for exam: length: 0, data pointer value: 0x0
+...Exam record checksum: 2171891973
+...Requisition number: 
+...Patient ID for this exam: dst-ptsd-287
+...Patient name: dst-ptsd-2876
+
+...........SeriesData Type..................
+Offset to/size of SeriesData section: 62488, 2048
+...Exam number: 2876
+...Series number: 5
+...Series description: Hariri's Hammer 
+...Allocation series data/time stamp: Fri Jul 31 07:49:35 2009
+...Actual series data/time stamp: Fri Jul 31 07:49:35 2009
+...PixelData size - as stored: 0
+...PixelData size - compressed: 0
+...PixelData size - uncompressed: 0
+...Horizontal landmark: 314.7
+...First scan location (L/S): -41.7429
+...Last scan location (L/S): 67.1571
+...RAS letter for first scan location (L/S): I
+...RAS letter for last scan location (L/S): S
+...Series complete flag: 0
+...Number of images archived: 0
+...Last image number used: 442
+...Number of images existing: 442
+...Indicates number of updates to header: 0
+...Number of unstored images: 442
+...Number of unarchived images: 442
+...Patient position: 1
+...Patient entry: 1
+...Landmark counter: 0
+...Date/Time of last change: Fri Jul 31 07:49:35 2009
+...Echo 1 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 2 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 3 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 4 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 5 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 6 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 7 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 8 alpha, beta, window, level values: 0, 0, 0, 0
+...Series type: 1
+...Series from which prescribed: 0
+...Most-like plane (for L/S): 2
+...Scout or axial (for CT): 0
+...The make-unique flag: 0
+...Non-zero if > 0 image used contrast(L/S): 0
+...Last pulse sequence used (L/S): 2
+...Image sort order (L/S): 0
+...Number of acquisitions: 1
+...Starting number for baselines: 0
+...Ending number for baselines: 0
+...Starting number for enhanced scans: 0
+...Ending number for enhanced scans: 0
+...Table position for nMR and iMR: 0
+...nMR - swing angle: 0
+...nMR - lateral offset: 0
+...Gradient coil selection: 2
+...Genesis version - created: 12
+...Genesis version - now: 12
+...Suite ID for this series: UTMR
+...Process that allocated this record: MRIFCCALLOC
+...Disk ID for this series: 
+...Primary receiver suite and host: UTMROC1
+...Archiver suite and host: 
+...Anatomical reference: 
+...Scan protocol name: STOTE-PTSD-2/5
+...Series entity unique ID: 1.2.840.113619.2.176.3596.6865676.15119.1248468052.427 
+...Landmark unique ID: 1.2.840.113619.2.176.3596.6865676.15119.1248468052.422 
+...Equipment unique ID: 1.2.840.113619.1.176.5.3596.6865676 
+...Ref SOP class UID:  
+...Ref SOP instance UID:  
+...Sched proc action item seq - value: 
+...Sched proc action item seq - description: 
+...Sched proc action item seq - meaning: 
+...Sched proc step desc: 
+...Sched proc step ID 1: 
+...Req proc step ID 1: 
+...PPS ID: 
+...PPS description: 
+...Req proc step ID 2: 
+...Req proc step ID 3: 
+...Sched proc step ID 2: 
+...Sched proc step ID 3: 
+...Dicom reference images (4 UIDS): 
+   (0):  
+   (1):  
+   (2):  
+   (3):  
+...Image keys for this series: length: 0, data pointer value: 0x0
+...Unstored image keys for this series: length: 0, data pointer value: 0x0
+...Unarchived image keys for this series: length: 0, data pointer value: 0x0
+...Series record checksum: 0
+
+			11x fields
+...fMRI ExpType: -1
+...fMRI TrRest: 0
+...fMRI TrActive: 0
+...fMRI DumAcq: 0
+...fMRI ExptTimePts: -1
+...Supplement to se_typ, see DICOM (0008,0008): 0
+...fMRI BWRT: 0
+...fMRI PdgmStr:                                                                 
+...fMRI PdgmDesc:                                                                                                                                                                                                                                                                 
+...fMRI PdgmUID:  
+...fMRI ApplName:                 
+...fMRI ApplVer:                 
+
+			12x fields
+...Asset calibration series number: 2
+...Asset calibration scan number: 1
+...Product/Research/Service: 2
+...Pure calibration series number: -1
+...Pure calibration scan number: 0
+...Asset application name: generic     
+...Scic_a values from CoilConfig.cfg: 1.5 0.2 0.2 2.0 64 0.4 1.05     
+...Scic_s values from CoilConfig.cfg: 1.5 0.2 0.2 2.0 64 0.4 1.05     
+...Scic_c values from CoilConfig.cfg: 1.5 0.2 0.2 2.0 64 0.4 1.05     
+...PURE config parameters from pure.cfg: rev=1;a=75;b=2;c=32;d=8;e=3;f=2;g=1;h=0                         
+
+...........MRImgData Type..................
+Offset to/size of MRImgData section: 64536, 1536
+...Exam number for this image: 2876
+...Series number for this image: 5
+...Image number: 1
+...Actual image date/time stamp: Fri Jul 31 07:49:35 2009
+...Allocation image date/time stamp: Fri Jul 31 07:49:35 2009
+...Raw data run number: 28160
+...Display field of view - x (mm): 240
+...Display field of view - y (if different): 240
+...Image matrix size - x: 128
+...Image matrix size - y: 128
+...Image dimension - x: 96
+...Image dimension - y: 96
+...Image pixel size - x: 1.875
+...Image pixel size - y: 1.875
+...Variable bandwidth (kHz): 250
+...Pulse repetition time (usec): 2000000
+...Pulse echo time (usec): 30000
+...Second echo time (usec): 0
+...Echo train length for fast spin echo: 3
+...Fractional echo - effective TE flag: 2
+...Pulse inversion time (usec): 0
+...Flip angle for GRASS scans (deg): 90
+...Number of echoes: 1
+...Echo number: 1
+...Variable echo flag: 0
+...Number of slices in this scan group: 34
+...Slice thickness (mm): 3
+...Spacing between scans (mm): 0.3
+...Negative scan spacing for overlap slices: 0
+...Continuous slices flag: 1
+...Slice thickness (variable 'thk_disclmr'): 0
+...Number of 3D slabs: 0
+...Slice locations per 3D slab: 0
+...Number of slice locs on each slab which overlap neighbors: 0
+...Frequency direction: left/right (1)
+...Swap phase/frequency axis: 1
+...Slice offsets on frequency axis: 0
+...Number of excitations: 1
+...Duration of scan: 3.9239e+08
+...Magnitude, phase, imaginary, or real: 0
+...Plane type: 2
+...Oblique plane: 2
+...Scout type (A-P or lateral): 0
+...Graphically prescribed: 0
+...Series from which prescribed: 1
+...Image from which prescribed: 3
+...Image location: -41.7429
+...RAS letter of image location: I
+...(R,A,S) center coordinate of image: (2.92658, 39.1, -41.7429)
+...(R,A,S) normal coordinate: (0, 0, 1)
+...(R,A,S) coordinate of top left hand corner: (122.927, 159.1, -41.7429)
+...(R,A,S) coordinate of top right hand corner: (-117.073, 159.1, -41.7429)
+...(R,A,S) coordinate of bottom right hand corner: (-117.073, -80.9, -41.7429)
+...Imaging mode: 1
+...Imaging options: MP EPI (67141632)
+...Imaging option 2: 0
+...Imaging option 3: 0
+...Table delta: 0
+...Pulse sequence: 2
+...Pulse sequence mode: 0
+...Pulse sequence name: epimecho
+...PSD creation date and time: Thu Apr 23 17:59:48 2009
+...PSD name from inside PSD: EPI
+...Type of receiver used: 1
+...Coil type: 3
+...Coil name: 8HRBRAIN
+...Surface coil type: 0
+...Extremity coil flag: 0
+...Surface coil intensity correction flag: 0
+...IV contrast agent: 
+...Oral contrast agent: 
+...Image contrast mode: 0
+...Cardiac repetition time: 0
+...Cardiac heart rate (bpm): 0
+...Trigger window (% of RR interval): 0
+...Images per cardiac cycle: 0
+...Cardiac phase number: 0
+...Total number of cardiac phases prescribed: 0
+...Tagging flip angle: 0
+...Cardiac tagging orientation: 0
+...Tag type: 0
+...Tag space: 0
+...Blood suppression TI: 0
+...Delay time after trigger (msec): 6058
+...Minimum delay after trigger (usec): 0
+...Fast CINE interpolation method: 0
+...Fast CINE normalization type: 0
+...Views per segment: 0
+...Respiratory rate (breaths per min): 0
+...Respiratory trigger point as percent of maximum: 0
+...Respiratory trigger window: 0
+...Number of fast phases: 13
+...Number of EPI shots: 3
+...Effective echo spacing for EPI: 200
+...Diffusion direction for DW-EPI: 0
+...B-value for DW-EPI: 0
+...Average SAR: 0.361143
+...Peak SAR: 0.722286
+...Average head SAR: 0
+...Monitor SAR flag: 0
+...Bitmap defining user CVs: 888879
+...User usage tag ("defines how user CVs are filled in"): 0
+...What process fills in the user CVs, ifcc or TIR ('user_fill_mapMSW'): 0
+...What process fills in the user CVs, ifcc or TIR ('user_fill_mapLSW'): 0
+...User variable 0: 1
+...User variable 1: 1
+...User variable 2: 1
+...User variable 3: 0
+...User variable 4: 0
+...User variable 5: 0
+...User variable 6: 0
+...User variable 7: 0
+...User variable 8: 0
+...User variable 9: 0
+...User variable 10: 0
+...User variable 11: 0
+...User variable 12: 0
+...User variable 13: 0
+...User variable 14: 0
+...User variable 15: 5
+...User variable 16: 929
+...User variable 17: 0
+...User variable 18: 3
+...User variable 19: 1
+...User variable 20: 0
+...User variable 21: 0
+...User variable 22: 0
+...User variable 23: 0
+...User variable 24: 0
+...User variable 25: 0
+...User variable 26: 0
+...User variable 27: 0
+...User variable 28: 0
+...User variable 29: 0
+...User variable 30: 0
+...User variable 31: 208
+...User variable 32: 2
+...User variable 33: 2.44413
+...User variable 34: 0.000136
+...User variable 35: 0.000164
+...User variable 36: 1
+...User variable 37: 1
+...User variable 38: 50400
+...User variable 39: 0
+...User variable 40: 0
+...User variable 41: 0
+...User variable 42: 0
+...User variable 43: 0
+...User variable 44: 0
+...User variable 45: 0
+...User variable 46: 0
+...User variable 47: 0
+...User variable 48: 0
+...dBdt peak rate of gradient field change (T/s): 0
+...dBdt limit in units of percent of theoretical curve: 100
+...PSD estimated dBdt limit in Teslas/sec: 63.66
+...PSD estimated dBdt limit in units of percent: 76.26
+...RTIA timer: 0
+...RTIA fps: 0
+...RTIA filter mode: 
+...Bitmap of SAT selections: 0
+...SAT fat/water/none: 0
+...Concat sat type flag: 0
+...R-side SAT pulse location relative to landmark: 9990
+...L-side SAT pulse location relative to landmark: 9990
+...A-side SAT pulse location relative to landmark: 9990
+...P-side SAT pulse location relative to landmark: 9990
+...S-side SAT pulse location relative to landmark: 9990
+...I-side SAT pulse location relative to landmark: 9990
+...Thickness of x axis SAT pulse: 0
+...Thickness of y axis SAT pulse: 0
+...Thickness of z axis SAT pulse: 0
+...Preparatory pulse option: 0
+...Magnitization Transfer offset frequency: 0
+...Vascular mode: 0
+...Phase contrast flow axis: 0
+...Phase contrast velocity encoding: 0
+...Scale weighted venc: 0
+...Magnitude weighting flag: 2
+...Collapse image: 0 (Unknown)
+...Projection algorithm: 0
+...Projection algorithm name: 
+...Projection angle: 0
+...X axis rotation: 0
+...Y axis rotation: 0
+...Z axis rotation: 0
+...Pause time: 0
+...Pause interval (slices): 0
+...Interimage/interloc delay (usec): 0
+...Image filtering 0.5/0.2 T: 0
+...MR-YMS num_seg: 0
+...Number of averages for spectro: 0
+...Station index: 0
+...Station total: 0
+...Calibrated field strength (x10 uGauss): 0
+...Scan acquisition number: 1
+...GE image integrity: 0
+...Identify image as original or unoriginal: 0
+...Image complete flag: 0
+...Reference image field: 
+...Summary image field: 
+...Window value: 0
+...Level value: 0
+...Lower range of pixels 1: 0
+...Upper range of pixels 1: 0
+...Lower range of pixels 2: 0
+...Upper range of pixels 2: 0
+...Screen format (8/16 bit): 16
+...Image archive flag: 0
+...Suite ID for this image: UTMR
+...Image unique ID: 1.2.840.113619.2.176.3596.6865676.15053.1248468213.606 
+...Service obj class unique ID: 1.2.840.10008.5.1.4.1.1.4 
+...Make-unique flag: 0
+...Disk ID for this image: 
+...Image compression type for allocation: 1
+...Foreign image revision: 
+...Image allocation key: MRIFCCALLOC
+...Date/time of last change: Fri Jul 31 07:49:35 2009
+...Genesis version - created: 12
+...Genesis version - now: 12
+...Pixel data ID: 
+...Pixel data size - as stored: 0
+...Pixel data size - compressed: 0
+...Pixel data size - uncompressed: 0
+...String slop field 2: 
+...Bitmap of prescan options: 6
+...Actual transmit gain (.1 db): 0
+...Actual receive gain analog (.1 db): 0
+...Actual receive gain digital (.1 db): 0
+...Center frequency (0.1 Hz): 0
+...Auto center frequency (0.1 Hz): 0
+...Auto transmit gain (0.1 dB): 0
+...Prescan R1 - analog: 0
+...Prescan R2 - digital: 0
+...Auto/manual prescan flag: 0
+...Bitmap of changed values: 0
+...Gradient offset in x direction: 0
+...Gradient offset in y direction: 0
+...Gradient offset in z direction: 0
+...Variable: 'sys_type':                                                                 
+...AcqRecon record checksum: 0
+
+			11x fields
+...Regressor value: 0
+...Delay after acquisition (MP/fMRI screen): 0
+
+			12x fields
+...Slice asset in ASSET screen: 1
+...Phase asset in ASSET screen: 1
+...Corresponding 4 SAR values for defined terms: [0.361143, 0.722286, 0.361143, 0]
+...SAR control mode (normal, 1st or 2nd): 1
+...Variable 'sarDefinition': defined terms available: 7
+...Shim FOV (2 terms): [0, 0]
+...Shim (R,A,S) center (2 terms): [0, 0, 0], [0, 0, 0]
+...dBdt control mode (normal, 1st or 2nd): 1
+...Governing body MHW/IEC/FDA: 1
+...Variable: 'no_shimvol': 0
+...Variable: 'shim_vol_type': 0
+...Variable: 'xml_psc_shm_vol':                                 
+...GE coil name: GE_8HRBRAIN             
+...Concatenated string of coilcode and chip serialID: 
+     jetijj2wholhjk9j1oikmhm43hf5i7a5\b60000000c4c500f                                                   
+...ASSET calibration series UID: 1.2.840.113619.2.176.3596.6865676.15119.1248468052.424 
+...PURE calilabration series UID:  
