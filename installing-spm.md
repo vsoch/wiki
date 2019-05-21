@@ -1,0 +1,21 @@
+# Installing SPM
+
+## Local Machine
+
+  - You will need to register and download the correct version [here](http://www.fil.ion.ucl.ac.uk/spm/software/download.html)
+  - For the Voxel Value Matrix, we were using SPM 5.  For everything else, download SPM 8, which is the latest version and has the newest batch analysis capability.  You will also need Matlab, which for Duke staff is available for Download from [OIT](http://www.oit.duke.edu/comp-print/software/).
+  - After you download the zip file, create an "SPM" directory in your place of choice, such as My Documents/SPM.  Do not put SPM in the same directory that you have your matlab files.
+  - Extract the files to this new directory.  **VERY IMPORTANT: You must go to the "miscellaneous" tab under "options" --> configuration and uncheck the box that says "Tar file smart CR/LF conversion."  If you do not, unzipping the .tar file will corrupt some of your SPM scripts.
+  - Once you have unzipped the SPM files, be sure to click the second link on the download page, which specifies being for updates to the version that you chose.  Unzip this in the same SPM directory, and be sure to uncheck "Tar file smart CR/LF conversion" as you did before.
+  - Once SPM is installed, we need to add the directory to the start paths in Matlab.  Open up matlab, and go to File --> Set Path --> Add Folder, and navigate to your SPM directory.  Make sure to check the option to add the directory and all subfolders.  Click save, and OK.
+  - Type "spm" to start the GUI.  You will still have to navigate to the SPM directory to run certain scripts.  You're done!
+
+## Run on the cluster
+
+Since it makes a lot more sense to run analysis on the cluster, you will probably want to set up SPM 8 to run on the cluster.  This is very easy to do!
+  - Log into qinteract
+  - Type matlab to launch matlab
+  - Go to File --> Set path, and choose "Add folder with Subdirectories"
+  - Navigate to /usr/local/packages/MATLAB/spm8 and then click "Add"
+  - It will give you a message that the pathdef.m is not writable, and ask if you want to save a different version in another location.  Select "Yes" and click the "HOME" (house icon) button.  I saved my new version under my matlab folder with the startup.m
+  - Just like with the local version, we run SPM8 by typing "spm"

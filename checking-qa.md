@@ -17,16 +17,16 @@ If you do not see a subject on the dashboard, you can search by entering the exa
   * Open up MATLAB.  Make sure that you have installed the BIAC Tools.  If you don't have these tools you can use any toolbox that allows for loading images and calculating the difference between a timeseries.
   * Navigate to the functional data folder
   * Create a temporary variable for your functional data:
-<code matlab>
+```matlab
 temp = readmr('functionalfilename.nii');
 ```
   * Then calculate the difference between the slices
-<code matlab>
+```matlab
 temp2 = diff(temp.data, 4,1);
 ```
 
   * Then look at the result
-<code matlab>
+```matlab
 showsrs2(temp2)
 ```
 

@@ -1,0 +1,23 @@
+## Installing FSL on your local machine
+
+  - Instructions are [here](http://www.fmrib.ox.ac.uk/fsl/fsl/downloading.html).  You will basically need to download and install:
+  * [download FSL](http://www.fmrib.ox.ac.uk/fsldownloads/) (make sure for CentOS 5, 32 bit!)
+  * a virtual machine called [VMWare Player](http://www.vmware.com/products/player/)
+  * [The FSL Virtual Machine](http://www.fmrib.ox.ac.uk/fsldownloads/FSL_vm5_32.zip)
+  * [fsl_install.sh](http://www.fmrib.ox.ac.uk/fsl/fsl/fsl_installer.sh), which is basically instructions for the computer to install FSL
+  - Download the main FSL zip file and save to your desktop.  Don't bother unzipping it.  Also save the installfsl.sh to your desktop.
+  - Create a new folder in MyDocuments called "My Virtual Machines" and unzip the FSL virtual machine here.  Install the VMWare player, run it, click "Open" and navigate to the FSL Virtual Machine file.  Then let everything start up (you will see some "FAILED" notifications - it's OK!
+  - Once you see a GUI login screen, log in with username "fsl" and password "fsluser"
+  - Once you see the desktop, right click and select "Terminal Window" to bring up the terminal window.  Time to change passwords!  Type "passwd" and it will ask you to type the current password (fsluser) and then enter a new one.  **VERY IMPORTANT: when you type the password in, you won't see anything!  Trust that it's there, just press enter when you finish!
+ - To install FSL, we need to be logged in as the "root" user, who is basically the superior ultimate user!  type "/bin/su -" and it will ask for root's password, which is "fslroot"
+  - Now that we are logged in as root, let's install FSL!  Create a folder on the virtual machine desktop and call it "fsl"  Drag and drop the FSL Zip file that you downloaded (on your Windows desktop) into this folder.  Additionally, drop the installfsl.sh file into this folder.  
+  - As the root user, navigate into this folder by typing "cd /fsl/home/Desktop/fsl" into the terminal window.  Once we are in this folder, type "bash fsl_installer.sh" to install fsl.  Once the install is complete, typing "fsl" should run fsl.  Type "exit" to log out of root.
+  - To configure permissions for the fsl user, once again, navigate to the fsl folder on your desktop, and type "bash fsl_installer.sh -e"  This will change the permissions file so user "fsl" can run fsl!  Typing fsl should now run fsl.
+
+The preferred method of running FSL is of course having it installed in a cluster environment, and connecting via SSH, and typing "fsl" to run.
+
+## SSH Commands
+
+  * Make sure under options in your win-32 (or whatever is handling the display) you have X-11 tunneling enabled, to either display 0 or 1 (whichever you have configured to handle the display output).  Also make sure that "localhost" as added until the Security tab, if you are using Win-32.
+  * xterm  -----     opens up a terminal window
+  * ls     -----     lists the files in the current directory

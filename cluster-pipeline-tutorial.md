@@ -34,7 +34,7 @@ Any code that goes into a script can be typed into the matlab terminal and teste
 
 **5)** The longevity of a script is only as good as its documentation.  The first thing that you should add to your matlab script template is a good header.  The header should provide the script name, when it was created, by whom, and details about what it does.  It is important to have dependencies, as well as variable desriptions, and assumptions that the script makes.  An example is provided below from a script that preps data for resting connectivity analysis.  It is good to provide details about what is done, as well as intermediate and output files, if applicable.  Think of the situation of someone opening up your template script in 10 years, and needing to figure out what it is from your header.
 
-<code matlab>
+```matlab
 %--------------------------------------------------------------------------
 % CONN_BOXSS: This script is a template used by spm_RESTSS.sh and 
 % spm_RESTSS.py on the cluster.  It does quick anatomical preprocessing and
@@ -89,7 +89,7 @@ Any code that goes into a script can be typed into the matlab terminal and teste
 
 You can of course start simple and add details as you put together the pipeline.  Here is a generic header to start with:
 
-<code matlab>
+```matlab
 %-----------------------------------------------------------------------
 % SPM CLUSTER TEMPLATE
 % Created for the Laboratory of Neurogenetics, MM/DD/YYYY
@@ -125,7 +125,7 @@ It is your decision if you want to feed the substitutions into each file path, o
 ##### BIAC CLUSTER HEADER
 **8)** Since running spm and other tools in matlab is dependent on having the correct paths added to the workspace, this is the first thing that your script should do.  Right underneath your documentation header you will want to copy paste the BIAC CLUSTER HEADER. as shown below:
 
-<code matlab>
+```matlab
 %% BIAC CLUSTER HEADER
 % Add necessary paths for BIAC, then SPM and data folders.
 BIACroot = 'SUB_BIACROOT_SUB';
@@ -137,7 +137,7 @@ The BIACROOT is detailed in [[cluster_pipeline_tutorial#NON CHANGING VARIABLES|N
 
 Other paths that you might want to add include the paths to your single subject raw Data, as well as Analyzed and Processed folders.  Since adding a folder with subdirectories to the path means that matlab will search the entire thing exhaustively looking for each function call, it is smart to add the path for only your single subject, as opposed to the entire Data or Analysis folders.  So you would want to do something like:
 
-<code matlab>
+```matlab
 addpath(genpath('SUB_MOUNT_SUB/Data/Anat/SUB_SUBJECT_SUB'));
 addpath(genpath('SUB_MOUNT_SUB/Data/Func/SUB_SUBJECT_SUB')); 
 addpath(genpath('SUB_MOUNT_SUB/Analysis/SPM/Processed/SUB_SUBJECT_SUB'));
@@ -149,7 +149,7 @@ The above shows adding paths to the subject's functional and anatomical data, as
 ##### INITIALIZE SPM JOBMAN
 **9)** Before you do anything with matlabbatch, you need to "warm up" the spm module that will read matlabbatch, which is called the spm_jobman.  So next in your script you will want to have the following:
 
-<code matlab>
+```matlab
 spm('defaults','fmri');spm_jobman('initcfg');    % Initialize SPM JOBMAN
 ```
 
@@ -159,7 +159,7 @@ This line tells the spm_jobman that we want to initialize both spm and the spm_j
 
 **10)** You could write out a full path every single time a path is referenced, or you could create global variables for paths to be referenced later, to make life easier.  A path is nothing but a string variable.  Keep in mind that the cluster is a unix environment, so the "correct" direction of the slash is "/"  On windows (and you will likely see this in paths in your matlabbatch created in windows) the direction is ""  An incorrect direction can sometimes lead to script errors, so make sure that all directions are "/" for a unix environment.  Here are examples of how to set the start of a path to data directories and Analysis directories:
 
-<code matlab>
+```matlab
 %Here we set some directory variables to make navigation easier
 homedir='SUB_MOUNT_SUB/Analysis/SPM/'; 
 scriptdir='SUB_MOUNT_SUB/Scripts/'; 
@@ -168,14 +168,14 @@ datadir='SUB_MOUNT_SUB/Data/';
 
 The above directories say that 'SUB_MOUNT_SUB/Analysis/SPM/' is a string that is placed in the homedir variable, for example.  We can use commands called horzcat to put different strings together to make a full path.  You can try this out on the MATLAB command line to see how it works.  For example, let's look at having subject, data, and task name variables, and putting them together into one string.
 
-<code matlab>
+```matlab
 subject = '12345_1234'
 task = 'faces'
 ```
 
 Keep in mind that strings in matlab are placed into quotes.  If you have a number variable, you could say number = 1.  For paths you will always use strings. Matlab will spit out an error if you have the wrong type of something.  With horzcat, however, you can concatenate numbers and strings.  For the above we could do:
 
-<code matlab>
+```matlab
 mynewpath = horzcat(homedir,subject,'/',task,','/','myimagename.img'); 
 % would mean that mynewpath is SUB_MOUNT_SUB/Analysis/SPM/12345_1234/faces/myimagename.img
 ```
@@ -184,7 +184,7 @@ Note how each variable is references as is, and separated by commas.  Since the 
 
 So you can see how it would be easy to create global paths, and then do things like:
 
-<code matlab>
+```matlab
 % Create a path variable and go there later
 mypath = horzcat(homedir,subject,'/',task,','/');
 cd(mypath)
@@ -199,7 +199,7 @@ So it's a good idea at the creation of your template script to figure out the ma
 #### DIRECTORY CREATION and FILE MANIPULATION
 Before editing your matlabbatch variable, you will likely need to do some file manipulation or directory creation.  As you walk through your script, keep in mind of the "present working directory" - or where you are.  When the template script first starts running, it is likely located in what you could call the home folder of the node, as opposed to anywhere within your experiment directory.  So you will want to use [=cd=] to change directories, and as you move through your script, ALWAYS ask yourself where you are before writing commands.  The following examples should help you to put together code to move, copy, and navigate.
 
-<code matlab>
+```matlab
 % Moving to different directory - variable directory name
 cd(variable_directory_name)
 
@@ -230,7 +230,7 @@ copyfile(data_to_copy,destination)
 ##### RESPONSIBLE FILE MANIPULATION
 Many times, a script needs to move, copy, or delete files.  It is always smart to include checks before any file manipulation to make sure that you are in the correct directory, or working with the correct file.  If you were to cd to a directory and then run a delete command, in the case that there was an error in navigating to the directory and you didn't put any checks, you would run the delete command in the previous directory.  Bad. You can use if statements with the delete/move/copy inside to ensure that criteria are met before any file manipulation.
 
-<code matlab>
+```matlab
 % Check to see if a directory exists
 if isdir(directory)
 	% Code to execute if the directory exists
@@ -250,7 +250,7 @@ end
 ##### CUSTOM RUN-TIME VARIABLES
 Very commonly it is useful to have variables in your python script that can be set to "yes" and "no" or "1" and "0" to dictate if things should be run, or not.  These variables can be passed through the bash script like any other variable, and then you can use a function called strcmp (string compare) to make yes/no decisions about entering loops.  For example, let's say we have a section of the script that we want to run ONLY if the user has selected to process a task called faces.  Let's assume that this choice (yes or no) gets fed into the matlab template script as SUB_FACESRUN_SUB.  We then can do the following:
 
-<code matlab>
+```matlab
 if strcmp('SUB_RUNFACES_SUB', 'yes');
 	% Insert code here to execute if the user has chosen "yes" to run faces, meaning the variable filled in to SUB_RUNFACES_SUB is 'yes'
 end
@@ -258,7 +258,7 @@ end
 
 Keep in mind that if you include conditional statements for parts of the matlabbatch, your script must accomodate running with or without the section. This means that if matlabbatch{1} comes before the conditional statement, and matlabbatch{2} is inside, and then you want matlabbatch{3} to happen after, you would either need to submit the spm_jobman to run AFTER the conditional loop and start your old matlabbatch{3} as matlabbatch{1}, or in the case that the loop isn't entered, do something like matlabbatch{2} = matlabbatch{1} to run the exact same analysis again in the second cell, and then jump to matlabbatch{3}.  If you jump from matlabbatch{1} to matlabbatch{3} without setting anything for matlabbatch{2} you will get an error!  The else statement (part of the if loop) is helpful in cases like this.  For example:
 
-<code matlab>
+```matlab
 matlabbatch{1} = ...
 matlabbatch{1} = ...
 matlabbatch{1} = ...
@@ -280,7 +280,7 @@ If you choose this method, make sure that it is OK to run the same thing twice! 
 
 When your directories and global variables are set up, you can start to edit the matlabbatch section of the code.  Keep in mind that you have already intitialized the spm_jobman, and when you add the many lines of matlabbatch, you are simply putting together a large variable (a cellular array).  Nothing happens in terms of running anything until you submit the spm_jobman with the following:
 
-<code matlab>
+```matlab
 spm_jobman('run_nogui',matlabbatch);  clear matlabbatch     %Execute the job to process the anatomicals and clear matlabbatch
 ```
 
@@ -289,7 +289,7 @@ The lines above tell the jobman to run without a GUI, and to use the matlabbatch
 ##### Creating File Paths
 In many cases, the spm batch will require a long list of file paths, printed out in the matlabbatch as such.  You could edit the strings to each include various substitutions, or you could use some code to populate this file path variable.  The following example shows how to create a cellular array of paths, called imagearray, and then set it to the data variable in a particular matlabbatch:
 
-<code matlab>
+```matlab
 V00img=dir(fullfile(datadir,'Path/to/data/image_prefix*.dcm')); 
 numimages = length(V00img);
 for j=1:numimages; 
@@ -306,13 +306,13 @@ The next line in the for loop puts a concatenated string of the path (using horz
 
 Keep in mind that when you refernce a spot in an array, using { }'s will usually refer to the contents within a cell, while the ( ) is a pointer to the cell itself.  So if you have a cell with a string array in it, if you type myvar{1} into matlab, it will display
 
-<code matlab>
+```matlab
 mystring
 ```
 
 If you type myvar(1) you will see
 
-<code matlab>
+```matlab
 'mystring'
 ```
 
@@ -324,7 +324,7 @@ At the end it is a good idea to clear the V00img variable, especially since we h
 ##### Exit from Matlab
 Since we are calling matlab from a bash script (meaning from command line in likely a unix environment) if we don't have "exit" at the end of our script, we will never leave matlab, and the job will run until it's terminated by some other process.  So make sure the last line of your script is
 
-<code matlab>
+```matlab
 exit
 ```
 
@@ -334,14 +334,14 @@ The snippets below are examples of other functionality that you want want to int
 
 **Modifying a path (the imagearray variable by a letter or so).**  In many of SPM's processing modules, the output of one module is simply adding a letter prefix to a set of images, such as going from V0001.img to uV0001.img after you have realigned and unwarped.  In cases like this, instead of completely re-doing your imagearray variable each time, you can opt to not clear the array, and use it again, simply adding a "u" to the image names.  For example, here we set up the original imagearray variable based on a list of V00*.img files:
 
-<code matlab>
+```matlab
 V00img=dir(fullfile(homedir,'Path/to/images/','V0*.img')); numimages = 195;
 for j=1:numimages; imagearray{j}=horzcat(homedir,'Path/to/images/',V00img(j).name,',1'); end; clear V00img;
 ```
 
 and here we modify the imagearray variable to change the image name from V00*.img to uV00*.img
 
-<code matlab>
+```matlab
 % Create array of uV* image paths
 for j=1:numimages; imagename=imagearray{j}(regexp(imagearray{j},'V0'):end); holder{j}=horzcat(homedir,'Path/to/image/u',imagename); end;
     imagearray = holder; clear holder;
@@ -357,7 +357,7 @@ After initial pre-processing batch file is completed Check Registration will be 
 
 The example below randomly generates 12 numbers between 1 and n.  These 12 numbers correspond to the swuV* images that will be loaded with check_registration to visualize 12 random smoothed images from the tasks Processed Data. The first line after the cd allocates a spot in memory for the array so that it doesn't have to find a new spot for every iteration of the loop. i should be the number of total images, and 12,104 means that we are allocating an array of length 12 with 104 characters (the length of the file path).
 
-<code matlab>
+```matlab
 cd(image_directory)
 
 i = 171; chreg_task = char(12,104); f = ceil(i.*rand(12,1));
@@ -373,7 +373,7 @@ end
 ##### CHANGING PATHS IN SPM.MAT
 A huge challenge in doing any sort of processing with SPM in a cluster environment has to do with the paths that are set in the SPM.mat (the design matrix) to the original swu images, and the swd (standard working directory).  If you process a single subject or group analysis in a cluster environment with temporary paths and then load the SPM.mat in matlab, if you look at the following variables:
 
-<code matlab>
+```matlab
 SPM.swd
 SPM.xY.P
 SPM.VY.fname
@@ -384,7 +384,7 @@ Clearly, any cluster processing needs to have a step at the end that changes any
 
 This first script is meant for paths with a different SPM.swd path.  The first argument is the SPM.swd path to change, the second is the SPM.xY.P and SPM.VY.fname path to change (which are the same), the third input argument is the path to change all three to, and the last is the slash direction desired. We of course want to make sure that we are in the same directory as the SPM.mat before running.  Since you can only have one SPM.mat per directory, the function is called and looks to load this file.
 
-<code matlab>
+```matlab
 % spm_change_paths_swd
 cd(horzcat(homedir,'Path/to/task/')); 
 spm_change_paths_swd('/ramSUB_MOUNT_SUB/','SUB_MOUNT_SUB/','N:/TASK.01/','/');
@@ -392,7 +392,7 @@ spm_change_paths_swd('/ramSUB_MOUNT_SUB/','SUB_MOUNT_SUB/','N:/TASK.01/','/');
 
 The simpleset version (spm_change_paths) only takes three input arguments, as it assumes that the beginning section of all paths to change is the same for all three variables.  The second argument is the path to change to, and the third is the direction of the slash desired.  In this case, SUB_MOUNT_SUB refers to the temporary path, and is filled in by the bash script at runtime.	
 
-<code matlab>
+```matlab
 % spm_change_paths
 cd(horzcat(homedir,'Path/to/task/')); 
 spm_change_paths('SUB_MOUNT_SUB/','N:/TASK.01/','/');
@@ -406,7 +406,7 @@ These scripts of course would need to be located in a folder (such as the Script
 #### RUNNING ART BATCH
 The artifact detection tool (ART and ART Repair) can be used to find motion outliers in a SPM single subject analysis. The output of running ART Batch can be used towards ART Repair (to "fix" the data), or used as a covariate in another single subject analysis.  We run a task "pseudo first level" analysis to create an original SPM.mat, then we run ART batch on this SPM.mat to find the motion outliers, and then we use this motion outlier text file as a regressor file / input to an equivalent first level analysis.  You can find the tools at http://www.nitrc.org/projects/artifact_detect/ and again, make sure that these scripts are located somewhere that MATLAB can find them, such as the Scripts directory linked to SUB_SCRIPTDIR_SUB.
 
-<code matlab>
+```matlab
 addpath(genpath('SUB_MOUNT_SUB/Scripts/SPM/Art')); cd(horzcat(homedir,'Subject/Task/Directory'))
 
 % ARTBATCH - TASK
@@ -415,14 +415,14 @@ art_batch(horzcat(homedir,'Subject/Task/Directory/SPM.mat'));
 
 It isn't necessary, but it's another step of carefulness to also specify the complete path to the SPM.mat.  ART will automatically generate various graphical window popups, so it's important to have support for graphics (discussed later in the bash script template area).  Once art has finished, it produces a motion outliers file that starts with "art_regression_outliers_" and ends with the name of the first image specified in the SPM.xY.P variable.  This could be fed into a single subject analysis as  regressor, an example of the line to add it from the fmri specification module is shown below:
 
-<code matlab>
+```matlab
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = {horzcat(homedir,'Path/to/swu/data/art_regression_outliers_swuV0001.mat')};
 ```
 
 ##### DATA CHECK (Results report for single subject analysis)
 In addition to using the registration check utility to look at 12 randomly selected swu (smoothed, reaigned and unwarped, and normalized images) it is also helpful to create a results report for a single subject analysis to check the activation maps.  The results report is just another module in the SPM batch utility, and so generating the matlabbatch code to do a report can be done just like with any module, however since this is an important part of our pipeline and I will include examples of how to convert the resulting .ps file to .pdf and move it around using bash, I will also include the matlabbatch code as an example here.  I've also added another example of using strcmp() to determine whether or not to run this section, depending on if the user has said "yes" to run the task:
 
-<code matlab>
+```matlab
 % TASK Data Check
 if strcmp('SUB_RUNTASK_SUB','yes')
     spm('defaults','fmri'); spm_jobman('initcfg');			% Initialize spm jobman
@@ -443,7 +443,7 @@ end
 ##### DATA CHECK (display an anatomical image)
 A similar check for an anatomical image would be using the display image component of the batch editor to produce and print an image. An example is shown below.
 
-<code matlab>
+```matlab
 % T1 Data Check
 cd(horzcat(homedir,'Path/to/anat'))
 

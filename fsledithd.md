@@ -1,0 +1,51 @@
+# FSLedithd
+
+fsledithd takes an input header file and allows you to edit various parameters.
+
+You give it the input file and then the editor you want to use, which could be kedit, which is installed on the cluster.  So this is what you might type:
+
+```bash
+fsledithd RAmygdalaAnalyze0001.hdr kedit
+```
+
+- RAmygdala... is the name of the header file
+- kedit is the name of the editor
+
+Pico, which is specified as the default, we don't have installed on the cluster.  Be careful with Kedit, even when you exit it keeps sputtering crap into the terminal window!  Kedit should open, and your file should look something like this, below.  You simply need to make changes and save the file to change the header.
+
+```bash
+    # FSLEDITHD
+    # This text file contains the header information for an Analyze or Nifti file
+    # Simply edit this file then save it and the header will be regenerated
+    # All lines starting with the hash (#) character, like this line, will be ignored
+    # Ensure that all lines intended to set values take the form: name = 'value'
+    # Note that if the file is Analyze then many settings will be ignored
+    # Further note that the filetype cannot be changed by this program
+    #   i.e. changing the nifti_type has no effect
+     
+    <nifti_image
+      nifti_type = 'ANALYZE-7.5'
+      image_offset = '0'
+      ndim = '3'
+      nx = '91'
+      ny = '109'
+      nz = '91'
+      dx = '2'
+      dy = '2'
+      dz = '2'
+      datatype = '16'
+      nbyper = '4'
+      byteorder = 'LSB_FIRST'
+      descrip = 'FSL4.0'
+      num_ext = '0'
+
+    # Many fields require codes to be set (e.g. sform_code, qform_code, intent_code)
+    # Valid values are:
+    #   sform_code (or qform) :- 0=UNKNOWN, 1=SCANNER_ANAT, 2=ALIGNED_ANAT, 3=TALAIRACH, 4=MNI_152
+    #   xyz_units :- 1=METER, 2=MM, 3=MICRON
+    #   t_units :- 8=SEC, 16=MSEC, 24=USEC, 32=HZ, 40=PPM, 48=RADS
+    #   intent_code :- 0=NONE, 2=CORRELATION, 3=TTEST, 4=FTEST, 5=ZSCORE, 6=CHISQ, ...
+    #                  22=PVAL, 23=LOGPVAL, 24=LOG10PVAL, 1001=ESTIMATE, 1002=LABEL (incl masks)
+    #                  Other codes can be found in the /usr/local/fsl/src/niftiio/nifti1.h file
+     
+```

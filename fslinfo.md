@@ -1,0 +1,3 @@
+```bash
+Usage: /usr/local/fsl/bin/fslinfo <filename>
+```

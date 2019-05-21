@@ -34,7 +34,7 @@ This matlab script checks the coverage for a group of subjects that have complet
 #### The Script
   * To run, make sure that it is saved in a scripts directory that is part of your MATLAB path.
   * To run, simply type 
-<code matlab>
+```matlab
 covcheck_free 
 ```
 in the MATLAB window, and it will prompt you for all of your variables.  The newest version is:

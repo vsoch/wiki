@@ -1,0 +1,18 @@
+# Manual Second Level Analysis
+
+## Setting up Second-Level Analyses
+
+  * Bring up a window in F-Secure SSH.
+  * cd to a directory you want to analyze.
+  * Type fsl. Click FEAT.
+  * Change the top left pull-down menu to Higher-level analysis.
+  * Select the Data tab. The top menu should read Inputs are lower-level FEAT directories. For Number of analyses, select the number of runs. Click Select FEAT directories and then select the directories at left (i.e., not the files). Note that you can select one and then copy and paste for the rest, changing the run numbers manually. Click OK. Use lower-level copes will appear and all runs should be highlighted.
+  * Select the _Stats_ tab. The top menu should read Mixed effects: Flame 1.
+  * Click on Model setup wizard. Select single group average. Click process. Close the little Model window that pops up.
+  * Click on Full Model Setup. You should have one row per run, and one column labeled EV1, with all 1s in it. Click Done. (Note that you can skip the previous step, and just manually set everything to 1 in this step.)
+  * Click Save. Type FEAT_across into the Selection box. Click OK.
+  * Click Go.
+
+Your new analyses will be saved in a new directory called across_runs.gfeat.
+
+There is a good description of concepts behind higher-level analyses on the feat web manual.
