@@ -2,7 +2,7 @@
 
 <details>
 
-![img/legacy.png](img/legacy.png)
+<img src="img/legacy.png">
 
 </details>
 
