@@ -9,12 +9,12 @@ This script takes in a text file, either specified at command line (if you run F
 12345_11111
 12345_22222
 12345_33333
-</code>
+```
 
 the output will be:
 
-<code python>
+```python
 subnums = ["12345_11111","12345_22222","12345_33333"]
-</code>
+```
 
 You can view the script [here](scripts/format_ID.m)

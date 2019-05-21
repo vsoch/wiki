@@ -2,7 +2,7 @@
 
 Please note that this is an old python submission script for the old cluster at Duke!
 
-<code python>
+```python
 #!/usr/bin/env python
 import sys,os,time,re,datetime,smtplib
 
@@ -245,4 +245,4 @@ cmd = "rm *.job"
 os.system(cmd)
 os.chdir(start_dir)
 os.rmdir(tmp_dir)
- </code>
+ ```

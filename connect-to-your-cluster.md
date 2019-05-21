@@ -9,7 +9,7 @@
  7. Back in the F Secure Shell Click on Edit --> Settings, and then Choose "Tunneling" from the menu on the left. Make sure the box that says "Tunnel X11 Connections" is checked. This makes the display work! If you are currently in a session, restart it.
  8. You can always type "xterm" to open up a terminal window.  You can use nedit / gedit / vi to edit files, and the follow commands for basic navigation:
 
-<code bash>
+```
 # Go to a directory called directory
 cd directory
 
@@ -29,6 +29,6 @@ rmdir
 ls
 # list files in one row
 ls -1
-</code>
+```
 
 You can also press the up and down arrows to cycle through previously used commands, and TAB to autocomplete.  You should browse around and get comfortable with command line stuff before you delve into anything huge, and I promise that you will get better with practice! Talk to whomever manages your cluster environment for information about connecting to nodes, data, and submitting jobs.

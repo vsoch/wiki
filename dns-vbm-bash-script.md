@@ -10,7 +10,7 @@ This script is submit once per subject by the python.  It performs the main VBM 
   - Lastly, we shoot back to the batch script when the matlab script finishes, and we copy our newly created files to the SPGR or SPM_Default_Modulation directory, and delete them from under anat.
 
 
-<code bash>
+```
 #!/bin/sh
 
 # --------------SPM BATCH VBM TEMPLATE ----------------
@@ -204,4 +204,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

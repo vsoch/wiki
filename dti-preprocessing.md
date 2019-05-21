@@ -18,13 +18,13 @@ This script takes dti data converted to nifti with MRICro (which also produces t
 
 To run the script on the command line:
 
-<code bash>
+```
 qsub -v EXPERIMENT=FIGS.01 DTI.sh 10 050112807043   
 #Where "10" is the DTI directory within EXPERIMENT/Data/Subject, and "050112807043" is the subject number
-</code>
+```
 
 =====The Script=====
-<code bash>
+```
 #!/bin/sh
 
 #-------------DTI---------------------------------------
@@ -116,4 +116,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

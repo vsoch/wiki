@@ -1,6 +1,6 @@
 # First Level Feat
 
-<code bash>
+```bash
 #!/bin/sh
 
 #----------first_level_FEAT.sh-----------
@@ -114,4 +114,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

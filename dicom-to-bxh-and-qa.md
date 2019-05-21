@@ -1,6 +1,6 @@
 # Dicom2Bxh and QA
 
-<code bash>
+```
 #!/bin/sh
 
 # ------dicom2bxh_qa-----------
@@ -87,4 +87,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

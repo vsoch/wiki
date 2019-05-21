@@ -1,6 +1,6 @@
 # Bet Manual
 
-<code bash>
+```
 #!/bin/sh
 
 #-------------BET---------------------------------------
@@ -109,4 +109,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

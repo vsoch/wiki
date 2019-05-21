@@ -1,6 +1,6 @@
 # Create Cluster Masks
 
-<code bash>
+```
 #!/bin/sh
 
 #-------------create_cluster_masks.sh---------------------------------------
@@ -97,4 +97,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

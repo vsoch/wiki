@@ -5,7 +5,7 @@
   * An anatomical highres image name (WITHOUT AN EXTENSION),
   * Either the value "1" or "2" under the variable "gmmodulation." A "1" will run VBM analysis with SPM Default Modulation, meaning affine and non-linear, and a "2" will run VBM analysis with non-linear only. 
 
-<code python>
+```python
 #!/usr/bin/env python
 import sys,os,time,re,datetime,smtplib
 
@@ -240,4 +240,4 @@ cmd = "rm *.job"
 os.system(cmd)
 os.chdir(start_dir)
 os.rmdir(tmp_dir)
-</code>
+```

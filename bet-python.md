@@ -5,7 +5,7 @@ BET.py uses BET_TEMPLATE.sh as a template for submitting BET jobs.  Here is
 
 ## BET_TEMPLATE
 
-<code bash>
+```
 #!/bin/sh
 
 #-------------BET---------------------------------------
@@ -95,12 +95,12 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```
 
 =====BET PYTHON SCRIPT=====
 and here is the BET python script, to run BET_TEMPLATE.sh
 
-<code python>
+```python
 #!/usr/bin/env python
 import sys,os,time,re,datetime,smtplib
 
@@ -332,4 +332,4 @@ cmd = "rm *.job"
 os.system(cmd)
 os.chdir(start_dir)
 os.rmdir(tmp_dir)
-</code>
+```

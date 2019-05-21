@@ -85,7 +85,7 @@ Any code that goes into a script can be typed into the matlab terminal and teste
 % template) and spm_RESTGP.py (the python submission script on the head
 % node) for more details.
 %--------------------------------------------------------------------------
-</code>
+```
 
 You can of course start simple and add details as you put together the pipeline.  Here is a generic header to start with:
 
@@ -96,7 +96,7 @@ You can of course start simple and add details as you put together the pipeline.
 % See (insert link here and text file name) for instructions
 %       By YourNameHere, Duke University
 %-----------------------------------------------------------------------
-</code>
+```
 
 ##### SUBSTITUTION VARIABLES
 **6)** The snippets of script provided in this tutorial contain a lot of words that look like SUB_SOMETHING_SUB.  These are text substitutions that are looked for by the bash script, and filled in with an actual variable (a folder, subject ID, path, etc).  It is important to know that these variables are linked between the python, bash, and matlab template scripts.  You will likely need to define some of your own, but first let's review the variables that are included in the script snippets on here and the python and bash templates. because they don't change.
@@ -131,7 +131,7 @@ It is your decision if you want to feed the substitutions into each file path, o
 BIACroot = 'SUB_BIACROOT_SUB';
 startm=fullfile(BIACroot,'startup.m'); if exist(startm,'file'); run(startm); else; warning(sprintf(['Unable to locate central BIAC startup.m filen  (%s).n Connect to network or set BIACMATLABROOT environment variable.n'],startm)); end; clear startm BIACroot;
 addpath(genpath('SUB_SCRIPTDIR_SUB')); addpath(genpath('/usr/local/packages/MATLAB/spm8')); 
-</code>
+```
 
 The BIACROOT is detailed in [[cluster_pipeline_tutorial#NON CHANGING VARIABLES|NON CHANGING VARIABLES]] and is a path to a folder on BIAC with a custom file of pathdefinitions (starm) for running matlab on the cluster.  The first section of this header looks for this file, and alerts the user if it isn't found.  If you want to use a custom path definition file, then you can change the path to the startm variable.  Generally, it is easier to stick with BIACs file and add paths that you need using addpath(genpath()), as shown above.  Using just addpath() only adds one folder, while addpath(genpath()) adds the path with all subdirectories.  In the snippet above you will see that we add paths to the installation of spm8 on the cluster, as well as the script directory, where your template script and any other scripts that you call can reside.
 
@@ -142,7 +142,7 @@ addpath(genpath('SUB_MOUNT_SUB/Data/Anat/SUB_SUBJECT_SUB'));
 addpath(genpath('SUB_MOUNT_SUB/Data/Func/SUB_SUBJECT_SUB')); 
 addpath(genpath('SUB_MOUNT_SUB/Analysis/SPM/Processed/SUB_SUBJECT_SUB'));
 addpath(genpath('SUB_MOUNT_SUB/Analysis/SPM/Analyzed/SUB_SUBJECT_SUB'));
-</code>
+```
 
 The above shows adding paths to the subject's functional and anatomical data, as well as the appropriate folders under Processed and Analyzed.  Keep in mind that SUB_MOUNT_SUB refers to the experiment folder, and SUB_SUBJECT_SUB should refer to the subject folder / ID. An important note is that, for any folders that are created at the time of the script run that the matlab template will search through, it is wisest to create these in your bash script and then add them as paths in your matlab script.  That way, when you type the command addpath(genpath, all subfolders are already created and added to the path.  If you choose to make directories in your matlab template script that are not part of the current path, just make sure to add them with the command above.
 
@@ -151,7 +151,7 @@ The above shows adding paths to the subject's functional and anatomical data, as
 
 <code matlab>
 spm('defaults','fmri');spm_jobman('initcfg');    % Initialize SPM JOBMAN
-</code>
+```
 
 This line tells the spm_jobman that we want to initialize both spm and the spm_jobman with the default settings.
 
@@ -164,21 +164,21 @@ This line tells the spm_jobman that we want to initialize both spm and the spm_j
 homedir='SUB_MOUNT_SUB/Analysis/SPM/'; 
 scriptdir='SUB_MOUNT_SUB/Scripts/'; 
 datadir='SUB_MOUNT_SUB/Data/';
-</code>
+```
 
 The above directories say that 'SUB_MOUNT_SUB/Analysis/SPM/' is a string that is placed in the homedir variable, for example.  We can use commands called horzcat to put different strings together to make a full path.  You can try this out on the MATLAB command line to see how it works.  For example, let's look at having subject, data, and task name variables, and putting them together into one string.
 
 <code matlab>
 subject = '12345_1234'
 task = 'faces'
-</code>
+```
 
 Keep in mind that strings in matlab are placed into quotes.  If you have a number variable, you could say number = 1.  For paths you will always use strings. Matlab will spit out an error if you have the wrong type of something.  With horzcat, however, you can concatenate numbers and strings.  For the above we could do:
 
 <code matlab>
 mynewpath = horzcat(homedir,subject,'/',task,','/','myimagename.img'); 
 % would mean that mynewpath is SUB_MOUNT_SUB/Analysis/SPM/12345_1234/faces/myimagename.img
-</code>
+```
 
 Note how each variable is references as is, and separated by commas.  Since the task and subject variables don't end in "/" (since we don't always want to use them as a path) note how we have added the "/" as strings to be concatenated.  We finish with the name of an image that the variable is pointing to. Keep in mind that it's a very common error to forget a slash, or accidentally have multiple.  When matlab spits out an error that it cannot find a path, the first thing to do is usually to check that the path is correct and exists!
 
@@ -191,7 +191,7 @@ cd(mypath)
 
 % Go directly to a concatenated path without creating a variable
 cd(horzcat(homedir,subject,'/',task,','/')
-</code>
+```
 
 So it's a good idea at the creation of your template script to figure out the main directories that you are going to be jumping around to, and creating the appropriate variables, using SUB_MOUNT_SUB as a substitution for the experiment folder, and SUB_SUBJECT_SUB as a substitution for the subject ID/folder name.
 
@@ -224,7 +224,7 @@ rmdir directoryname
 % destination should also be a variable or a string itself.  If destination is a directory, the copied file will have the same name.  To rename
 % the file, have the destination string or variable include the new file name and extension.
 copyfile(data_to_copy,destination)
-</code>
+```
 
 
 ##### RESPONSIBLE FILE MANIPULATION
@@ -244,7 +244,7 @@ end
 if exist(filevariable,'file')
 	% Write code here to execute if the file exists
 end
-</code>
+```
 
 
 ##### CUSTOM RUN-TIME VARIABLES
@@ -254,7 +254,7 @@ Very commonly it is useful to have variables in your python script that can be s
 if strcmp('SUB_RUNFACES_SUB', 'yes');
 	% Insert code here to execute if the user has chosen "yes" to run faces, meaning the variable filled in to SUB_RUNFACES_SUB is 'yes'
 end
-</code>
+```
 
 Keep in mind that if you include conditional statements for parts of the matlabbatch, your script must accomodate running with or without the section. This means that if matlabbatch{1} comes before the conditional statement, and matlabbatch{2} is inside, and then you want matlabbatch{3} to happen after, you would either need to submit the spm_jobman to run AFTER the conditional loop and start your old matlabbatch{3} as matlabbatch{1}, or in the case that the loop isn't entered, do something like matlabbatch{2} = matlabbatch{1} to run the exact same analysis again in the second cell, and then jump to matlabbatch{3}.  If you jump from matlabbatch{1} to matlabbatch{3} without setting anything for matlabbatch{2} you will get an error!  The else statement (part of the if loop) is helpful in cases like this.  For example:
 
@@ -271,7 +271,7 @@ else
 end
 
 matlabbatch{3}
-</code>
+```
 
 If you choose this method, make sure that it is OK to run the same thing twice!  Otherwise, you will want to submit the spm_jobman, and re-initialize, detailed below.
 
@@ -282,7 +282,7 @@ When your directories and global variables are set up, you can start to edit the
 
 <code matlab>
 spm_jobman('run_nogui',matlabbatch);  clear matlabbatch     %Execute the job to process the anatomicals and clear matlabbatch
-</code>
+```
 
 The lines above tell the jobman to run without a GUI, and to use the matlabbatch variable.  It is safe enough to copy paste the code above directly below the end of your matlabbatch variable specification.  If you need to break up your job further into different matlabbatch instances (in the case that you have conditional blocks for running a task, for example) you can simply re-initialize and re-submit the spm_jobman at the beginning and end of the conditional block.  Don't forget to clear the matlabbatch variable between uses, or else you will likely have overlap between jobs that would lead to an error!
 
@@ -299,7 +299,7 @@ clear V00img;
 
 matlabbatch{2}.spm.util.dicom.data = imagearray;
 clear imagearray;
-</code>
+```
 
 V00img is an array variable that we are creating to put a bunch of custom dicom image paths.  The fullfile function in matlab will put together a bunch of strings to make a complete path (in this case, a datadirectory variable (datadir) and then a string path, and all images that start with "image_prefix" and end with the extension ".dcm"  We then create a variable called "numimages" to hold the number of images of this type found, which is the length of the V00img array.  We could also skip over this variable and just reference length(V00img), but it's nice to have this variable in the script in the case that fullfile finds more images than you want to use.  If you wanted to use the first 171 out of 172 total images, you could set numimages = 171.  You could also achieve this functionality by tweaking the range of the loop that cycles  through the images and puts them into the imagearray variable.  Instead of saying for j = 1:numimages, you might say j = 5:numimages, or j=1:171, or whatever range you desire!
 The next line in the for loop puts a concatenated string of the path (using horzcat) with the name of the image at the jth location (V00img(j).name) into a spot in the imagearray variable (also at j).  The imagearray should be filled from 1 through n, so if you change the code around so that the loop doesn't go from 1 to n, you will want to create separate variables for cycling through the for loop and referencing imagearray{ } and V00img( ).
@@ -308,13 +308,13 @@ Keep in mind that when you refernce a spot in an array, using { }'s will usually
 
 <code matlab>
 mystring
-</code>
+```
 
 If you type myvar(1) you will see
 
 <code matlab>
 'mystring'
-</code>
+```
 
 the difference (I think) is that the first is referencing the string itself, while the second is referencing the cell, so it shows the 'mystring' as a string variable inside the cell.  For the purposes of setting paths in the array, we generally want to use the { }.  There are likely cases with matlabbatch variables when it expects a different type of variable to hold your paths, in which case you can troubleshoot in matlab to figure out what is expected, or look at the original matlabbatch job script (.m) file.
 
@@ -326,7 +326,7 @@ Since we are calling matlab from a bash script (meaning from command line in lik
 
 <code matlab>
 exit
-</code>
+```
 
 
 ##### ADDITIONAL COMPONENTS TO ADD
@@ -337,7 +337,7 @@ The snippets below are examples of other functionality that you want want to int
 <code matlab>
 V00img=dir(fullfile(homedir,'Path/to/images/','V0*.img')); numimages = 195;
 for j=1:numimages; imagearray{j}=horzcat(homedir,'Path/to/images/',V00img(j).name,',1'); end; clear V00img;
-</code>
+```
 
 and here we modify the imagearray variable to change the image name from V00*.img to uV00*.img
 
@@ -345,7 +345,7 @@ and here we modify the imagearray variable to change the image name from V00*.im
 % Create array of uV* image paths
 for j=1:numimages; imagename=imagearray{j}(regexp(imagearray{j},'V0'):end); holder{j}=horzcat(homedir,'Path/to/image/u',imagename); end;
     imagearray = holder; clear holder;
-</code>
+```
 
 The function "regexp" is in reference to "regular expressions" - which are commonly used in many scripting languages to find particular patterns of text.  In the example shown here, the string to be searched is the first argument, and the pattern to be searched for is the second, 'V0'  This function will return the starting location of this particular pattern as an index (a number).  In the example above, this index is used to grab the entire name V00*.img from it's start (indicated by the V0 index) to the end.  This name is placed in the "imagename" variable, which is then used to create a new image path to be placed in a holder variable, being sure to add a "u" to the beginning.  After the holder has been filled for every image in the original imagearray, we replace the entire imagearray with holder, and then can use the variable imagearray with the new paths to be as a data input for the next matlabbatch.
 
@@ -367,7 +367,7 @@ i = 171; chreg_task = char(12,104); f = ceil(i.*rand(12,1));
         if f(j) >=100; chreg_task(j,1:104) = horzcat(homedir,'Path/to/images/swuV0',num2str(f(j)),'.img,1'); end;
     end; spm_check_registration(chreg_task); spm_print  %spm_print will print a *.ps of the 12 smoothed images files to the same *.ps file it created for the other components of the pre-processing
 end
-</code>
+```
 
 
 ##### CHANGING PATHS IN SPM.MAT
@@ -377,7 +377,7 @@ A huge challenge in doing any sort of processing with SPM in a cluster environme
 SPM.swd
 SPM.xY.P
 SPM.VY.fname
-</code>
+```
 
 you would see paths to the various images and standard working directory that are set based on where the analysis is done.
 Clearly, any cluster processing needs to have a step at the end that changes any temporary paths (random strings of letters and numbers) into a path that makes sense on  local machine (like N:/TASK.01/etc).  If the data is stored on a mapped server, this would be good rationale for each computer that maps the data to use a common drive.  To fix this issue, there are a series of scripts that can be called with input arguments  to fix the paths.
@@ -388,7 +388,7 @@ This first script is meant for paths with a different SPM.swd path.  The first a
 % spm_change_paths_swd
 cd(horzcat(homedir,'Path/to/task/')); 
 spm_change_paths_swd('/ramSUB_MOUNT_SUB/','SUB_MOUNT_SUB/','N:/TASK.01/','/');
-<code>
+```
 
 The simpleset version (spm_change_paths) only takes three input arguments, as it assumes that the beginning section of all paths to change is the same for all three variables.  The second argument is the path to change to, and the third is the direction of the slash desired.  In this case, SUB_MOUNT_SUB refers to the temporary path, and is filled in by the bash script at runtime.	
 
@@ -396,7 +396,7 @@ The simpleset version (spm_change_paths) only takes three input arguments, as it
 % spm_change_paths
 cd(horzcat(homedir,'Path/to/task/')); 
 spm_change_paths('SUB_MOUNT_SUB/','N:/TASK.01/','/');
-</code>
+```
 
 I did not write the original spm_change_paths script, however I did modify it to create spm_change_paths_swd, as well as spm_change_paths_dti (for dti design matrices) as well as spm_change_paths_reverse, which does the exact opposite - taking the local path and changing it to a cluster path, for analysis like PPI that require taking a design matrix set for a local machine and loading it successfully back in a cluster environment to extract timeseries data.  The idea behind these scripts is simple - you load the SPM.mat, identify the old path and the old slash direction, take a new slash direction and path as input, and rewrite the variables with the new path portion and the part of the old path that you want to keep.  With this functionality you can do any sort of analysis in a cluster environment that creates design matrices with embedded paths.  From this basic idea I was able to create scripts to work with the CONN toolbox from MIT to set up and process/run groups of many subjects, and then go back into the design matrix (that can be opened in a GUI on a local machine) and change all the embedded paths from cluster to local.  Thus, instead of spending hours clicking through one subject in a time in a GUI, a script can do everything for you.  It's lovely how matlab is transparent enough to be able to figure that out!  Thank you Matlab <3!
 
@@ -411,13 +411,13 @@ addpath(genpath('SUB_MOUNT_SUB/Scripts/SPM/Art')); cd(horzcat(homedir,'Subject/T
 
 % ARTBATCH - TASK
 art_batch(horzcat(homedir,'Subject/Task/Directory/SPM.mat'));
-</code> 
+``` 
 
 It isn't necessary, but it's another step of carefulness to also specify the complete path to the SPM.mat.  ART will automatically generate various graphical window popups, so it's important to have support for graphics (discussed later in the bash script template area).  Once art has finished, it produces a motion outliers file that starts with "art_regression_outliers_" and ends with the name of the first image specified in the SPM.xY.P variable.  This could be fed into a single subject analysis as  regressor, an example of the line to add it from the fmri specification module is shown below:
 
 <code matlab>
 matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = {horzcat(homedir,'Path/to/swu/data/art_regression_outliers_swuV0001.mat')};
-</code>
+```
 
 ##### DATA CHECK (Results report for single subject analysis)
 In addition to using the registration check utility to look at 12 randomly selected swu (smoothed, reaigned and unwarped, and normalized images) it is also helpful to create a results report for a single subject analysis to check the activation maps.  The results report is just another module in the SPM batch utility, and so generating the matlabbatch code to do a report can be done just like with any module, however since this is an important part of our pipeline and I will include examples of how to convert the resulting .ps file to .pdf and move it around using bash, I will also include the matlabbatch code as an example here.  I've also added another example of using strcmp() to determine whether or not to run this section, depending on if the user has said "yes" to run the task:
@@ -438,7 +438,7 @@ if strcmp('SUB_RUNTASK_SUB','yes')
     matlabbatch{1}.spm.stats.results.print = true;
     spm_jobman('run_nogui',matlabbatch);clear matlabbatch		% Submit jobman and clear matlabbatch variable
 end
-</code>
+```
 
 ##### DATA CHECK (display an anatomical image)
 A similar check for an anatomical image would be using the display image component of the batch editor to produce and print an image. An example is shown below.
@@ -458,7 +458,7 @@ if exist('tone','var')
    matlabbatch{1}.spm.util.disp.data = { 'SUB_MOUNT_SUBPathtoanat' tone }; 
     spm_jobman('run_nogui',matlabbatch); spm_print; clear matlabbatch; 
 end
-</code>
+```
 
 
 ##### FINISH UP MATLAB TEMPLATE
@@ -472,7 +472,7 @@ The bash and python script templates are to be stored on your head node, which i
 **Creating the bash script**
 **1)** Log into your home folder on the cluster, likely with ssh.  You can make directories with "mkdir name" and then use a text editor such as nedit, emacs, or nano to start with a blank script.  You will want to save your script as a shell script, with the extension .sh.  The following code is an example of what the header / top of your script should contain.  The first line is important to identify it as a bash script, and the next section should give good documentation of what the script does.  It is also helpful to have some description of return codes, and a change log of updates.
 
-<code bash>
+```
 #!/bin/sh
 
 # -------------- YOUR SCRIPT NAME TEMPLATE ----------------
@@ -494,11 +494,11 @@ The bash and python script templates are to be stored on your head node, which i
 # Change Log
 # 12/15/2010: Added automatic generation of reg check .ps files
 # 12/20/2010: Added Results report for task1 and task2 to 2nd .m, and conversion/relocation of .ps
-</code>
+```
 
 The next part, the global and user directive, are important for setting up the EXPERIMENT variable on the cluster at Duke.  This section and these variables would be specific to whatever cluster environment the job is being submit on.
 
-<code bash>
+```
 # --- BEGIN GLOBAL DIRECTIVE --
 #$ -S /bin/sh
 #$ -o $HOME/$JOB_NAME.$JOB_ID.out
@@ -532,7 +532,7 @@ echo "----JOB [$JOB_NAME.$JOB_ID] START [`date`] on HOST [$HOSTNAME]----"
 
 # -- BEGIN USER SCRIPT --
 # Your Script goes here!
-</code>
+```
 
 #### Variables and Path Preparation
 
@@ -542,7 +542,7 @@ Keep in mind that this bash script is used as a template by a python script, so 
 
 To step back, we are writing the first section that is going to take the variables from the python script and pass them into the bash script.  We might do something like the following: 
 
-<code bash>
+```
 # ------------------------------------------------------------------------------
 #  Variables and Path Preparation
 # ------------------------------------------------------------------------------
@@ -559,36 +559,36 @@ JUSTFUNC=SUB_JUSTFUNC_SUB    # yes skips anatomical processing, to be used if yo
 # set the origins of anatomical and need to re-run faces, cards, rest
 PREONLY=SUB_PREONLY_SUB      # yes only prepares the images / folder for AC-PC realign
 TASKORDER=SUB_ORDERNO_SUB   # this is the task order that determines the matlab script template to use
-</code>
+```
 
 
 Note that each variable has a description, so when you look at this script in 6 months it will still make sense!  To provide more detail about the substitutions, if your python is coded to look for every instance of SUB_SUBNUM_SUB and replace it with the subject ID, for example, when the template is used to make the iteration of the bash script to be run, the first line might instead be changed to:
 
-<code bash>
+```
 SUBJ=123456_1234
-</code>
+```
 
 where 123456_1234 is the subject ID.  Remember that a bash script is basically a compilation of commands that could be typed into the terminal window, so if you ever need to test any sort of scripting, you can just do so on the command line.  When you create a variable you can just type MYVAR=1 however when you reference the variable, you would want to call $MYVAR
 
 Next it might be a good idea to create folders and do any file manipulation that is required for your job.  For example, you might want to create a series of output folders in the bash script and then add the top folder to the path in the matlab template, and since the subfolders are already created, they all get added to the path.
 
-<code bash>
+```
 #Make the subject specific output directories
 mkdir -p $EXPERIMENT/My/Path/$SUBJ
 mkdir -p $EXPERIMENT/Other/Path/$SUBJ
 mkdir -p $EXPERIMENT/Other/Path/$SUBJ/Scripts
-</code>
+```
 
 Then I usually like to create some global variables for various directories, so they can be easily referenced.
 
-<code bash>
+```
 # Initialize other variables to pass on to matlab template script
 ANATDIRECTORY=$EXPERIMENT/Data/Anat/$SUBJ/$ANATFOLDER # This is the location of the anatomical data
 T1DIRECTORY=$EXPERIMENT/Data/Anat/$SUBJ/$TFOLD        # This is the location of the anatomical data
 OUTDIR=$EXPERIMENT/Path/to/output/$SUBJ               # This is the subject output directory top
 SCRIPTDIR=$EXPERIMENT/Scripts/SPM                     # This is the location of our MATLAB script templates
 BIACROOT=/usr/local/packages/MATLAB/BIAC              # This is where matlab is installed on the custer
-</code>
+```
 
 If you remember from the matlab template, we had a script directory and a BIAC root variable that were to be fed in from the bash script.  The last two llines above are setting the path to these two variables!
 
@@ -596,58 +596,58 @@ If you remember from the matlab template, we had a script directory and a BIAC r
 ##### Conditional Statements
 Many times, you will only want a copy to happen, or a template to be created and run given the value of a particular variable.  Here is an example of an if statement that checks if a string variable is equal to something else:
 
-<code bash>
+```
 if [ $JUSTFUNC == 'no' ]; then
 	# insert code here of what you want to do!
 fi
-</code>
+```
 
 You could just as easily check for another string:
 
-<code bash>
+```
 if [ $ANATFOLDER == 'series002' ]; then
 	# do something awesome
 fi
-</code>
+```
 
 Note that if loops end in fi, and the "then" portion must be on a separate line (in this example the ; also indicates the end of  line)
 
 ##### Changing Directory
 Just like any other command line environment, cd is the command to change directory.
 
-<code bash>
+```
 cd $ANATDIRECTORY
-</code>
+```
 
 
 ##### Selecting Files
 The * can be used as an infinite identifier, if you wanted to select a file that doesn't have a constant name:
 
-<code bash>
+```
 ANATFILE=*01.dcm
-</code>
+```
 
 Another thing you might want to do is extract a particular sequence of letters from a file name and put it into a variable.  The way to do that is to echo the variable (which would print it o the command line) and cut out a particular index of values ( cut -c1-26 ) and put that into a new variable.
 
-<code bash>
+```
 ANATPRE=$(echo $ANATFILE | cut -c1-26)
-</code>
+```
 
 ##### Deleting Files
 The rm command can be used to delete a file, or rmdir to delete a directory.  Be VERY careful with these commands!  You will likely want to check that the file or directory exists where you are first with an if statement before doing anything:
 
-<code bash>
+```
 if [ -e "path/to/file/file.img" ]; then
 	rm path/to/file/file.img
 fi
-</code>
+```
 
 The -e tag specifies "exist," while you can use the -d tag to look for a directory.
 
 **Create and submit your MATLAB script from the template** 
 When all your files are copied and directories made, it is time to create a subject specific instance of your matlab template, save it to the single subject directory, and then submit it to run in matlab.  The example below does exactly that, using the sed command, which I think is bash's equivalent of regular expressions.  The sed command looks through your template file (template.m) and finds all the indicated text instances (SUB_SOMETHING_SUB) and replaces them with the indicated variable ($VAR) and then lastly, saves the subject specific template to the output directory (<$i> $OUTDIR/subject_template.m).
 
-<code bash>
+```
 # Change into directory where template exists, save subject specific script
 cd $SCRIPTDIR
 
@@ -663,28 +663,28 @@ sed -e 's@SUB_BIACROOT_SUB@'$BIACROOT'@g'
 -e 's@SUB_ANATFOLDER_SUB@'$ANATFOLDER'@g' 
 -e 's@SUB_TFOLDER_SUB@'$TFOLD'@g' <$i> $OUTDIR/subject_template.m
 done
-</code>
+```
 
 The next step, if your matlab template running spm doesn't require a display to function, would be to navigate to the directory where you just saved the subject_template.m script, and submit it to run.
 
-<code bash>
+```
 # Change to output directory and run matlab on input script
 cd $OUTDIR
 
 /usr/local/bin/matlab -nodisplay < subject_template.m
-</code>
+```
 
 This command is launching matlab (/usr/local/bin/matlab is where it is installed on the cluster) with the "nodisplay" option, and giving it the script as input.  This will launch matlab, run the script, and then with the "exit" command in your matlab template, it will shoot back to the bash script.  It's good to put something after this line so you can be sure this is happening when you check the output file:
 
-<code bash>
+```
 echo "Done running subject_template.m in matlabn"
-</code>
+```
 
 
 ##### Setting up a Graphical Environment
 In the case that we have a matlab template that needs to send graphical output to a display, we can use xvfb (the x virtual frame buffer) to allocate a spot in memory to use, and send the actual output to some temporary folder.  To best do this we should generate a random integer, and then check if the spot is being used (represented by the existence of a "lock" file at this location), and in the case it is open, initialize xvfb at this spot, and then launch matlab to run the script with the display allocated to this spot, and after we finish, delete the lock file that we created.  The script below is an example of how to do that, and then launch matlab to run the script, this time with the -display= option instead of -nodisplay.
 
-<code bash>
+```
 # ------------------------------------------------------------------------------
 #  Step 2.1: Preparing Virtual Display
 # ------------------------------------------------------------------------------
@@ -720,13 +720,13 @@ if [ -e "/tmp/.X11-unix/X${RANDINT}" ]; then
 	rm /tmp/.X11-unix/X${RANDINT};
 	echo "lock file was deleted";
 fi
-</code>
+```
 
 
 ##### Additional Functionality
 A "switch" statement can be used to run different commands depending on the value of a variable.  Here is an example that shows doing different things depending on if the variable $MYFAR is 1, 2, or 3.
 
-<code bash>
+```
 case $MYVAR in
 1)      echo 'MTVAR is 1.';;
 2)      echo 'Faces task order is 2'
@@ -734,14 +734,14 @@ case $MYVAR in
 3)      $MYVAR=4;;
 *)      echo '$MYVAR is not 1, 2, or 3.';;
 esac
-</code>
+```
 
 The * is what will happen if none of the cases match (the default) and the letters esac close the switch statement.
 
 ##### Converting .ps to .pdf
 SPM produces .ps files that can be converted to .pdf with Adobe Distiller when you double click them on your local machine.  However this is slow and painful, so it's much better to have your script do it, and then move the file to wherever you want it.  The example below goes to the output directory of a first level analysis, finds the .ps file that SPM has named with the format of the date, puts the name into a variable called PSFILE, and then checks if the PSFILE exists, and if it does, uses he ps2pdf command to convert it to pdf.
 
-<code bash>
+```
 # If we have done single subject analysis and checked reg, convert .ps file to PDF
 cd $OUTDIR
 NOW=$(date +"%Y%b%d")
@@ -749,21 +749,21 @@ PSFILE=spm_$NOW.ps
 if [ -e "$PSFILE" ]; then
 	ps2pdf $PSFILE
 fi
-</code>
+```
 
 Then we can copy this file to wherever we want to find it, and delete the old ones.  This example puts the subject ID into the name, since all of these files for many subjets are residing in the same place. 
 
-<code bash>
+```
 cp $PSFILE.pdf $EXPERIMENT/Path/where/I/want/$SUBJ"_"$NOW".pdf"
 	rm $PSFILE.pdf
 	rm $PSFILE.ps
 fi
-</code>
+```
 
 ##### Footer Section
 The footer section example below basically closes the output script with some job information, and then moves the job output file to wherever the user has specified.  It then returns a code of 0 (meaning the job was successful) and exits.  In the case of the cluster at Duke, the output file is stored temporarily on the user's home node while the script is running, and then moved to the output directory specified in the footer upon completion.  If a script fails to finish, the output file can be found on the head node in the home folder for troubleshooting!
 
-<code bash>
+```
 # -- END USER SCRIPT -- #
 
 # **********************************************************
@@ -775,11 +775,11 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER--
-</code>
+```
 
 If you didn't want to use a snazzy submission method, you could easily set up some sort of for loop in a bash script to submit different instances of your bash script.  For example:
 
-<code bash>
+```
 # Set up job specific variables
 TASKFOLDER='name'
 RUNTHIS='yes'
@@ -790,16 +790,16 @@ ORDER=3
 for i in 123 234 345 324; do
 	qsub -v EXPERIMENT=NAME.01 my_template.sh $i $TASKFOLDER $RUNTHIS $ORDER
 fi
-</code>
+```
 
 Instead of having SUB_SOMETHING_SUBs in the bash template, you would want the script to expect to be called with three input arguments, which are referenced in the bash script as $1,$2,and $3.  So you could do:
 
-<code bash>
+```
 SUBJECT=$1
 TASKFOLDER=$2
 RUNTHIS=$3
 ORDER=$4
-</code>
+```
 
 Please note that for most clusters with many users, it is much better etiquette to use a smart submission method (like a python script) that takes into account the number of nodes available, busy-ness and size of the cluster, time of day, etc.  A for loop in a bash script will simply throw the jobs out there without taking anything or anyone else into account, which can upset other users.
 
@@ -807,7 +807,7 @@ Please note that for most clusters with many users, it is much better etiquette 
 ##### PYTHON SCRIPT TEMPLATE
 Lastly, we need to use a python script (ends with .py) to submit our bash template to run on the cluster.  This is the script that you will open up and define variables in the header each time you want to submit new subjects to go through your pipeline.  Since this script largely doesn't change, I will only talk about the sections that do need to be modified based on your experiment variables.  The first section that needs to be modified is the header, where all your variables are set.  For this script, it is easiest to copy the entire thing from the lab wiki, and then tweak the header and one middle section where the substitution takes place.  An example of the header section is below:
 
-<code python>
+```python
 #!/usr/bin/env python
 import sys,os,time,re,datetime,smtplib
 
@@ -848,7 +848,7 @@ justfunc = "yes"             #"yes" skips anatomical processing.  To be used if 
                              # and then copied the anatomical into each functional folder
 imageprep = "no"             # yes ONLY copies over images and imports dicoms to allow for manual AC PC realign and segmentation
 ####!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###############################################
-</code>
+```
 
 Note that the cluster at Duke requires your username as well as your useremail to send a job output email too.  If you have gmail it's helpful to create a filter that puts messages from root into a specific folder and skips the inbox, otherwise you will be bobarded with emails.  I commonly have a couple of thousand emails in my root folder before cleaning it out!
 
@@ -856,7 +856,7 @@ Note that you also need to specify the name of your bash template (my_template.s
 
 The next section is the #experiment variables section, and this is where you would need to create a variable for each thing (number or string or list) that you want fed into your bash template.  Strings should be put in quotes, while a list should be set up in the format of the subnums varible, for example.  Later in the script, a loop will cycle through the subnums variable, create an instance of the template script for each subject, and then use the same qsub command to submit it.  This is the second section that will need to be tweaked based on your variables, and the start looks like this:
 
-<code python>
+```python
 #define substitutions, make them in template 
 		runstr = "%05d" %(run)  
 		tmp_job_file = template.replace( "SUB_USEREMAIL_SUB", useremail )
@@ -869,31 +869,31 @@ The next section is the #experiment variables section, and this is where you wou
 		tmp_job_file = tmp_job_file.replace( "SUB_JUSTFUNC_SUB", str(justfunc) )
 		tmp_job_file = tmp_job_file.replace( "SUB_PREONLY_SUB", str(imageprep) )
 		tmp_job_file = tmp_job_file.replace( "SUB_ORDERNO_SUB", str(orderno) )
-</code>
+```
 
 So the python is using the .sh script as a template, and finding all places where it says SUB_ANATFOL_SUB, for example, and filling it with a string of the anatfolder variable.  The subject ID is fed from the subnum variable, because we are actually inside of a loop that cycles through subnums, and puts each subject ID into a separate variable called subnum.  Note that in the case that you reference a variable that does not exist, you might run your python, and not see any job submissions.
 
 In the line below, you will want to change the RUN_NAME to whatever you want the job to be called.  When you type "qstat" on your head node it will show the status and information for all of your running jobs, and "qstatall" will show everyone's jobs.
 
-<code python>
+```python
 tmp_job_fname = "_".join( ["RUN_NAME", subnum, runstr ] )
-</code>
+```
 
 Lastly, to show how the new template gets submit, you can find the qsub line.  It's helpful to trace each variable from the python --> bash --> matlab template to make sure that everything is there and correct!
 
 ##### Submitting your scripts
 When everything is finished, you need to make both your scripts executable on command line, which can be done with the following commandsL
 
-<code python>
+```python
 chmod u+x my_template.sh
 chmod u+x batch_script.py
-</code>
+```
 
 Then to submit the actual python, you would type:
 
-<code bash>
+```
 python batch_script.py
-</code>
+```
 
 and hold your breath! 
 

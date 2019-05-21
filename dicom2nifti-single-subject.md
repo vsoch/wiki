@@ -1,6 +1,6 @@
 # Dicom2Nifti Single Subject
 
-<code bash>
+```
 #!/bin/sh
 
 # -------- DICOM 2 NIFTI ---------
@@ -81,4 +81,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

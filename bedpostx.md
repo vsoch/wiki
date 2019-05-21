@@ -9,7 +9,7 @@ BedpostX is the second step in the DTI processing pipeline that sets the stage f
 ## BedpostX.sh
 
 Intended for a single run (for multiple subjects, use BedpostX.py and BedpostX_TEMPLATE, see below)
-<code bash>
+```
 #!/bin/sh
 
 #-------------BedpostX---------------------------------------
@@ -134,14 +134,14 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```
 
 
 ## BedpostX.py
 
 Intended for running BedpostX on multiple subjects using BedpostX_TEMPLATE as a template.  PLEASE NOT that this python script is set up for an old cluster at Duke (Einstein) who is no longer in existence!
 
-<code python>
+```python
 #!/usr/bin/env python
 import sys,os,time,re,datetime,smtplib
 
@@ -370,11 +370,11 @@ cmd = "rm *.job"
 os.system(cmd)
 os.chdir(start_dir)
 os.rmdir(tmp_dir)
-</code>
+```
 
 ## BedpostX_TEMPLATE.sh
 
-<code bash>
+```
 #!/bin/sh
 
 #-------------BedpostX_TEMPLATE---------------------------------------
@@ -492,4 +492,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

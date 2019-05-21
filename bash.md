@@ -2,7 +2,7 @@
 
 ## Permissions
 With ACL (linux), you can use "getfacl" and "setfacl" to see and set permissions.
-<code>
+```
 # See directory permissions
 getfacl directory/name
 getfacl: Removing leading '/' from absolute path names
@@ -14,27 +14,27 @@ user:someuser:rwx
 group::r--
 mask::rwx
 other::r--
-</code>
+```
 And use setfacl to set permissions for a user, for example.
-<code>
+```
 # Setfacl, -m = "modify" by adding the user "someuser," giving read, write exec access, to
 # directory/name
 setfacl -m u:someuser:rwx /directory/name
 # And to set it recursively for all subdirectories as well:
 setfacl -R -m u:someuser:rwx directory/name
-</code>
+```
 
 
 ## Stanford Cluster Commands
   - bsub ----- for submitting jobs 
-<code bash>
+```
 # General job with input
 bsub -J $JOBNAME -o outfile.{$JOBNAME} -e errfile.{$JOBNAME} ./myscript.sh $INPUT1 $INPUT2
 
 # Interactive job
 bsub -q IA -Is bash
 
-</code>
+```
 
   - mutt ----- mail client
   - bqueues --- queue information
@@ -47,9 +47,9 @@ bsub -q IA -Is bash
 
 ## Duke Cluster Commands
   - qsub ----- for submitting jobs
-<code bash>
+```
 qsub -v $EXPERIMENT=NAME.01 myscript.sh $INPUT1 $INPUT2
-</code>
+```
   - qstat ---- job status
   - qdel  ---- delete job
 

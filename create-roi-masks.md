@@ -10,15 +10,15 @@
 
 This script assigns a different threshold value to each relevant cluster in the image.  This script is essentially running the command:
 
-<code bash>
+```
 cluster -i zstat1.nii.gz -t 2.3 --oindex=cluster_index.nii.gz  # (in stats directory)
-</code>
+```
 
 from within the groupFEAT directory.  The mask represents ALL of the clusters we might be interested in.  If you use the script, be sure to edit the variable "COPES" for the copes that you want nifti index files created for.  To run the script on command line:  
 
-<code bash>
+```
 qsub -v EXPERIMENT=FIGS.01 cluster_roi.sh 4.9 Faces run01       #[threshold, Design, run name]
-</code>
+```
 
 It produces the above output - cluster_index.nii in the stats folder of the GroupFEAT directory). 
 
@@ -29,9 +29,9 @@ It produces the above output - cluster_index.nii in the stats folder of the Grou
 **2)** We now must LOOK at the cluster_index.nii.gz and decide how we might best separate the clusters and make many individual masks.  You must record the intensities (which identify the different clusters) of the ones you want to create individual files for, for the next step.  The easiest thing to do is to highlight the intensity values that you want to run in the EXPERIMENT excel in blue.
   * If you have clear separation of clusters, then the easiest solution is to use
 
-<code bash>
+```
 fslmaths cluster_index.nii.gz -thr 21 -uthr 21.5 Cluster_masks/cluster1.nii
-</code>
+```
 
 This command can be run with the script [create-cluster-masks](create-cluster-masks.md).sh 
 

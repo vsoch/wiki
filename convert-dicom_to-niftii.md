@@ -7,16 +7,16 @@ First, [Connect to Your Cluster](connect-to-your-cluster.md), or wherever your c
 
   * First, we need to change the orientation from LPS (output from the scanner) into LAS (radiological, required by FSL).  To do this, use the following command:
 
-<code bash>
+```
 bxhreorient --orientation=LAS input.bxh Outpre.bxh
-</code>
+```
 
   * input.bxh is whatever bxh file is the header for the dicom images, and outpre.bxh is the name you want for your resulting, new bxh header.
   * Next we need to take this correctly oriented header, and make our nifti file for FSL.
 
-<code bash>
+```
 bxh2analyze --nii -b input.bxh Outpre
-</code>
+```
 
   * The -nii specifies the output be in the nifti 4D format, and the -b suppresses the output of a new bxh file. --niftihdr makes a 3D nifti file.  For complete documentation, see the BXH XCEDE tools website, or just type the command into the terminal window with nothing else (aka, use it incorrectly) and it will spit out all the options.
   * the input.bxh should be the new bxh header that you just made with the command above.

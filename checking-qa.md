@@ -19,16 +19,16 @@ If you do not see a subject on the dashboard, you can search by entering the exa
   * Create a temporary variable for your functional data:
 <code matlab>
 temp = readmr('functionalfilename.nii');
-</code>
+```
   * Then calculate the difference between the slices
 <code matlab>
 temp2 = diff(temp.data, 4,1);
-</code>
+```
 
   * Then look at the result
 <code matlab>
 showsrs2(temp2)
-</code>
+```
 
 **What are we looking for?** 
 

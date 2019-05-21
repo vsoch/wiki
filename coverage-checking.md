@@ -36,7 +36,7 @@ This matlab script checks the coverage for a group of subjects that have complet
   * To run, simply type 
 <code matlab>
 covcheck_free 
-</code>
+```
 in the MATLAB window, and it will prompt you for all of your variables.  The newest version is:
   * [covcheck_free.m](scripts/coverage_free.m) that allows the user to select any set of mask.img files, as opposed to the old version:
   * [cov_check.m](scripts/cov_check.m) which was made specifically for the LoNG data hierarchy and requires the user o select a task and experiment.  This script also requires the user to select a number of subjects, and the design type.
@@ -48,13 +48,13 @@ in the MATLAB window, and it will prompt you for all of your variables.  The new
 FSL had  nice utility that created a "uniquemask" image, which displayed all of the voxels for each subject that were missing JUST for that subject - and the intensity value for each of these clusters represented the subject ID.  So you could run this for a group of subjects, overlay a mask, and then click on clusters to see subjects that were missing coverage, meaning the area wouldn't be included in the group analysis, and you could eliminate the subject.  I stopped pursuing this method because I wasn't comfortable with using the utility without completely understanding how the thresholding was done.
   * [[SPM_REG_Check]] To be run on head node, Hugin.
   * To run, save the script onto your head node, input variables, and type 
-<code bash>
+```
 chmod u+x SPM_REG_Check.sh
-</code>
+```
 to make it executable, and then 
-<code bash>
+```
 qsub -v EXPERIMENT=DNS.01 SPM_REG_Check.sh
-</code>
+```
   * The script takes the subject IDs in an array in the format ( SUBJECT1 SUBJECT2 SUBJECT3 )
   * The user must specify "yes" or "no" to three variables "FACESCHECK" "CARDSCHECK" and "RESTCHECK" to dictate whether or not they want to check each task.
   * The script creates an output directory with the date and JOB ID (in the case you run it multiple times in one day) under Analysis/Second_Level/(TASK)/Coverage_Check/

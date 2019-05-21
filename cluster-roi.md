@@ -1,6 +1,6 @@
 # Cluster ROI
 
-<code bash>
+```
 #!/bin/sh
 
 #-------------cluster_roi.sh---------------------------------------
@@ -92,4 +92,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

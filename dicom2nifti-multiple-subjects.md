@@ -2,13 +2,13 @@
 
 To run multiple subjects at once, we can use a python script with a .sh TEMPLATE.  You simply must fill in the correct variables at the top of dicom2nifti.py, and then it will submit multiple iterations of dicom2nifti_TEMPLATE.sh.  Be sure that the scripts are located under the same directory.  Many thanks to McKell Carter for introducing me to python and for backbone of all our python submission scripts!
   * To submit: 
-<code bash>
+```
 python dicom2nifti.py 
-</code>
+```
 
 ## dicom2nifti.py
 
-<code python>
+```python
 #!/usr/bin/env python
 import sys,os,time,re,datetime,smtplib
 
@@ -238,11 +238,11 @@ cmd = "rm *.job"
 os.system(cmd)
 os.chdir(start_dir)
 os.rmdir(tmp_dir)
-</code> 
+``` 
 
 
 =====dicom2nifti_TEMPLATE.sh=====
-<code bash>
+```
 #!/bin/sh
 
 # -------- DICOM 2 NIFTI TEMPLATE ---------
@@ -346,4 +346,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

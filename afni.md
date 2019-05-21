@@ -19,7 +19,7 @@ The most commonly used approach for AlphaSim is detailed below.  A more complete
 
 An example run of AlphaSim can be executed by typing the following into the command window: 
 
-<code bash>
+```
 /usr/local/bin/afni/AlphaSim –mask /path/for/maskfile.hdr –iter 1000 –pthr .05 –fwhmx 8.5 –fwhmy 8.9 –fwhmz 8.3 –rmm 2.1 –out /path/for/outputfile.txt 
 
 # /usr/local/bin/afni/AlphaSim – Specifies the location of the AlphaSim program 
@@ -29,7 +29,7 @@ An example run of AlphaSim can be executed by typing the following into the comm
 # –fwhmx 8.5 –fwhmy 8.9 –fwhmz 8.3 – Specifies the smoothness in the x, y and z-direction of the image.  Though we often smooth our functional images with a 6mm FWHM (full-width half-maximum) Gaussian filter, the images have inherent smoothness that is slightly larger.  These values can be obtained from an SPM Results output at the bottom right of the Graphics window labeled “Smootheness FWHM = X.X Y.Y Z.Z (mm)”. The average smoothness of two different sets of images will be different.  Be sure to use the appropriate smoothness estimates for your analysis of interest. 
 # –rmm 2.1 – Specifies the distance from one voxel to the next.  Typically, consider the voxel dimensions (e.g., 2x2x2) and add 0.1 (2.1). 
 # –out /path/for/outputfile.txt – Specifies the name of the output.txt file and where to save it. 
-</code>
+```
 
 ### Interpreting results
 Quite simply, you are looking for the smallest cluster extent where your type-I error is sufficiently low (alpha < 0.05).  The output will list each cluster size and related statistics.  The far-right column (“Alpha”) indicates the type-I error for a particular cluster extent at the specified statistical threshold.  Find the smallest cluster extent where alpha < 0.05.  At your given statistical threshold, for your given search volume and considering your image smoothness, accepting contiguous clusters only greater than this cluster extent effectively corrects for falsely rejecting your null hypothesis.  In other words, a cluster of this size, or larger, is so unlikely to have occurred by chance that you are sufficiently confident it did not happen by chance. 

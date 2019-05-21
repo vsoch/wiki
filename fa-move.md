@@ -3,14 +3,14 @@
 Once DTI_fit has been run with Eddy Correction and we have a file called "DTI_FA.nii.gz" in the subjects DTI directory in the folder DTI, we need to move these particular files for all subjects relative to the experiment into the Analysis/DTI/FA folder to start running TBSS processing.  To do this, we use the following script, FA_move.sh.  You need to edit the script to include all of your subjects under the variable "Subjects" and you also need to make sure that the output directory exists (EXPERIMENT/Analysis/DESIGN_NAME/DTI/FA
 
 To submit on command line:
-<code bash>
+```
 qsub -v EXPERIMENT=FIGS.01  FA_move.sh     10
 #                                          DTI FOLDER
-</code>
+```
 
 ## THE SCRIPT
 
-<code bash>
+```
 #!/bin/sh
 
 #-------------FA_move.sh---------------------------------------
@@ -107,4 +107,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```

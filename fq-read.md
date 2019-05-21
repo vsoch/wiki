@@ -2,9 +2,9 @@
 
 The output of featquery, (fq.py with fq_TEMPLATE.sh) is a bunch of individual report.txt files in each subject folder with the cope1 line of interest. This script is designed to go through, read the contents of each of those files, and print it to the fq_read output file.  There is no python script to run this guy so you must run with the following command:
 
-<code bash>
+```
 qsub -v EXPERIMENT=NAME.01 fq_read.sh Faces 2 20
-</code>
+```
 
 Where "Faces" is the design type, 2 is the cope of interest, and 20 is the mask of interest.
 
@@ -14,7 +14,7 @@ Open the text file in Excel.  When the box pops up, select "Delimited" and click
 
 ## The Script
 
-<code bash>
+```
 #!/bin/sh
 
 #-------------fqread.sh---------------------------------------
@@ -111,4 +111,4 @@ RETURNCODE=${RETURNCODE:-0}
 exit $RETURNCODE
 fi
 # -- END POST USER-- 
-</code>
+```
