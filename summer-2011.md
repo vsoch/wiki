@@ -24,7 +24,7 @@ As we are transitioning into the AIMify portion of this project and the summer q
 
 **Things I have done:** 
 
-Investigated Template Matching Script (SECTION 1 [pyCorr](https://vsoch.github.io/vbmis.com/projects/pyCorr/) ERRORS) 
+Investigated Template Matching Script (SECTION 1 [pyCorr](https://www.github.com/vsoch/pyCorr/) ERRORS) 
 Finished Testing [pyVBM](https://github.com/vsoch/vbmis.com/blob/master/projects/pyVBM/pyVBM.py) (SECTION 3 - pyVBM) 
 Created magnitude neutral group network images and ran new dual regression (these maps are the ones to be "AIMified") (SECTION 2- DUAL REGRESSION) 
 Modified AIMTemplate to produce XML file for dual regression data see [fall-2011](fall-2011.md) 
@@ -229,8 +229,8 @@ When we have structural and functional markers, and are looking for genetic data
 **THINGS I HAVE ACCOMPLISHED**
 
   * Overview of method for template matching - SECTION 1- METHOD OVERVIEW
-  * Created python script to do matching for 2 methods ([pyCorr 1](https://github.com/vsoch/vbmis.com/blob/master/projects/pyCorr/pyCorr.py) and [pyCorr 2](https://github.com/vsoch/vbmis.com/blob/master/projects/pyCorr/pyCorr.py)), and  [pyCorrPrint](https://github.com/vsoch/vbmis.com/blob/master/projects/pyCorr/pyCorrPrint.py) to print HTML report
-  * Visually summarized  - [results](https://vsoch.github.io/vbmis.com/projects/pyCorr/) - SECTION 2 - VISUALIZATION OF RESULTS
+  * Created python script to do matching for 2 methods ([pyCorr 1](https://github.com/vsoch/pyCorr/pyCorr.py) and [pyCorr 2](https://github.com/vsoch/vbmis.com/blob/master/projects/pyCorr/pyCorr_Ksmethod.py)), and  [pyCorrPrint](https://github.com/vsoch/vbmis.com/blob/master/projects/pyCorr/pyCorrPrint.py) to print HTML report
+  * Visually summarized  - [results](https://vsoch.github.io/pyCorr/) - SECTION 2 - VISUALIZATION OF RESULTS
 
 **THINGS I WANT TO TRY**
 
@@ -246,7 +246,7 @@ What is the best way to create a "gold standard"
 
 As a reminder, the rationale behind needing this method is to better match group networks to individual networks, and to then calculate correlations based on the individual's network, instead of jumping back to raw, noisy data.  To do this in an efficient manner, we need a method to calculate spatial correlation between two images.  
   - First I wanted to look at the source code for fslcc (which requires images of same size) to see if I could recreate functionality in matlab or python.  I learned immediately that it is calculating the correlation based on values in timeseries, and isn't a tool for spatial location, so it's not what I want. 
-  - I decided that we needed a simple method to read in an image, figure out the locations that were important, transform those locations to MNI space, and then see if the same locations had activation in an image we were trying to match.  At this point I was very lucky because K sent me  [doTemplateMatching.m](https://github.com/vsoch/vbmis.com/blob/master/projects/pyCorr/doTemplateMatching.m), which is the standard for doing this sort of spatial correlation.  Thank you K!
+  - I decided that we needed a simple method to read in an image, figure out the locations that were important, transform those locations to MNI space, and then see if the same locations had activation in an image we were trying to match.  At this point I was very lucky because K sent me  [doTemplateMatching.m](https://github.com/vsoch/pyCorr/doTemplateMatching.m), which is the standard for doing this sort of spatial correlation.  Thank you K!
 
 **Summary of method:**
   - Read in images
@@ -352,7 +352,7 @@ activation_difference = (shared activation / voxel shared) - (unshared activatio
 
 #### SECTION 2 - VISUAL COMPARISON
 
-I created a python script to create results reports, which can be seen  - [here](https://vsoch.github.io/vbmis.com/projects/pyCorr/)
+I created a python script to create results reports, which can be seen  - [here](https://vsoch.github.io/pyCorr/)
 
 #### SECTION 3 - CREATION OF GOLD STANDARD
 

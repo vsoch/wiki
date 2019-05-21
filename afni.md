@@ -1,0 +1,43 @@
+# AFNI
+
+### Overview
+
+We have documentation for AFNI because of AlphaSim.  AlphaSim is a program included in AFNI (http://afni.nimh.nih.gov/afni). AlphaSim is a software program that can be used to empirically derive a combination statistical and cluster threshold that effectively corrects for multiple comparisons.  A similar statistical and cluster threshold method is described in Forman et al., (1995) Magn Reson Med 33(5):636-47.  Alternative methods include family-wise error (FWE) and false-discovery rate (FDR) correction.  
+
+Installing all of AFNI is required to get AlphaSim up and running.  Luckily, AFNI is already installed on the cluster, (as it works best with Linux and they prefer that you do not install it on Windows.)
+
+**To run AlphaSim:** 
+  * Log into the BIAC cluster, on hugin
+  * type "qinteract" to mount the design node, and enter your password
+  * Type AlphaSim to see a summary of how to input arguments.
+
+### Instructions
+
+(Repeat) AlphaSim is a software program that can be used to empirically derive a combination statistical and cluster threshold that effectively corrects for multiple comparisons.  A similar statistical and cluster threshold method is described in Forman et al., (1995) Magn Reson Med 33(5):636-47.  Alternative methods include family-wise error (FWE) and false-discovery rate (FDR) correction. 
+
+The most commonly used approach for AlphaSim is detailed below.  A more complete documentation of associated parameters is contained in the AlphaSim.pdf manual by Douglas Ward. 
+
+An example run of AlphaSim can be executed by typing the following into the command window: 
+
+<code bash>
+/usr/local/bin/afni/AlphaSim –mask /path/for/maskfile.hdr –iter 1000 –pthr .05 –fwhmx 8.5 –fwhmy 8.9 –fwhmz 8.3 –rmm 2.1 –out /path/for/outputfile.txt 
+
+# /usr/local/bin/afni/AlphaSim – Specifies the location of the AlphaSim program 
+# –mask /path/for/maskfile.hdr – Specifies the use of a mask file.  Alternatively, a space can be defined (see AlphaSim manual).  AlphaSim will read image resolution and # of voxels in mask from this file.  This file is typically a mask image (voxel values = 0 or 1).  The image file describes the size and contour of the search volume.  Not sure whether .nii files work. 
+# –iter 1000 – AlphaSim works by computing random values and determining cluster extents that meet a statistical threshold.  This parameter specifies how many simulations to run.  More than or fewer than 1000 simulations can be run but 1000 should be sufficient to be confident in the results. 
+# –pthr .05 – Specifies statistical threshold.  This is an ‘uncorrected’ threshold.  AlphaSim will determine how many contiguous voxels within your search volume must exceed this statistical threshold to meet correction criteria. 
+# –fwhmx 8.5 –fwhmy 8.9 –fwhmz 8.3 – Specifies the smoothness in the x, y and z-direction of the image.  Though we often smooth our functional images with a 6mm FWHM (full-width half-maximum) Gaussian filter, the images have inherent smoothness that is slightly larger.  These values can be obtained from an SPM Results output at the bottom right of the Graphics window labeled “Smootheness FWHM = X.X Y.Y Z.Z (mm)”. The average smoothness of two different sets of images will be different.  Be sure to use the appropriate smoothness estimates for your analysis of interest. 
+# –rmm 2.1 – Specifies the distance from one voxel to the next.  Typically, consider the voxel dimensions (e.g., 2x2x2) and add 0.1 (2.1). 
+# –out /path/for/outputfile.txt – Specifies the name of the output.txt file and where to save it. 
+</code>
+
+### Interpreting results
+Quite simply, you are looking for the smallest cluster extent where your type-I error is sufficiently low (alpha < 0.05).  The output will list each cluster size and related statistics.  The far-right column (“Alpha”) indicates the type-I error for a particular cluster extent at the specified statistical threshold.  Find the smallest cluster extent where alpha < 0.05.  At your given statistical threshold, for your given search volume and considering your image smoothness, accepting contiguous clusters only greater than this cluster extent effectively corrects for falsely rejecting your null hypothesis.  In other words, a cluster of this size, or larger, is so unlikely to have occurred by chance that you are sufficiently confident it did not happen by chance. 
+
+### Considerations
+
+Obviously, the necessary cluster extent for a given analysis will vary as a function of the statistical threshold you set.  As you decrease your statistical threshold then the cluster extent necessary to be sufficiently confident it did not happen by chance will decrease.  There is no one “correct” threshold to use.  Be thoughtful in your selection and transparent in your documentation. 
+
+You can use a mask.img from a software package, e.g., amygdala ROI derived from Pickatlas, to determine cluster extents through AlphaSim.  You may notice the “Voxels in mask” in the AlphaSim output.txt is greater than your search volume when you apply the same mask to an SPM design matrix.  This is likely a coverage issue where not every voxel in the mask is covered by the SPM design matrix mask.img file.  You can use the ImCalc feature in SPM to modify your AlphaSim mask image so it covers only those voxels that are also included the mask.img of your design matrix.
+
+Thank you to Patrick Fisher for testing and teaching about AlphaSim!
