@@ -1,0 +1,58 @@
+# Using Scripts to Run Analysis
+
+**How do I write scripts?** 
+
+  * It's easiest to write scripts directly in the terminal window by typing "nedit &"
+  * It is useful to have very organized folders to store your scripts, and conventions for finding things.
+  * It is advisable to use a "smart" submission method, such as a python submission script, however you could also use something like a bash for loop.
+
+**Where can I find output files for scripts that die while running?** (DUKE SPECIFIC!) 
+
+On the new cluster, hugin, your home directory is shared with the nodes, which means that your output scripts will always be on your home directory!  You can read them with nedit.  If you need to look at an output log while a script is still running, use the commands "more","less","tail -f" to view your logs or else there will probably be issues with the script's logging abilities.
+
+**Where do I save and run scripts from?**
+
+  * qinteract is meant for setting up experimental design.
+  * Save files at and run them from the head node (where you are when you first log in to SSH)OR write a submission script that has the main command cd $EXPERIMENT/Scripts (to move into your scripts directory) and then call the scripts to run from there.
+  * To run the script from the head node, the basic format is "qsub -v EXPERIMENT=NAME.01 script_name.sh arg01 arg02 arg03" where "args" are different inputs specified for the script.  The Python submission script can also take input arguments and feed them into the individual instances of your bash template scripts that you submit.
+  * If you ever want to send a job to a specific node, add this in your qsub command (before or after your -v EXPERIMENT=DNS section) - obviously replace the # with the node you want to send it to. 
+
+```bash
+-l hostname=node#
+```
+
+## Useful Commands
+
+```bash
+chmod u+x filename
+# is what you type when a script is done to make it executable
+
+-l SCRIPTNAME: 
+# shows the permissions for a script
+
+-N 
+# allows you to name your job.  So if we want to run -qsub myscript.sh but also name the job, we would run qsub -N my_script_run myscript.sh
+
+qstat 
+# allows you to check the status of your jobs, or 
+
+qstatall
+# to see all jobs
+
+rm -rf NAME 
+# is how you delete a file.  Be very careful with this one!
+
+qdel 
+# followed by the job number (use qstat to get job numbers) will stop a job from running, and delete it.
+</code>
+
+On Windows, you should use xemacs (or similar) over word or notepad!  Generally you shouldn't open scripts that are to be run in a unix environment on a windows machine, because you are likely to add carriage returns or non unix characters that will make your scripts not function in the unix environment.  See [[http://www.vsoch.com/2010/09/get-rid-of-carriage-returns-using-tr/|Get Rid of Carriage Returns Using TR]] if you accidentally do this!
+
+## Script Examples
+
+  * [FSL FMRI Analysis](fsl-fmri-analysis.md) - instructions for the entire data processing pipeline, and the scripts with documentation.
+  * [Cluster Pipeline Tutorial](cluster-pipeline-tutorial.md) - instructions for creating a data processing pipeline via SPM / MATLAB / BASH / PYTHON
+
+## General Scripting
+
+  * [Python Job Submission](python-job-submission.md)

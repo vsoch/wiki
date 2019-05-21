@@ -1,0 +1,234 @@
+```bash
+
+#!/bin/sh
+
+# --------------SPM REST GROUP TEMPLATE ----------------
+# 
+# This script takes anatomical and rest processed data located under
+# SPM/Processed/subject rest and anat and runs a group rest analysis
+# with the connectivity toolbox.  It creates a matlab template script to 
+# run the analysis itself (details can be found within that script) 
+# and then performs all preprocessing, creating a directory under
+# Analysis/SPM/Second_level/Rest/conn_(#subjs)  The .mat file is changed 
+# from having cluster to local paths after processing so second level
+# analysis can be done within the toolbox on a local machine.
+#
+# ----------------------------------------------------
+
+#$ -S /bin/sh
+#$ -o $HOME/$JOB_NAME.$JOB_ID.out
+#$ -e $HOME/$JOB_NAME.$JOB_ID.out
+#$ -m ea
+# -- END GLOBAL DIRECTIVE -- 
+
+# -- BEGIN PRE-USER --
+#Name of experiment whose data you want to access 
+EXPERIMENT=${EXPERIMENT:?"Experiment not provided"}
+
+source /etc/biac_sge.sh
+
+EXPERIMENT=`biacmount $EXPERIMENT`
+EXPERIMENT=${EXPERIMENT:?"Returned NULL Experiment"}
+
+if [ $EXPERIMENT = "ERROR" ]
+then
+	exit 32
+else 
+#Timestamp
+echo "----JOB [$JOB_NAME.$JOB_ID] START [`date`] on HOST [$HOSTNAME]----"
+echo "----USER RUNNING SCRIPT IS SUB_USER_SUB" 
+# -- END PRE-USER --
+# **********************************************************
+
+# -- BEGIN USER DIRECTIVE --
+# Send notifications to the following address
+#$ -M SUB_USEREMAIL_SUB
+
+# ------------------------------------------------------------------------------
+#  Step 1: Variables and Path Preparation
+# ------------------------------------------------------------------------------
+
+# Initialize input variables (fed in via python script)
+
+# These variables create full strings of subjects and ROIs to send to the matlab template
+SUBJECT_LIST="SUB_SUBJECTS_SUB"
+ROI="SUB_ROIS_SUB"
+ROIFOLDER="SUB_ROIFOLDER_SUB"
+
+# These variables create arrays that the bash script can cycle through
+SUBJECTS=(SUB_SUBJECTS_SUB)
+echo "Subject list is " $SUBJECT_LIST
+echo ""
+ROI_BASH=(SUB_ROIS_SUB)
+
+CONNAME=SUB_CONNAME_SUB     # This is the name to give the connectivity group analysis
+NOW=$(date +"%m-%d-%Y")
+SUBJ_COUNT=SUB_NUMOFSUBS_SUB
+
+# CHECK IF THE GROUP NAME ALREADY EXISTS - IF YES, CREATE A DIRECTORY WITH A RANDOM NUMBER
+# UNTIL WE FIND ONE THAT DOESN'T EXIST, FEED THIS VARIABLE INTO MATLAB SCRIPT
+GPOUTPUT=$EXPERIMENT/Analysis/SPM/Second_level/ICA/Rest
+OUTPUTDIR=$CONNAME"_"$NOW
+
+while [ -d "$GPOUTPUT/$OUTPUTDIR" ]
+do
+    echo $OUTPUTDIR " exists, trying different directory name"
+    RANDINT=$[( $RANDOM % ($[500 - 100] + 1)) + 100 ]
+    OUTPUTDIR=$CONNAME"_"$NOW"_"$RANDINT
+done
+
+echo "Creating directory " $OUTPUTDIR " under Analyzed/Second_level/ICA/Rest to put group output."
+echo ""
+mkdir -p $GPOUTPUT/$OUTPUTDIR
+
+
+# ------------------------------------------------------------------------------
+#  Step 2: Data Check
+# ------------------------------------------------------------------------------
+# Check that all ROIS exist under SPM/Analysis/ROI/Rest_toolbox
+ROI_COUNT=0;
+for roi_name in ${ROI_BASH[@]} 
+do
+
+let "ROI_COUNT += 1";
+echo "ROI going into analysis is " $roi_name""
+
+if [ ! -e "$EXPERIMENT/Analysis/SPM/ROI/Rest_toolbox/$ROIFOLDER/$roi_name" ]; then
+   echo "ROI " $roi_name " cannot be found under SPM/Analysis/ROI/Rest_toolbox/"$ROIFOLDER. " Please fix and re-do group run."
+   exit 32
+fi
+
+done
+echo ""
+
+# Check for normalized raw anatomica, grey, white, and csf images under rest_anat,
+# and motion regressor file under Processed/rest, as well as all swu* images
+# Exit with error if any file cannot be found.
+
+# While we are checking for data, do a count of the subjects.
+
+for subj in ${SUBJECTS[@]} 
+do
+
+# We are hard coding the anatomical folder name as "anat" 
+# and the rest folder as "rest" because this is DNS convention.
+
+# Check for the anat_rest directory, and exit if it's not found
+if [ ! -d "$EXPERIMENT/Analysis/SPM/Processed/$subj/anat/anat_rest" ]; then
+   echo "anat_rest directory not found within subject folder for subject " $subj". Group analysis will not take place."
+   echo "Please process this subject and re-do the group analysis, or submit the group job without the subject."
+   exit 32
+fi
+
+#Check that we have the normalized and renamed csf, white, grey, and raw anatomical
+if [ ! -e "$EXPERIMENT/Analysis/SPM/Processed/$subj/anat/anat_rest/wsdns01-0002.img" ]; then
+   echo "Normalized raw anatomical (wsdns01-0002.img) file cannot be found for " $subj ". Please generate this file and re-run, or exclude this subject from group analysis."
+fi
+if [ ! -e "$EXPERIMENT/Analysis/SPM/Processed/$subj/anat/anat_rest/wc1sdns01-0002.img" ]; then
+   echo "Normalized gray matter (wc1sdns01-0002.img) file cannot be found for " $subj ". Please generate this file and re-run, or exclude this subject from group analysis."
+fi
+if [ ! -e "$EXPERIMENT/Analysis/SPM/Processed/$subj/anat/anat_rest/wc2sdns01-0002.img" ]; then
+   echo "Normalized white matter (wc2sdns01-0002.img) file cannot be found for " $subj ". Please generate this file and re-run, or exclude this subject from group analysis."
+fi
+if [ ! -e "$EXPERIMENT/Analysis/SPM/Processed/$subj/anat/anat_rest/wc3sdns01-0002.img" ]; then
+   echo "Normalized csf (wc3sdns01-0002.img) file cannot be found for " $subj ". Please generate this file and re-run, or exclude this subject from group analysis."
+fi
+
+
+# Check for the first and last images of the raw data, and exit if not found.
+if [ ! -e "$EXPERIMENT/Analysis/SPM/Processed/$subj/rest/swuaV0001.img" ] || [ ! -e "$EXPERIMENT/Analysis/SPM/Processed/$subj/rest/swuaV0128.img" ]; then
+   echo "Raw swua* images in Processed/rest directory cannot be found for " $subj. " Please create these images or run the group job without this subject."
+   exit 32
+fi
+
+#Check that we have the motion outliers file
+if [ ! -e "$EXPERIMENT/Analysis/SPM/Processed/$subj/rest/rp_aV0001.txt" ]; then
+   echo "Motion parameters (rp_aV0001.txt) file cannot be found for " $subj ". Please generate this file and re-run, or exclude this subject from group analysis."
+fi
+
+done
+
+echo "All data was found for " $SUBJ_COUNT " participants."
+  
+  
+# Initialize other variables to pass on to matlab template script
+OUTDIR=$GPOUTPUT/$OUTPUTDIR                                                  # This is the group output directory top
+SCRIPTDIR=$EXPERIMENT/Scripts/MATLAB/Rest                                    # This is the location of our MATLAB script templates
+BIACROOT=/usr/local/packages/MATLAB/BIAC                                     # This is where matlab is installed on the cluster
+
+# ------------------------------------------------------------------------------
+#  Step 3: Set up group analysis
+# ------------------------------------------------------------------------------
+
+# Change into directory where template exists, save subject specific script
+cd $SCRIPTDIR
+
+# Loop through template script replacing keywords
+for i in 'conn_boxGP.m'; do
+sed -e 's@SUB_MOUNT_SUB@'$EXPERIMENT'@g' \
+ -e 's@SUB_BIACROOT_SUB@'$BIACROOT'@g' \
+ -e 's@SUB_SUBCOUNT_SUB@'$SUBJ_COUNT'@g' \
+ -e 's@SUB_ROICOUNT_SUB@'$ROI_COUNT'@g' \
+ -e 's@SUB_FOLDERROI_SUB@'$ROIFOLDER'@g' \
+ -e 's@SUB_ALLSUBJECTS_SUB@'"$SUBJECT_LIST"'@g' \
+ -e 's@SUB_LISTROI_SUB@'"$ROI"'@g' \
+ -e 's@SUB_OUTPUTFOLDER_SUB@'"$OUTPUTDIR"'@g' \
+ -e 's@SUB_THECONNAME_SUB@'"$CONNAME"'@g' \
+ -e 's@SUB_SCRIPTDIR_SUB@'$SCRIPTDIR'@g' \
+ -e 's@SUB_SUBJECT_SUB@'$SUBJ'@g' <$i> $OUTDIR/conn_$CONNAME.m
+ done
+ 
+# Change to output directory and run matlab on input script
+cd $OUTDIR
+
+# ------------------------------------------------------------------------------
+#  Step 4. Preparing Virtual Display
+# ------------------------------------------------------------------------------
+
+#First we choose an int at random from 100-500, which will be the location in
+#memory to allocate the display
+RANDINT=$[( $RANDOM % ($[500 - 100] + 1)) + 100 ]
+echo "the random integer for Xvfb is ${RANDINT}";
+echo ""
+
+#Now we need to see if this number is already being used for Xvfb on the node.  We can
+#tell because when it is active, it will have a "lock file"
+
+while [ -e "/tmp/.X11-unix/X${RANDINT}" ]
+do
+      echo "lock file was already created for $RANDINT";
+      echo "Trying a new number...";
+      RANDINT=$[( $RANDOM % ($[500 - 100] + 1)) + 100 ]
+      echo "the random integer for Xvfb is ${RANDINT}";
+done
+
+#Initialize Xvfb, put buffer output in TEMP directory
+Xvfb :$RANDINT -fbdir $TMPDIR &
+
+/usr/local/bin/matlab -display :$RANDINT < conn_$CONNAME.m
+
+echo "Done running conn_"$CONNAME".m in matlab"
+
+# If the lock was created, delete it
+if [ -e "/tmp/.X11-unix/X${RANDINT}" ]
+      then
+      echo "lock file was created";
+      echo "cleaning up my lock file";
+      rm /tmp/.X${RANDINT}-lock;
+      rm /tmp/.X11-unix/X${RANDINT};
+      echo "lock file was deleted";
+fi
+fi
+
+# -- END USER SCRIPT -- #
+
+# **********************************************************
+# -- BEGIN POST-USER -- 
+echo "----JOB [$JOB_NAME.$JOB_ID] STOP [`date`]----" 
+OUTDIR=${OUTDIR:-$GPOUTPUT/$OUTPUTDIR}
+mv $HOME/$JOB_NAME.$JOB_ID.out $OUTDIR/$JOB_NAME.$JOB_ID.out	 
+RETURNCODE=${RETURNCODE:-0}
+exit $RETURNCODE
+fi
+# -- END POST USER-- 
+```
