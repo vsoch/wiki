@@ -1,0 +1,77 @@
+=====Mask File Organization=====
+  * Whether you use the following scripts to make a mask for featquery or use another technique, all of your featquery masks should be put under the GroupFEAT/copeX.feat directories in a folder called "Cluster_masks" for each cope that you plan to run analysis on.  The naming convention for the masks is "clusterN.nii" where N is the number that distinguishes between masks and an argument that the featquery script needs specified to run.
+  * Masks that are used for groupFEATs do NOT go in this location.  You should put the finished nifti masks under Analysis/ROI/Masks
+
+=====Extracting ROIs with cluster command=====
+
+**1)** You first must create a cluster_index.nii.gz with the script [[cluster_roi]].sh \\
+
+This script assigns a different threshold value to each relevant cluster in the image.  This script is essentially running the command:
+
+<code bash>
+cluster -i zstat1.nii.gz -t 2.3 --oindex=cluster_index.nii.gz  # (in stats directory)
+</code>
+
+from within the groupFEAT directory.  The mask represents ALL of the clusters we might be interested in.  If you use the script, be sure to edit the variable "COPES" for the copes that you want nifti index files created for.  To run the script on command line:  
+
+<code bash>
+qsub -v EXPERIMENT=FIGS.01 cluster_roi.sh 4.9 Faces run01       #[threshold, Design, run name]
+</code>
+
+It produces the above output - cluster_index.nii in the stats folder of the GroupFEAT directory). \\
+
+**IMPORTANT**: The output file (located at the level of the GroupFEAT design) contains the table with cluster index values.  Copy this table into the EXPERIMENT.xls under the "ROI Masks" tab. \\
+
+=====Thresholding the cluster mask=====
+**2)** We now must LOOK at the cluster_index.nii.gz and decide how we might best separate the clusters and make many individual masks.  You must record the intensities (which identify the different clusters) of the ones you want to create individual files for, for the next step.  The easiest thing to do is to highlight the intensity values that you want to run in the EXPERIMENT excel in blue.
+  * If you have clear separation of clusters, then the easiest solution is to use
+
+<code bash>
+fslmaths cluster_index.nii.gz -thr 21 -uthr 21.5 Cluster_masks/cluster1.nii
+</code>
+
+This command can be run with the script [[create_cluster_masks]].sh \\
+
+which will create a .nii.gz file for each cluster intensity that you specify and place it in a "Cluster_masks" directory in the .gfeat/stats folder. \\
+
+  * If you DON'T have clear separation of clusters, you can overlay an anatomical nifti on the functional data
+  * If you don't have clear clusters, or want to be very specific, you can also draw ROIs with MRIcron
+
+**3)** Now we need to input our masks into featquery for each subject \\
+
+[[Featquery]]
+
+=====Other ROI Mask Making Techniques=====
+
+=====Drawing ROIs in MRIcron=====
+MRIcron is a good solution to draw ROIs if the clustering script or fslmaths doesn't work
+
+  - Open (ctrl-o) the functional cluster mask (cluster_mask_zstat1.nii.gz) from within the cope1.feat directory
+  - For spatial reference, add (ctrl-a) the corresponding structural image (bg_image.nii.gz) as an overlay.
+  - Move the crosshairs to the center of the cluster of interest.
+  - Press the 3D button. This will fill in the cluster and open a Create ROI window.
+  - Adjust the relevant constraints until the ROI is satisfactory.
+  * Difference from origin:
+  * Difference at edge:
+  * Radius (mm):
+  * Erode/dilate cycles:
+  - From the Draw menu select Save VOI...
+  - Change the filetype to compressed NIFTI
+  - Last time I checked, the new NIFTI should remain in the correct orientation for FSL given that the file you made it from was in that orientation (LPS)
+
+
+=====Drawing ROIs with overlay2 in MATLAB=====
+For this technique, you have to select the area slice by slice - it doesn't make sense unless you have a really crazy ROI
+  * Overlay2 is a handy BIAC function that allows you to custom define an ROI based on your activation.
+  * From the MATLAB prompt, type overlay2 (it should be included with your BIAC tools).
+  * You’ll first need to load up your base series image (i.e. an anatomical brain so you can see which activation you would like to base your ROI on). You can use either a single subject’s anat file (if you are looking at the single subject level), or the bg_image.nii.gz from any higher level analyses (this is just the FSL standard brain). Click on Base Series to select the correct anat file.
+  * Now load up your data by clicking Overlay1 and selecting the appropriate z-stat image.
+  * You can set upper and lower limits on the z-stat bounds by clicking Configure.
+  * Now scroll through the brain. When you see the start of the activation you want to define your ROI around, click Define.
+  * Click around your activation to select it. Once you have encircled the activation, right click. The area you selected should turn pink (if it is within the appropriate z-stat bounds). This is the start of your ROI.
+  * Scroll to the next slice and click Grow. Select more activation in the same clicking fashion as above.
+  * Once you are satisfied with your ROI, right click on Current ROI and select Save ROI.
+  * After you saved the ROI, to get it into proper working format use the following commands:
+  * my_roi = load(my_roi, ‘-mat’)
+  * my_roi = roi2mask(my_roi.roi) This is a BIAC tool
+  * Now your ROI is the same as any other 3D matrix in MATLAB and you can do whatever you want with it.

@@ -1,0 +1,202 @@
+<code bash>
+#!/bin/sh
+
+# ---------------VOX_MATRIX TEMPLATE ----------------
+# 
+# This script takes preprocessed SPM images and creates
+# a matrix of all voxel values within a certain mask
+# and threshold specified by the user.  Input comes from
+# Data/SPM(version)/AllProcessedData/(Subject) and output
+# goes to Analysis/Matrices/(Design)/(Subject)
+#
+# ----------------------------------------------------
+
+# --- BEGIN GLOBAL DIRECTIVE -- 
+#$ -S /bin/sh
+#$ -o $HOME/$JOB_NAME.$JOB_ID.out
+#$ -e $HOME/$JOB_NAME.$JOB_ID.out
+#$ -m ea
+# -- END GLOBAL DIRECTIVE -- 
+
+# -- BEGIN PRE-USER --
+#Name of experiment whose data you want to access 
+EXPERIMENT=${EXPERIMENT:?"Experiment not provided"}
+
+source /etc/biac_sge.sh
+
+EXPERIMENT=`biacmount $EXPERIMENT`
+EXPERIMENT=${EXPERIMENT:?"Returned NULL Experiment"}
+
+if [ $EXPERIMENT = "ERROR" ]
+then
+	exit 32
+else 
+#Timestamp
+echo "----JOB [$JOB_NAME.$JOB_ID] START [`date`] on HOST [$HOSTNAME]----" 
+# -- END PRE-USER --
+# **********************************************************
+
+# -- BEGIN USER DIRECTIVE --
+# Send notifications to the following address
+#$ -M SUB_USEREMAIL_SUB
+
+# -- END USER DIRECTIVE --
+
+# -- BEGIN USER SCRIPT --
+# User script goes here
+
+
+# ------------------------------------------------------------------------------
+#  Step 1: Variables and Path Preparation
+# ------------------------------------------------------------------------------
+
+# Initialize input variables (fed in via python script)
+SUBJ=SUB_SUBNUM_SUB          # This is the full subject folder name under Data
+RUN=SUB_RUNNUM_SUB           # This is a run number, if applicable
+SPMVER=SUB_SPMVER_SUB        # This is the version of SPM for swuf images
+TASK=SUB_TASKNAME_SUB        # This is the name of the task folder underAllProcessedData
+IMG_PRE=SUB_IMGPRE_SUB       # The image prefix (swrf for SPM2, swu for other versions)
+OUTPUTFOL=SUB_OUTPUTFOL_SUB  # This is the name of the output folder under Matrices/...
+NUMIMAGES=SUB_NUM_IMAGES_SUB # This is the number of images in the functional task
+
+# MASK 1
+MASKTYPE=SUB_MTYPE_SUB       # This is the mask category folder under ROI/Masks
+MASKFILE=SUB_MASKFILE_SUB    # This is the full name of the mask image
+THRESH=SUB_THRESHOLD_SUB     # This is the masking threshold
+
+# MASK 2
+MASKTWO=SUB_YESTWOMASK_SUB
+MASKTWOTYPE=SUB_MTWOTYPE_SUB
+MASKTWOFILE=SUB_MASKTWOFILE_SUB
+THRESHTWO=SUB_THRESHOLDTWO_SUB
+
+#Navigate to the subject's folder with the preprocessed swu/swrf images:
+cd $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK
+
+#Make a directory to hold the swrf images for processing in the script, and subject outdir
+mkdir -p $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK/renamed
+mkdir -p $EXPERIMENT/Analysis/Matrices/$TASK/$OUTPUTFOL/$SUBJ
+
+#Set directories
+SCRIPTDIR=$EXPERIMENT/Scripts/MATLAB
+OUTDIR=$EXPERIMENT/Analysis/Matrices/$TASK/$OUTPUTFOL/$SUBJ
+BIACROOT=/usr/local/packages/MATLAB/BIAC
+
+# ------------------------------------------------------------------------------
+#  Step 2: Image Preparation
+# ------------------------------------------------------------------------------
+
+# Copy all swu/swrf .img images into the new renamed directory
+
+countVar=1;
+
+for file in $IMG_PRE*.img
+do
+
+if (($countVar < 10)); then
+cp $file $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK/renamed/V000$countVar.img
+fi 
+
+if (($countVar < 100)); then
+if (($countVar >= 10)); then
+cp $file $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK/renamed/V00$countVar.img
+fi 
+fi
+
+if (($countVar >= 100)); then
+cp $file $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK/renamed/V0$countVar.img
+fi
+
+let "countVar += 1";
+
+done
+
+#Copy all .hdr images into the new renamed directory
+
+countVar=1;
+
+for file in $IMG_PRE*.hdr
+do
+
+if (($countVar < 10)); then
+cp $file $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK/renamed/V000$countVar.hdr
+fi 
+
+if (($countVar < 100)); then
+if (($countVar >= 10)); then
+cp $file $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK/renamed/V00$countVar.hdr
+fi 
+fi
+
+if (($countVar >= 100)); then
+cp $file $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK/renamed/V0$countVar.hdr
+fi
+
+let "countVar += 1";
+
+done
+
+
+# ------------------------------------------------------------------------------
+#  Step 3: Matrix Creation
+# ------------------------------------------------------------------------------
+
+# Change into directory where template exists, save subject specific script
+cd $SCRIPTDIR
+
+# Loop through template script replacing keywords
+for i in 'vox_extract_cluster.m'; do
+sed -e 's@SUB_BIACROOT_SUB@'$BIACROOT'@g' \
+ -e 's@SUB_SCRIPTDIR_SUB@'$SCRIPTDIR'@g' \
+ -e 's@SUB_SUBJECT_SUB@'$SUBJ'@g' \
+ -e 's@SUB_MOUNT_SUB@'$EXPERIMENT'@g' \
+ -e 's@SUB_SPM_SUB@'$SPMVER'@g' \
+ -e 's@SUB_TASK_SUB@'$TASK'@g' \
+ -e 's@SUB_MASKTYPE_SUB@'$MASKTYPE'@g' \
+ -e 's@SUB_MASKTWOTYPE_SUB@'$MASKTWOTYPE'@g' \
+ -e 's@SUB_MASKTWONAME_SUB@'$MASKTWOFILE'@g' \
+ -e 's@SUB_MASKTWO_SUB@'$MASKTWO'@g' \
+ -e 's@SUB_MINTHRESHTWO_SUB@'$THRESHTWO'@g' \
+ -e 's@SUB_BIACROOT_SUB@'$BIACROOT'@g' \
+ -e 's@SUB_MINTHRESH_SUB@'$THRESH'@g' \
+ -e 's@SUB_NUMIMAGES_SUB@'$NUMIMAGES'@g' \
+ -e 's@SUB_MASKNAME_SUB@'$MASKFILE'@g' <$i> $OUTDIR/vox_extract_${RUN}.m
+done
+ 
+# Change to output directory and run matlab on input script
+cd $OUTDIR
+
+/usr/local/matlab2009b/bin/matlab -nodisplay < vox_extract_${RUN}.m
+
+echo "Done running vox_matrix.m in matlab"
+
+
+# ------------------------------------------------------------------------------
+#  Step 4: File Cleanup and Matrix Copy
+# ------------------------------------------------------------------------------
+
+#Return to the subject specific folder to delete the renamed files and copy the matrix
+
+cd $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK/renamed
+cp voxvalues.mat $OUTDIR/$SUBJ'_gm'.mat
+rm V*
+rm voxvalues.mat
+
+cd $EXPERIMENT/Data/$SPMVER/AllProcessedData/$SUBJ/$TASK
+rmdir renamed
+
+cd $OUTDIR
+rm vox_extract_${RUN}.m
+
+# -- END USER SCRIPT -- #
+
+# **********************************************************
+# -- BEGIN POST-USER -- 
+echo "----JOB [$JOB_NAME.$JOB_ID] STOP [`date`]----" 
+OUTDIR=${OUTDIR:-$EXPERIMENT/Analysis/Matrices/$TASK/$OUTPUTFOL/$SUBJ}
+mv $HOME/$JOB_NAME.$JOB_ID.out $OUTDIR/$JOB_NAME.$JOB_ID.out	 
+RETURNCODE=${RETURNCODE:-0}
+exit $RETURNCODE
+fi
+# -- END POST USER-- 
+</code>

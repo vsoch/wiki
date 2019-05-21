@@ -1,0 +1,8 @@
+=====Checking BIAC QA=====
+The first quality check that must be done before using any single subject data in a group analysis is checking the QA report produced automatically by BIAC (or you can run manually using the [[http://www-calit2.nbirn.net/tools/bxh_tools/index.shtm|BIAC XCEDE TOOLS]].  Instructions are detailed at [[Quality Analysis]].
+
+=====Visually Inspecting Data=====
+It is important to visually check data before processing, as well as after preprocessing, and then again to look at the mask image for each subject.  Since the human time to do all of this would be ridiculous, the [[Cluster Pipeline Tutorial]] includes examples of how to [[cluster_pipeline_tutorial#Checking Registration and Printing a PDF|randomly print .swu images]] for viewing, to [[cluster_pipeline_tutorial#DATA CHECK (Results report for single subject analysis)|print out a results report for each subject]] and [[cluster_pipeline_tutorial#Converting .ps to .pdf)|convert the report to .pdf]], use [[Art and ARTRepair]] to find motion outliers, and [[Coverage Checking]] in preparation for a group analysis.
+ 
+=====Registration Checks=====
+As detailed in the SPM Cluster Processing Pipeline and above, the script produces a .ps file that can be viewed in SPM or converted to a PDF and viewed in acrobat.  This file includes 12 randomly chosen .swu images for each functional run.  Each of these images should look like a properly sized and shape brain.  Any ghostly or warped images indicates that there were problems with registering the functional to the anatomical.  In this case, an AC-PC realign will be required see [[spm_cluster_processing#AC PC Realign for Bad Registrations|AC PC Realign for Bad Registrations]] for details.

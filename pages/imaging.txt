@@ -1,0 +1,20 @@
+=====Software and Tools=====
+[[SPM]] Statistical Parametric Mapping for different types of neuro data \\
+[[FSL]] A unix based tool for neuroimaging analysis \\
+[[AFNI]] I've only used it for the AlphaSim tool \\
+[[conn]] A toolbox for resting connectivity analysis based in MATLAB \\
+[[xjView]] A simple tool for displaying images and overlays \\ 
+[[xvfb]] Allows sending graphical output to spot in memory, useful for graphical functionality in cluster environment \\
+
+[[http://rsl.stanford.edu/research/software.html|Rdgehdr]] Used to convert pfiles into text to read header info! \\
+[[http://www.sph.sc.edu/comd/rorden/mricron/install.html|MRICron]] a nice tool to have for looking quickly at data, and figuring out orientation.  It comes with a package called [[http://www.sph.sc.edu/comd/rorden/mricron/dcm2nii.html|dcm2nii]] that converts DICOM-->NIFTII as well.
+
+
+=====Data Preparation=====
+[[Quality Checking Tools]] \\
+[[Neuroimaging Orientation]] \\
+[[Voxel Value Matrix]] Using a combination of scripts in Matlab, SPM, and bash to produce a matrix of raw activation values for each voxel from a functional set. \\
+[[Running Scripts]] Contains general information about running bash and python scripts on the cluster. \\
+
+
+

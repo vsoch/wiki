@@ -1,0 +1,45 @@
+=====Running QA=====
+QA is part of the [[http://www-calit2.nbirn.net/tools/bxh_tools/index.shtm|BIAC XCEDE Tools]] by a really brilliant guy named Syam Gadde!  There are two methods we can go about running QA.  The first time you do it, you should use just "QA" without removing images, and then after looking at the output, determine if any images need to be removed for saturation.  Then use "QA and Remove Images"
+
+[[QA and Remove Images]]
+
+If you are interested in other Quality Checking tools for Imaging Data, please see [[Quality Checking Tools]].
+
+=====Checking QA=====
+QA is important for assessing that there isn't a significant amount of rotational or translational motion, amongst other things.
+
+**1)** You are going to want to open up each subject's "QA" folder in the functional directory and then open the "index.html" to view the output.  For an easy way to navigate from each index.html, do a search from Start -> Search for "index.html" within your Data directory.
+
+**2)** Now, we need to check values for a number of variables and record them in the EXPERIMENT.xls file, or your QA log equivalent. \\
+  * Record all subjects SNR, SFNR, and look for translation greater than 2 mm.  
+  * For SNR, the value is going to vary by experiment.  It might be best to use SPSS to calculate the mean SNR, and then decide on a "cut" threshold, possibly 2.5 standard deviations to eliminate subjects from analysis.  I like to then set up an excel sheet to automatically calculate the average SNR and SFNR, and flag subjects that aren't within that range.
+   * So, if our average SNR is 55.4, and perhaps 1 standard deviation is 10, then we would eliminate subjects that aren't within the range of 35.4 - 75.4.
+  * Also look at the masked intensity graph, show the values by clicking the link at the bottom of the graph, and look for and record any RF spikes.
+  * Look at the graphs that show motion in the x, y, and z directions.  Look for any big spikes, as well as motion that is more than 3 standard deviations over the mean.  A good standard for translational motion is about 2mm.
+
+**3)** If we are worried about excessive motion, then we should calculate a difference image using showsrs2 in matlab. This is part of the BIAC tools in matlab, which I do not believe are publicly available.  You can use the following instructions if you have the tools, but if not, you generally just need a toolbox that can read in a timeseries and calculate and display the difference between the images.  To calculate a difference image:
+  * Open up MATLAB.  Make sure that you have installed the BIAC Tools and that the path is added.
+  * Navigate to the functional data folder
+  * Create a temporary variable for your functional data:
+
+<code matlab>
+temp = readmr('functionalfilename.nii');
+</code>
+
+Then calculate the difference between the slices \\
+<code matlab>
+temp2 = diff(temp.data, 4,1);
+</code>
+
+Then look at the result \\
+<code matlab>
+showsrs2(temp2)
+</code>
+
+Thank you to McKell Carter for showing me how to do this way back in 2009, I am still grateful!
+
+**What are we looking for?:** A difference image basically calculates the "difference" between each image, and shows the change as various shades of grey.  So, if we see a single, opaque sheet of grey, this means that there is no change from one slice to the next, meaning that there was no motion, and we are good!  Seeing an outline of a brain, or anything that isn't matte grey, means that there was motion/change from one slice to the next, and this isn't good.  FSL uses McFlirt to correct for motion, and can handle small amounts of it in any direction.  However, what it doesn't like is huge changes that completely reorient the brain, like a drastic twist. We could see something like this with the difference image.
+
+  * Lastly, McFlirt rotational motion will be accessed after FEAT first level analysis
+
+**4)** Use the image towards the bottom of the report (the standard deviation image) to help assess motion.  The red portions of the image represent motion.  It is common to see some around the eyes, and a little around the brain.

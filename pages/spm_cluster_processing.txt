@@ -1,0 +1,123 @@
+[[spm_cluster_processing#Overview|Overview]] \\
+[[spm_cluster_processing#Quality Checks|Quality Checks]] \\
+[[spm_cluster_processing#Scripts|Scripts]] \\
+[[spm_cluster_processing#Timing|Timing]] \\
+[[spm_cluster_processing#Checking Output|Checking Output]] \\
+[[spm_cluster_processing#AC PC Realign for Bad Registration|AC PC Realign for Bad Registration]] \\
+[[spm_cluster_processing#Group Analysis Protocol|Group Analysis Protocol]] \\
+[[spm_cluster_processing#Coverage Checking|Coverage Checking]] \\
+[[spm_cluster_processing#Processing other data sets|Processing other data sets]]
+
+=====Overview=====
+Although SPM is primarily used through Matlab in a GUI on a local machine, we have a pipeline to run the preprocessing and single subject analysis on the cluster.  This pipeline is for DNS data.  For AHABII, TAOS, or FIGS, please see [[spm_cluster_processing#Processing other data sets|Processing other data sets]].  For detailed instructions about creating your own pipeline, see [[Cluster Pipeline Tutorial]].  This cluster pipeline includes the following:
+  * Dicom import of series002 (anatomical) and series005 (highres)
+  * Segmentation of anatomical
+  * Realign and Unwarp, all functionals
+  * Co-Register GM image to Mean Functional Image
+  * Normalization, all functionals
+  * Smoothing, all functionals
+  * single subject analysis
+  * Art (artifact detection) analysis
+  * Registration check
+  * Single Subject Analysis, Iteration II with outliers from Art
+
+For a better understanding of data processing in SPM, it is recommended that you do the entire process manually first.  See [[SPM Preprocessing]] for the start of the full manual instructions.  
+
+=====Quality Checking=====
+Don't forget that before any data can be used in a group level analysis, we must do a series of quality checks to rule out excess motion and artifacts.  See [[SPM Quality Checks]] for details about Checking BIAC QA, registrations, and visually inspecting the data.
+
+=====Scripts=====
+The following scripts work together to complete single subject processing for DNS data.
+
+**spm_batch.py** (the python script) \\
+[[SPM BATCH PYTHON]] - head node Hugin \\
+takes in user variables to start the process.  This is the only script that the user will have to touch to process data to enter folder names and subject numbers, and most importantly, order numbers.  The user also has the option to select "yes" or "no" to process each functional run, in the case that we are missing data for a subject. It uses...
+
+**spm_batch_TEMPLATE.sh** (bash script) \\
+[[SPM BATCH TEMPLATE]] - head node Hugin \\
+as a template, meaning that it fills in all the relevant variables for each subject, and submits one script to process each subject.  Once submit, this script takes two Matlab script files, spm_batch1.m and spm_order#.m, and uses them as a template in the same way.  The order number variable fed in from the bash template script determines which order number script is run.  We do this so that all subjects, regardless of slightly different designs, have the same higher level contrasts.  So this script creates the subject's folders, then creates a spm_batch1_1.m and spm_order#_1.m script for the subject, saved to the subject's directory under Analysis/SPM/Processed.  After creating these Matlab scripts, this script launches Matlab with the -nodisplay option to run...
+
+**spm_batch_1.m** \\
+[[http://www.vsoch.com/LONG/Vanessa/MATLAB/SPM/spm_batch1.m|SPM BATCH 1]] - Experiment Scripts/SPM directory \\
+takes care of pre-processing of the anatomical data.  It first creates all the necessary folders (based on the user's selection), copies all functional raw data over, and then preprocesses the anatomicals, copying the c1*img/.hdr into each functional folder.  When this script finishes running, we shoot back to spm_batch_TEMPLATE, which then creates a virtual display on the node it is running on the cluster, and launches Matlab to use that virtual display and run....
+
+**spm_order#.m** \\ 
+[[http://www.vsoch.com/LONG/Vanessa/MATLAB/SPM/spm_order1.m|SPM ORDER 1]] - [[http://www.vsoch.com/LONG/Vanessa/MATLAB/SPM/spm_order2.m|SPM ORDER 2]] - [[http://www.vsoch.com/LONG/Vanessa/MATLAB/SPM/spm_order3.m|SPM ORDER 3]] - [[http://www.vsoch.com/LONG/Vanessa/MATLAB/SPM/spm_order4.m|SPM ORDER 4]] - Experiment Scripts/SPM directory \\
+which must have graphic capability!  These scripts perform realign & unwarp, normalization, smoothing and then single subject processing for faces, cards, and rest.  The order number iteration that is run depends on the order number variable fed in by the user.  The "check_reg" portion chooses 12 images at random from each functional task and prints them to the spm PostScript file in the subject's folder under Analysis/Processed.  These images should be visually checked.  It then performs art_batch (Artifact Detection) for each functional run, and then runs iteration #2 of the single subject processing using the art_regression_outliers.mat file.  When the runs are complete, the script calculates a results report for the block design for Faces > Shapes, as well as Positive Feedback > Negative Feedback and the subject's T1, which will get moved by the bash script as a .pdf into the Graphics/Data_Checks/ folder, to be looked at later.  Lastly, the script goes back and deletes the copied over V00* images, as well as at the wuV00* and uV00* images.  Using a special script that changes the paths of the SPM.mat, the script finally goes into each _pfl and task directory and changes the SPM.mat paths from a cluster path (/mnt/32483uHGJH3434...) to a local path (N:/NAME.01/...) so if you map munin on your local machine, you must map it as drive N:/! We then shoot back to spm_batch_TEMPLATE which has to erase the lock file created for the display, otherwise the memory would remain occupied, and over time slowly fill up all the available spots.  
+
+The scripts are set up to handle processing the cards, rest, and faces tasks.  For use with different functional runs, the code that sets up the spm jobs in spm_batch_1.m and spm_order#.m must be edited, and user variables added to the bash and python scripts.  See Vanessa for help with this!  Also see the [[SPM ORDER Change Log]] for changes to the scripts.
+
+=====Timing=====
+The entire thing for faces, cards, and rest takes approximately 45 minutes per subject.   
+
+=====Instructions:=====
+  - The scripts spm_batch.py and spm_batch_TEMPLATE.sh must be saved in the same directory somewhere on your head node on the cluster.
+  - The top directories for SPM Analysis must already exist NAME.01/Analysis/SPM/Processing and NAME.01/Analysis/SPM/Analyzed.
+  - The scripts spm_batch1.m and spm_order#.m must be saved under NAME.01/Scripts/SPM
+  - Data comes from NAME.01/Data/(Subject/Anat and NAME.01/Data/Subject/Func), the standard for output from BIAC
+  - Once your scripts are saved and the folders ready, you simply need to open spm_batch.py, enter your variables at the top, save the script, type 
+<code bash>
+chmod u+x spm_batch.py
+</code>
+to make it executable, and then 
+<code bash>
+python spm_batch.py
+</code> 
+to run.
+
+=====Checking Output=====
+  - After the script has finished running, you need to check the output.  
+  - First, make sure that everything is there.  In the Processed folder you should see two matlab template scripts spm_batch1/spm_order# script, and output file, and a folder for each functional task.  Within each folder there should be swu* images, the art regression files/matrices, and the c1 anatomical.  The bxh headers from the data will be there as well.  In the "anat" folder you should have the original s* images for the highres (005) and the anatomical (002).  There should be images starting in c1,c2, and m for the anat, which means that it was segmented.
+  - Under Analyzed each task folder should have the SPM.mat, the contrasts, and all of the files that are output after a first level analysis.
+  - Next, check the registration.  The script automatically converts the .ps to a .pdf, so you simply must open the pdf and look at the images. This PDF shows 12 randomly selected swu images for each task.  If you see any warpy brains or funny looking registrations, then you will need to do an AC-PC realign, which means manually setting the origin.  If everything looks good, then put "ok" under "Check Registration" in the DNS excel under the "SPM Single Subject Analysis" tab.  The indication that the run has been checked is moving the two .m scripts and the .out file into the "Scripts" folder.  This way, anytime we see scripts in the top level we can be sure that the subject has not been checked.  
+  - Under the "Batch" tab, (where you should organize script running) - when a subject is finished and check, you can copy paste the ID and exam number under the currently open batch and the correct order number.  You then need to add the subject to the next two tabs - SPM Data Log, and SPM Freeze.
+  - Under SPM Data Log, place an x under each data type that the subject has processed.  In the case of missing or errored data, place a "." in the box and make a comment to explain why the data is not usable.  
+  - Under SPM Freeze, simply copy the ID and exam number, and you are good.  These are the "freeze point" lists that get created at each benchmark. At the time of a freeze, the subjects to include must fit the following criteria:
+    - Have all data types, rest, faces, cards, highres, dti
+    - Have a specified coverage for a particular contrast / mask.  See the Task specific tabs in the DNS excel as well as the COVERAGE file in the notes folder for details!  You will want to use [[Coverage Checking]].   
+  - If you need to do an AC-PC realign, instructions are as followings:
+
+=====AC PC Realign for Bad Registrations=====
+  - First, delete the subject folder under Processed and Analyzed.  That's right, everything.
+  - Run spm_batch.py again, however set the variable "funconly" to "no" and "imageprep" to yes.  This will import all the dicoms and set up the folders, but not segment the anatomical
+  - When this has completed, you must manually set the AC PC.  In SPM8, click on "Display" and then select the anatomical s* image under "anat" (sdns01-0002-00001-000001-01).  
+  - Find the AC PC line and set the origin to the AC.  If you need help figuring out where this is, Google it!
+  - Look at the coordinates under "Crosshair position" and "mm."  Enter these three values into the top three boxes, right, forward, and up.
+  - The pointer will jump around and clearly be in the wrong place.  When the values are entered, click on the bar under "Crosshair position" and it will jump to the original place that you clicked on!
+  - Next, you need to reorient all of the images to this position.  Click on "Reorient images" at the bottom, and select BOTH anatomicals under anat, and all of the VOO* raw images under each of the functional task folders cards, rest, and faces.  From doing this many times, I know that with two anatomicals and three functional sets, there should be 498 images.
+  - When this has finished, click on "Segment" in the main SPM window, select the sdns01-0002-00001-000001-01.img file, and click the green arrow to go.
+  - When segmentation is done for all of your subjects, you can submit them again using the [=spm_batch.py,=] but this time set "funconly" to "yes" and "imageprep" to no.
+  - As usual, be sure to check registrations when you are finished and update the DNS excel.
+
+=====Group Analysis=====
+  - All of the work below is done in the DNS excel sheet in the "Batches" and "SPM Single Subject Analysis" tab.
+  - Do not include subjects that have been disqualified from the study.  A list of these subjects is in the subject log.
+  - Make sure that each subject is included in a Batch under the correct order number in the "Batches" tab
+  - When Vanessa checks QA and adds a subject to the log, she moves from the tabs from left to right, and organizes and documents script running under "Batches."  
+  - First, find all order numbers for new subjects from the Counterbalancing Log, and then add them to the currently open batch by copy pasting the DNS number and exam number under the proper faces task order number.  
+  - When everything is finished and checked, the subject is added to "SPM Data Log" and "SPM Data Freeze." 
+  - The subjects will all have the same higher level contrasts, regardless of order number.
+  - Make sure that the registration has been checked, indicated by "OK" under "Registration Checked"  If it has not been checked, do so!  If it is errored you will need to see the above "AC PC Realign"
+  - Subjects with all the data sets (DTI, cards, faces, highres, rest) are candidates.  You will want to run [[Coverage Checking]] for a particular task and mask / threshold to narrow down the subject lists for each task.  You will want to add these final lists to the task specific tag in the excel, and use the _COVERAGE excel in the Notes folder to record all coverage output!
+  - Subjects are added in batches to the group analyses. So when we reach  benchmark, you will want to close the currently open batch, and start a new one for subjects after the benchmark.  Be sure to log that the batch was closed, the date, and your name in the table on the right side of the "Batches" tab.  Next you will need to set up the group analysis folders.  To do this: 
+  - Create a new XXXs folder (where XXX is the number of subjects in the freeze) under the Task name in the Second_level directory
+  - You can either copy paste folders from old group setups from previous freezes, OR create new .mat design files.  If you copy old ones, be sure to completely delete the old SPM.mat and other output files, and in the design.mat to completely update the list of subjects (MAKE SURE IT IS IN THE CORRECT ORDER), AND the output folder.  The standard is that for each group analysis folder, we also save a name_of_contrast_XXX.mat of the design, so it can be opened and modified at a later date.
+  - 
+For each subject
+  * When a subject has been added for ALL ANALYSES, put an "x" under "included group analysis" in the SPM Data Log tab, and an X for the subject under the freeze point in the SPM Freeze tab.
+
+=====Coverage Checking=====
+When establishing the "official" list of subjects for the group analysis, you need to check coverage.  See [[Coverage Checking]].
+
+=====Processing other data sets=====
+Every data set is slightly different with regard to image formats, paths, and tasks.  The above scripts are specifically for DNS, however Vanessa has developed specific scripts for the following data sets:
+
+  * AHABII
+  * TAOS
+  * FIGS
+  * CEDAR
+  * ADOLREG
+  * ABD
+  * ShockAnti
+
+Please contact me if you are looking for these scripts!

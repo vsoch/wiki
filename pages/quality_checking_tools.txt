@@ -1,0 +1,16 @@
+=====General=====
+[[Quality Analysis]]:  Use the QA tool to check raw functional or anatomical data for excessive motion, SNR, etc before any processing \\
+[[Coverage Checking]]: Check coverage of individual subject data before setting up a group analysis \\
+
+=====FSL Specific=====
+[[ica_:melodic_dual_regression:#ica_package_contents|Melodic QA]] See melodic_qa for checking motion and rotation from MELODIC based on benchmarks \\
+[[First Level FEAT Quality Check]] \\
+[[Group FEAT Quality Checking ]] \\
+[[Checking BET]] \\
+[[Dicom to Nifti Checks]] \\
+
+=====SPM Specific=====
+[[SPM Quality Checks]] Before any fMRI data can be used beyond single subject processing, Quality Analysis needs to be conducted, which includes Checking BIAC QA and visually inspecting the data. \\
+[[Fixing Timing Errors]] Instructions for manually re-doing the single subject analysis for a run that has errored timing AFTER the entire processing
+pipeline has been completed.  In this case, we are fixing Cards. \\
+[[spm_cluster_processing#AC PC Realign for Bad Registrations|AC PC Realign for Bad Registrations]] how to do an AC-PC realign in the case of a ghosty or errored registration \\

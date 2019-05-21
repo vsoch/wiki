@@ -1,0 +1,10 @@
+=====SPM Display Tool Notes=====
+From Patrick in Pittsburgh! \\
+
+When you are viewing an image using the "Display" tool within SPM you can click around the image and SPM will display the "Intensity" at wherever your crosshairs are located.  It will also give you the voxel coordinates (in both "mm" and "vx").  When you click around with your mouse, however, you will notice that the coordinates are not whole numbers (e.g., 34.7, 28.5, 16.2).  The "Intensity" values at these non-whole number coordinates are not the value of any one voxel, but rather some average of the voxels surroundings that point the crosshairs are currently occupying.  It took me a while to actually figure this out.  Were you to enter, for example, (34, 28, 16) for the "mm" coordinates, now you're sitting squarely within a single voxel and the "Intensity" value reflects the signal for that image, at that coordinate.
+
+I mention this because when you are viewing a binary mask image (composed of 0's and 1's), if you view the image using the "Display" tool and click around the image with your mouse the "Intensity" value won't always be 0 or 1, rather some value between 0 and 1--obviously if you are within a region where every voxel has a value of 0 or 1 then even the average of surrounding voxels will be 0 or 1.  In fact the image is composed of 0's and 1's but because you are not within a specific voxel when you're clicking around with your mouse, SPM won't display the intensity for any one voxel, but some average.
+
+All the images you are working with have isotropic voxels of size 2x2x2 mm.  What this means is that the x, y and z coordinate values for the "mm" coordinates have to all be even in order for you to be "sitting squarely within a single voxel," so to speak.  (0,0,0) is where the "origin" is set, Kristen should remember this :)
+
+When you load an image into Matlab using the commands I sent you, the voxel coordinates are equivalent to the "vx" coordinates that you see when you use the "Display" tool within SPM.  These coordinates can be even or odd.  (0,0,0) using this "vx" coordinate system is the lower, right, back corner of the image.

@@ -1,0 +1,27 @@
+# SPM Batching
+
+## BATCHING ALL PRE-PROCESSING STEPS AND USING THE DEPENDENCY BUTTON
+
+ - **1.** REALIGN- ALL ORGINAL F*.IMGS
+ - **2.** COREGISTRATION- REFERENCE IMAGE: “CLICK DEPENDENCY BUTTON” AND SELECT UNWARPED MEAN IMAGE
+ - **3.** NORMALIZATION- IMAGES TO WRITE: “CLICK DEPENDENCY BUTTON” AND SELECT REALIGN AND UNWARP: UNWARPED IMAGES
+ - **4.** SMOOTH- IMAGES TO SMOOTH: “CLICK DEPENDENCY BUTTON” AND SELECT NORMALIZED IMAGES
+
+
+### RUNNING THE ART PROGRAM
+See [ART and ARTRepair](art-and-artrepair.md)
+The ART program determines if there are outliers within each person’s run.  This may be based on movement or a signal spike at a particular time point in the scan.  The ART program will create a file with this information that can be entered as a covariate when creating each person’s first level.  The program will need to be installed on your computer with the path set in MATLAB.  Once this is done, type art into the Matlab window.  This will open the program.  At this time, we do not know how to batch this for multiple people, so it needs to be done for each person.  
+
+  - Type art in the matlab window to open the program
+  - HOW MANY SESSIONS? Select 1 session
+  - WHICH GLOBAL MEAN TO USE?  Select regular
+  - SELECT TYPE OF MOTION PARAMS FILE: Select txt(SPM)
+  - SELECT FUCNTIONAL VOLUMES FOR SESSION 1: Select the smoothed files for that person
+  - SELECT MOVEMENT PARAMS FILE FOR SESSION 1: Select the rp_FILEFORTHEPERSON which is located in the functional folder
+  - DROP 1ST SCAN OF EACH SESSION?: Select No
+  - The ART program will then run, and will produce a graph when it is complete.   
+  - You will need to determine who many standard deviations you will be using to determine your outliers (Z threshold), but likely somewhere between 3 and 5? There is no “gold standard” for this threshold, so it will be important to specify your exact procedures in the method section of your publications.  
+  - We have been unchecking the “USE COMP MOTION” to separate rotation and movement.  We have changed the rotation threshold to 0.035.  
+  - It is important to SAVE this graph so that you will be able to change these parameters without rerunning the program if you need to.  
+  - Choose SAVE: Save the graph
+  - Choose SAVE again: Save the outliers

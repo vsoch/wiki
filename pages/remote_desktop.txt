@@ -1,0 +1,21 @@
+=====Setting up your machine for Remote Desktop:=====
+
+====The Computer You are Connecting To====
+You basically need to "enable" Remote Desktop in Control Panel, and then modify your firewall settings so your computer knows who to let connect to it.  You will need the IP address of the computer that you are connecting from.  Steps to set up the computer you are connecting TO are as follows:
+
+  * Go to Control Panel --> System --> Remote
+  * Under "Remote Desktop" check the box that says "allow users to connect remotely to this computer"
+  * Back in the Control Panel, go to "Windows Firewall" and go to the "Exceptions" tab
+  * Check the box that says "Remote Desktop" 
+  * Click Edit --> Change Scope --> Custom List and enter the IP address of the computer you want to give access.  Note that you could change the scope to "Any" to additionally allow computers on a wireless network to connect, but this isn't as secure.
+  * This computer will need to have a username and password configured to be able to connect!
+
+====The Computer You are Connecting From====
+  * You will need to know the IP address of the computer that you are connecting to.  You can go into the command prompt and look at /ipconfig all, or just go into your browser and search for "my IP address."  
+  * When the computer you are connecting to is configured, go to Start --> Programs --> Accessories --> Remote Desktop Connection.  
+  * Enter the IP address of the computer you are connecting to, and click "Connect." 
+  * You will be prompted for the username and password if the connection is successful.
+
+====Things to Keep in Mind====
+  * If your remote computer is using a VPN connection, this changes the IP address, and you won't be able to connect.  On the flip side, if you try to connect to VPN while remote desktopping, that will cut you off, because all of a sudden the computers address will change.
+  * Sometimes for me the connection doesn't work off the bat, and if I wait and try again, or restart my computer, that fixes it.  

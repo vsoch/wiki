@@ -1,0 +1,33 @@
+======OVERVIEW======
+MRlog is a python script that uses fsl or nibabel to print a log for nifti (.nii and .nii.gz) files.  For nibabel, it requires [[http://vsoch.com/wiki/doku.php?id=mrtools|MRtools]] (a python script that works as a module) to be in the same folder.  It was created with the [[ica_:melodic_dual_regression|ica+ Melodic Dual Regression package]], although it only requires the MRtools script to run. The output text file can be opened in excel, for example:
+
+{{http://www.vbmis.com/bmi/project/aim/MRlog.png|MRlog Output}}
+
+======USAGE======
+<code>
+MRLog: prints log of imaging data information found in a particular directory.
+FSL is used by default, expected to execute on command line as "fsl." To use
+nibabel, make sure MRtools is in same folder, and specify --sof=nibabel
+
+ 
+OPTIONS:
+  -h, --help             show this help  
+  -d, --dir              path to top data directory
+  -s, --sof              software to read (fsl or nibabel)
+  -o, --out              output folder for log
+                         if not specified, uses pwd
+USAGE:
+python MRLog.py --out=/path/to/out --dir=/path/to/Data
+
+OUTPUT: 
+image,path,Ydim,file_type,timepoints,dims,Xpixdim,Zdim,Xdim,Ypixdim,descrip,units,Zpixdim, (fsl)
+image,path,dims,units,Xpixdim,ydim,Zpixdim,file_type,zdim,timepoints,xdim,Ypixdim, (nibabel)
+</code>
+
+======Scripts======
+For the [[https://github.com/vsoch/ica-/blob/master/MRtools.py|MRtools script]], and the [[https://github.com/vsoch/ica-/blob/master/MRlog.py|MRlog script]]. \\
+If you are interested in MRtools as a module for reading, filtering, and matching images, see [[http://vsoch.com/wiki/doku.php?id=mrtools|MRtools]].
+
+======Plans for next release:======
+  - Allowing for prefix search
+  - Additional data types

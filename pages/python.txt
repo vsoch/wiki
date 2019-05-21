@@ -1,0 +1,9 @@
+=====Databases=====
+[[Django]]
+
+=====Imaging Applications=====
+[[MRtools]]: Python module utilizing nibabel for reading, filtering, matching... currently in development \\
+[[ica_:MRlog]]: Python script for printing log of nifti (.nii or .nii.gz) data under top directory using fsl or MRtools \\
+[[ica+: Melodic+ Dual Regression]]: a custom package to take raw data through multi-session temporal concatenation with Melodic, & perform dual regression \\
+[[ica_:pyCorr]]: using nibabel and numpy with python to match images to a template. (for use with ica+, still in testing) \\
+[[pyVBM]]: quick and dirty voxel based morphometry script for fsl \\

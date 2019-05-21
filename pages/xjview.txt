@@ -1,0 +1,15 @@
+=====Checking Coverage=====
+xjview is a simple image/overlay program that can be used to display images or check coverage (manually, each one).  For a more "batch" method please see [[Coverage Check]].  
+
+After we process a single subject, we want to check their data to make sure that we are getting full amygdala (or whatever your ROI is) coverage.  This is important because when we move to group analysis, any missing voxels in a single subject will be discluded in the group analysis, which we don't want!  The instructions below detail how to use xjview to check coverage.
+  - Install and run xjView (see links below)
+  - First go to File--open images--then choose the mask.img file that is contained within a person's 1st level folder.  
+  - Then under overlay on the bottom left, choose the amygdala.  The region in orange is the overlap of the mask with what is in the amygdala mask.  Regions that "stick out" outside of the mask.img file are missing probably due to signal dropout. If you don't see regions of overlap, try opening the amygdala overlay first and then the mask.img file
+
+Once both are open, you can start with -10 in y coordinate at the bottom left and then -8 and check each slice until +2 to make sure there is full coverage.
+
+**Download link:** \\
+http://www.alivelearn.net/xjview8/blog/download/
+
+**Discussion:** \\
+http://groups.google.com/group/xjview-discuss-group/topics

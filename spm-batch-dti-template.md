@@ -1,0 +1,219 @@
+```bash
+#!/bin/sh
+
+# --------------SPM BATCH DTI TEMPLATE ----------------
+# 
+# This script takes anatomical and functional data located under
+# Data/fund and Data/anat and performs all preprocessing
+# by creating and utilizing two matlab scripts, and running spm
+# After this script is run, output should be visually checked
+#
+# ----------------------------------------------------
+
+# --- BEGIN GLOBAL DIRECTIVE -- 
+#$ -S /bin/sh
+#$ -o $HOME/$JOB_NAME.$JOB_ID.out
+#$ -e $HOME/$JOB_NAME.$JOB_ID.out
+#$ -m ea
+# -- END GLOBAL DIRECTIVE -- 
+
+# -- BEGIN PRE-USER --
+#Name of experiment whose data you want to access 
+EXPERIMENT=${EXPERIMENT:?"Experiment not provided"}
+
+source /etc/biac_sge.sh
+
+EXPERIMENT=`biacmount $EXPERIMENT`
+EXPERIMENT=${EXPERIMENT:?"Returned NULL Experiment"}
+
+if [ $EXPERIMENT = "ERROR" ]
+then
+	exit 32
+else 
+#Timestamp
+echo "----JOB [$JOB_NAME.$JOB_ID] START [`date`] on HOST [$HOSTNAME]----" 
+# -- END PRE-USER --
+# **********************************************************
+
+# -- BEGIN USER DIRECTIVE --
+# Send notifications to the following address
+#$ -M SUB_USEREMAIL_SUB
+
+# -- END USER DIRECTIVE --
+
+# ------------------------------------------------------------------------------
+#  Variables and Path Preparation
+# ------------------------------------------------------------------------------
+
+# Initialize input variables (fed in via python script)
+SUBJ=SUB_SUBNUM_SUB          # This is the full subject folder name under Data
+RUN=SUB_RUNNUM_SUB           # This is a run number, if applicable
+
+TWODATASETS=SUB_TWODATASETS_SUB  # yes indicates that the group of subjects has 2 DTI runs
+
+#Make the subject specific output directories
+mkdir -p $EXPERIMENT/Analysis/DTI/SPM/$SUBJ
+mkdir -p $EXPERIMENT/Analysis/DTI/SPM/$SUBJ/FA
+mkdir -p $EXPERIMENT/Analysis/DTI/SPM/$SUBJ/raw  #here we put the raw DTI images
+
+
+DTIFOLDER1=SUB_DTIFOLDER1_SUB      # This is the name of the first DTI folder (series008)
+DTIFOLDER2=SUB_DTIFOLDER2_SUB      # This is the name of the second DTI folder (series009)
+
+# We need the abbreviated numbers below to feed into the image names
+SUBPRE=$(echo $SUBJ | cut -c1-5)   # This is just the exam number, extracted from the full name
+FOLDER1PRE=$(echo $DTIFOLDER1 | cut -c7-9)
+FOLDER2PRE=$(echo $DTIFOLDER2 | cut -c7-9)
+
+# Initialize other variables to pass on to matlab template script
+OUTDIR=$EXPERIMENT/Analysis/DTI/SPM/$SUBJ         # This is the location of the subject's output directory
+FAOUTPUT=$EXPERIMENT/Analysis/DTI/SPM/$SUBJ/FA    # This is the location of the FA output folder
+FOLDERPATH1=$EXPERIMENT/Data/Anat/$DTIFOLDER1     # This is the full path of DTI folder 1
+FOLDERPATH2=$EXPERIMENT/Data/Anat/$DTIFOLDER2     # This is the full path of DTI folder 2
+
+# Cluster / BIAC variables
+SCRIPTDIR=$EXPERIMENT/Scripts/SPM                     # This is the location of our MATLAB script templates
+BIACROOT=/usr/local/packages/MATLAB/BIAC              # This is where matlab is installed on the cluster
+
+# ------------------------------------------------------------------------------
+#  Step 1: Image Renaming and Moving
+# ------------------------------------------------------------------------------
+
+##########################################################################
+# DTI Folder One
+##########################################################################
+
+cd $EXPERIMENT/Data/Anat/$SUBJ
+
+# Go to the subject DTI data directory to rename and move images
+cd $DTIFOLDER1
+
+#Prepare the DTI images
+for file in bia5*.*
+do
+
+cp $file $EXPERIMENT/Analysis/DTI/SPM/$SUBJ/raw/
+
+done
+
+
+##########################################################################
+# DTI Folder Two
+##########################################################################
+
+if [ $TWODATASETS == 'yes' ]; then
+
+cd $EXPERIMENT/Data/Anat/$SUBJ/$DTIFOLDER2
+
+for file in bia5*.*
+do
+cp $file $EXPERIMENT/Analysis/DTI/SPM/$SUBJ/raw/
+done
+
+fi
+
+# ------------------------------------------------------------------------------
+#  Step 2: Dicom Conversion to Output Folders
+# ------------------------------------------------------------------------------
+
+# Change into directory where template exists, save subject specific script
+cd $SCRIPTDIR
+
+# Loop through template script replacing keywords
+for i in 'spm_DTI2_1.m'; do
+sed -e 's@SUB_BIACROOT_SUB@'$BIACROOT'@g' \
+ -e 's@SUB_SCRIPTDIR_SUB@'$SCRIPTDIR'@g' \
+ -e 's@SUB_FOLDER1PRE_SUB@'$FOLDER1PRE'@g' \
+ -e 's@SUB_FOLDER2PRE_SUB@'$FOLDER2PRE'@g' \
+ -e 's@SUB_SUBJECT_SUB@'$SUBJ'@g' \
+ -e 's@SUB_SUBPRE_SUB@'$SUBPRE'@g' \
+ -e 's@SUB_TWORUNS_SUB@'$TWODATASETS'@g' \
+ -e 's@SUB_MOUNT_SUB@'$EXPERIMENT'@g' <$i> $OUTDIR/spm_DTI2_1_${RUN}.m
+done
+ 
+# Change to output directory and run matlab on input script
+cd $OUTDIR
+
+/usr/local/bin/matlab -nodisplay < spm_DTI2_1_${RUN}.m
+
+echo "Done running spm_DTI2_1.m in matlab"
+
+
+# ------------------------------------------------------------------------------
+#  Step 3: DTI Single Subject Processing
+# ------------------------------------------------------------------------------
+
+# Change into directory where template exists, save subject specific script
+cd $SCRIPTDIR
+
+# Loop through template script replacing keywords
+for i in 'spm_DTI2_2.m'; do
+sed -e 's@SUB_MOUNT_SUB@'$EXPERIMENT'@g' \
+ -e 's@SUB_BIACROOT_SUB@'$BIACROOT'@g' \
+ -e 's@SUB_FOLDER1PRE_SUB@'$FOLDER1PRE'@g' \
+ -e 's@SUB_FOLDER2PRE_SUB@'$FOLDER2PRE'@g' \
+ -e 's@SUB_SCRIPTDIR_SUB@'$SCRIPTDIR'@g' \
+ -e 's@SUB_TWORUNS_SUB@'$TWODATASETS'@g' \
+ -e 's@SUB_SUBJECT_SUB@'$SUBJ'@g' <$i> $OUTDIR/spm_DTI2_2_${RUN}.m
+done
+ 
+# Change to output directory and run matlab on input script
+cd $OUTDIR
+echo "Changed to output directory";
+
+# ------------------------------------------------------------------------------
+#  Step 4. Preparing Virtual Display
+# ------------------------------------------------------------------------------
+
+#First we choose an int at random from 100-500, which will be the location in
+#memory to allocate the display
+RANDINT=$[( $RANDOM % ($[500 - 100] + 1)) + 100 ]
+echo "the random integer for Xvfb is ${RANDINT}";
+
+#Now we need to see if this number is already being used for Xvfb on the node.  We can
+#tell because when it is active, it will have a "lock file"
+
+while [ -e "/tmp/.X11-unix/X${RANDINT}" ]
+do
+      echo "lock file was already created for $RANDINT";
+      echo "Trying a new number...";
+      RANDINT=$[( $RANDOM % ($[500 - 100] + 1)) + 100 ]
+      echo "the random integer for Xvfb is ${RANDINT}";
+done
+
+#Initialize Xvfb, put buffer output in TEMP directory
+Xvfb :$RANDINT -fbdir $TMPDIR &
+/usr/local/bin/matlab -display :$RANDINT < spm_DTI2_2_${RUN}.m
+
+echo "Done running spm_DTI_2.m in matlab";
+
+# ------------------------------------------------------------------------------
+#  Step 5. Cleanup!
+# ------------------------------------------------------------------------------
+
+#If the lock was created, delete it
+if [ -e "/tmp/.X11-unix/X${RANDINT}" ]
+      then
+      echo "lock file was created";
+      echo "cleaning up my lock file";
+      rm /tmp/.X${RANDINT}-lock;
+      rm /tmp/.X11-unix/X${RANDINT};
+      echo "lock file was deleted";
+fi
+
+# once script is working perfectly, enable these to get rid of raw files
+cd $OUTDIR/raw
+rm *.dcm
+
+# -- END USER SCRIPT -- #
+
+# **********************************************************
+# -- BEGIN POST-USER -- 
+echo "----JOB [$JOB_NAME.$JOB_ID] STOP [`date`]----" 
+OUTDIR=${OUTDIR:-$EXPERIMENT/Analysis/DTI/SPM/$SUBJ}
+mv $HOME/$JOB_NAME.$JOB_ID.out $OUTDIR/$JOB_NAME.$JOB_ID.out	 
+RETURNCODE=${RETURNCODE:-0}
+exit $RETURNCODE
+fi
+# -- END POST USER--
+```

@@ -1,0 +1,111 @@
+The output of featquery, (fq.py with fq_TEMPLATE.sh) is a bunch of individual report.txt files in each subject folder with the cope1 line of interest. This script is designed to go through, read the contents of each of those files, and print it to the fq_read output file.  There is no python script to run this guy so you must run with the following command:
+
+<code bash>
+qsub -v EXPERIMENT=NAME.01 fq_read.sh Faces 2 20
+</code>
+
+Where "Faces" is the design type, 2 is the cope of interest, and 20 is the mask of interest.
+
+You will find the output file with all of the data(which is a text file you can read with notepad or wordpad) under the cope directory that you chose, with the name fq.sh-(some long number).out.  You can open this with wordpad to read it correctly, and save the results to a text file.
+
+Open the text file in Excel.  When the box pops up, select "Delimited" and click next, then uncheck Tab, and Check "Space" --> Click Next, and then Click "Finish."  The subject ID will appear above all of the stats particular to that subject. (note that if your subject IDs start with 0's, excel will automatically crop them out)
+
+=====The Script=====
+<code bash>
+#!/bin/sh
+
+#-------------fqread.sh---------------------------------------
+ 
+# This script takes the report.txt files produced from fq.sh and inputs them all into a
+# simple excel file for further analysisc
+
+# ---------WHEN DO I RUN THIS?------------
+# In the pipeline, you should run this script after you have completed running fq.sh and want to
+# compile your results in a single file for analysis
+
+# --------WHAT DO I NEED TO CHANGE?------------
+# the email to direct the successful run of the script
+# You also need to change the variable "COPES" to specify which copes you 
+# want to create cluster_masks for!
+
+#------------SUBMISSION ON COMMAND LINE---------------
+
+# [abc1@head ~]$ qsub -v EXPERIMENT=Dummy.01 fq_read.sh   Faces   Amygdala   2     20
+#                                                        Design  ROIname   COPE   Mask  	 
+ 
+# --- BEGIN GLOBAL DIRECTIVE -- 
+#$ -S /bin/sh
+#$ -o $HOME/$JOB_NAME.$JOB_ID.out
+#$ -e $HOME/$JOB_NAME.$JOB_ID.out
+#$ -m ea
+# -- END GLOBAL DIRECTIVE -- 
+ 
+# -- BEGIN PRE-USER --
+#Name of experiment whose data you want to access 
+EXPERIMENT=${EXPERIMENT:?"Experiment not provided"}
+ 
+source /etc/biac_sge.sh
+ 
+EXPERIMENT=`biacmount $EXPERIMENT`
+EXPERIMENT=${EXPERIMENT:?"Returned NULL Experiment"}
+ 
+if [ $EXPERIMENT = "ERROR" ]
+then
+	exit 32
+else 
+#Timestamp
+# echo "----JOB [$JOB_NAME.$JOB_ID] START [`date`] on HOST [$HOSTNAME]----" 
+# -- END PRE-USER --
+# **********************************************************
+ 
+# -- BEGIN USER DIRECTIVE --
+# Send notifications to the following address
+#$ -M user@email.com
+ 
+# -- END USER DIRECTIVE --
+ 
+# -- BEGIN USER SCRIPT --
+# User script goes here
+    
+# SET OUR VARIABLES
+
+DESIGN=$1 #this is the design under the ROI folder
+ROINAME=$2
+COPE=$3  #this is the cope you want to concatenate report.txt files for
+MASK=$4  #this is the number of the mask
+
+SUBJECTS="123 456 345 325"
+          #insert subjects in ONE SET of quotes, with a space between each one
+ 
+COPEDIR=$EXPERIMENT/Analysis/ROI/$DESIGN/$ROINAME
+
+FILEPATHS=""
+
+echo " - - - - - - - - vox(fMRI space) - mm(standard_space)"
+echo "- stats_image #voxels min 10% mean median 90% max x y z x y z" 
+
+for SUBJ in $SUBJECTS; do
+
+echo $SUBJ
+PATHTOADD=$COPEDIR/cope$COPE/Cluster_$MASK/$SUBJ/fq_$MASK/report.txt
+cat $PATHTOADD
+
+FILEPATHS=""
+
+done
+
+echo " "
+echo "The following subjects were used in this analysis:"
+echo "$SUBJECTS"
+
+# -- END USER SCRIPT -- #
+ 
+# **********************************************************
+# -- BEGIN POST-USER -- 
+OUTDIR=${OUTDIR:-$EXPERIMENT/Analysis/ROI/$DESIGN/$ROINAME/cope$COPE}
+mv $HOME/$JOB_NAME.$JOB_ID.out $OUTDIR/$JOB_NAME.$JOB_ID.out	 
+RETURNCODE=${RETURNCODE:-0}
+exit $RETURNCODE
+fi
+# -- END POST USER-- 
+</code>

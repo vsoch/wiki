@@ -1,0 +1,74 @@
+<code bash>
+#!/bin/sh
+
+#-------------TBSS.sh---------------------------------------
+ 
+# This script must be run AFTER FA_move.sh is complete, and all of our FA niftis are
+# in a folder called FA under EXPERIMENT/DESIGN/DTI/FA.  This script first performs preprocessing, and then registration
+
+# ---------WHEN DO I RUN THIS?------------
+# In the pipeline, you should run this script after you have completed running fq.sh and want to
+# compile your results in a single file for analysis
+
+# --------WHAT DO I NEED TO CHANGE?------------
+# the email to direct the successful run of the script
+# You need to change the variable "Subjects to include all the subjects with a particular dti folder 
+# 
+
+#------------SUBMISSION ON COMMAND LINE---------------
+
+# [abc1@head ~]$ qsub -v EXPERIMENT=Dummy.01 TBSS.sh     
+#                                                       	 
+ 
+# --- BEGIN GLOBAL DIRECTIVE -- 
+#$ -S /bin/sh
+#$ -o $HOME/$JOB_NAME.$JOB_ID.out
+#$ -e $HOME/$JOB_NAME.$JOB_ID.out
+#$ -m ea
+# -- END GLOBAL DIRECTIVE -- 
+ 
+# -- BEGIN PRE-USER --
+#Name of experiment whose data you want to access 
+EXPERIMENT=${EXPERIMENT:?"Experiment not provided"}
+ 
+source /etc/biac_sge.sh
+ 
+EXPERIMENT=`biacmount $EXPERIMENT`
+EXPERIMENT=${EXPERIMENT:?"Returned NULL Experiment"}
+ 
+if [ $EXPERIMENT = "ERROR" ]
+then
+	exit 32
+else 
+#Timestamp
+# echo "----JOB [$JOB_NAME.$JOB_ID] START [`date`] on HOST [$HOSTNAME]----" 
+# -- END PRE-USER --
+# **********************************************************
+ 
+# -- BEGIN USER DIRECTIVE --
+# Send notifications to the following address
+#$ -M name@email.com
+ 
+# -- END USER DIRECTIVE --
+ 
+# -- BEGIN USER SCRIPT --
+# User script goes here
+    
+# Go to the FA folder and perform the preprocessing
+cd $EXPERIMENT/Analysis/DTI/FA
+tbss_1_preproc *.nii.gz
+
+# When preprocessing is complete, perform the registration with the standard space FMRIB58_FA image
+tbss_2_reg -T
+ 
+# -- END USER SCRIPT -- #
+ 
+# **********************************************************
+# -- BEGIN POST-USER -- 
+OUTDIR=${OUTDIR:-$EXPERIMENT/Analysis/DTI/FA}
+mv $HOME/$JOB_NAME.$JOB_ID.out $OUTDIR/$JOB_NAME.$JOB_ID.out	 
+RETURNCODE=${RETURNCODE:-0}
+exit $RETURNCODE
+fi
+# -- END POST USER-- 
+</code>

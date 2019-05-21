@@ -1,0 +1,36 @@
+This research has moved to a private page to stay in compliance with IRB.
+
+======Chiari Malformation======
+  * [[Literature Review]]
+    * [[References]]
+  * [[Goals]]
+  * [[Problem Space]]
+
+=====Specific Aims===== 
+**Neuroanatomical Biomarkers of Disease: Identifying Patterns of Skull and Brain Morphology Associated with Chiari Malformation and Related Symptoms** \\
+Chiari Malformation (CM), a disorder of the central nervous system characterized by herniation of the cerebellar tonsils and other skull-based abnormalities, is poorly understood and difficult to diagnose and treat.  Symptoms, associated physiology, and treatment efficacy are inconsistent between patients, and so understanding the etiology and subtypes of this disease is a great challenge.  This challenge can be reduced to the problem of assessing how different patterns of brain and skull morphometry are associated with clinical symtomatology.  As the manifestation of a chiari is commonly associated with aberrant structure, this disease is a prime candidate for studying these relationships.  
+
+**AIM 1:** Extract morphological features of chiari and uncover associations with symptoms
+I will develop algorithms to extract robust morphological features from imaging data (MRI, CT), of pre-operative CM patients and use methods from machine learning to find associations with symptomatology.  I would want to also look at gender differences, and associations with other behavioral and clinical data.  
+
+**AIM 2:** Identify similar patterns of morphology and related symptoms in other populations
+I would like to explore how these patterns are expressed across a healthy control population, and other developmental and psychiatric diseases.  I would hypothesize that particular patterns of morphology that lead to symptoms associated with chiari are present in other disorders, and represent a contributing factor to the manifestation of the respective diseases.  
+
+**AIM 3:** Implications of aberrant structure on brain function
+Lastly, I am interested in the implications of this variation on brain function and structure.  Many publicly available imaging datasets include functional (fMRI) and structural data (DTI), and so I will look for the associations of these morphological features to function (fMRI) and white matter integrity (DTI).  For example, if a particular area of the brain has aberrant function or structure in some clinical group, could it be because higher csf pressure or a bony abnormality has slowly caused apoptosis of neurons?
+
+
+=====Overview=====
+**Development of Methods for Automated Diagnosis of Chiari Malformation and Discovery of Associated Clinical, Behavioral, and Functional Features** 
+
+Chiari Malformation is a disorder of the central nervous system characterized by herniation of the cerebellar tonsils and other skull-based abnormalities.  Diagnosis is most common in infants and young adults, and the number of clinical cases is similar to that of multiple sclerosis (0.1% to 0.5%).  Treatment requires a cranial decompression to create more space in the skull cavity and stop the progression of the disease, and it is a costly expenditure that does not always lead to a positive outcome.  Many times the affected individual only experiences symptoms with the development of a syrinx in the spinal cord, which is a later progression of the disease.  Even with immediate surgery, the brain and spinal cord do not always return to a healthy, normal state, and the individual lives with sensory and cognitive deficits, and pain.  Thus, early diagnosis is key, and methods are needed to both automatically diagnose chiari based on an anatomical scan, and assist with decision support in identifying candidates for MRI based on clinical, demographic, and behavioral data. 
+
+Further, Chiari Malformation is a poorly understood disease.  It can broadly be thought of as aberrant mid-brain development that leads to symptoms localized to the cerebellum, brainstem, and spine, however the wide range of individuals that it afflicts calls into question the underlying physiology.  While it is commonly comorbid with scoliosis and other bony and spinal defects, it also is manifested in otherwise healthy individuals with subtle features like headache, vision, or other sensory problems.   What is clearly missing from the literature is a thorough understanding of the different subtypes, identifying features, and associated behavioral and clinical outcomes.  The cerebellum, the brain region with abnormal herniation, is known to be highly involved with memory, learning, emotional, and other cognitive functions.  Thus, how might this abnormal brain development that is associated with symptomatology influence overall brain structure and function?  What is the prevalence of these physiological features in a large population, and are they associated with other behavioral, clinical, or neurological measures?  This paper is hypothesizing that the physical features that define chiari are more prevalent in the general population than we are aware of, and further, that these features are associated with other behavioral, clinical, and neurological measures. 
+
+What is called for is 1) a computational analysis of structural features, 2) the development of methods for automatic identification, classification of sub-types, and diagnosis, and 3) data-mining of large imaging databases to identify biomarkers and find associations with other behavioral, functional, and clinical data.  It might be discovered that mild cases of chiari are masking as general symptoms, and whether known or unknown, compression of the central nervous system is an underlying factor in various disorder.
+
+======Methods Research======
+
+=====Structural Modeling=====
+  * [[Modeling Literature Review]]
+    * [[References]]

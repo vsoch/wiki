@@ -1,0 +1,34 @@
+# View Images
+
+## BIAC TOOLS
+### Loading an image into a variable
+  * To manipulate an image in matlab, first navigate to it's directory in the panel on the left.
+  * Type "readmr" in the center console window.  This will open up a GUI for you to select your image.
+  * You will have to select the correct image type to see your file.
+  * When you click OK, matlab will load your image into a variable called "ans"
+  * To modify the name of this variable, you can go back to the first step and type variable_name = readmr
+
+### Viewing an image
+  * To view an image, navigate to its directory, and type "showsrs2" in the center console window.
+  * This will open up a GUI for you to select the file type, and then your image.
+  * It will give you the option to add an overlay, if you desire.
+
+### Calculating a Difference Image
+If we are worried about checking an image for excessive motion, then we should calculate a difference image using showsrs2 in matlab.  To calculate a difference image:
+  * Open up MATLAB.  Make sure that you have installed the BIAC Tools
+  * Navigate to the functional data folder
+  * Create a temporary variable for your functional data:
+
+```matlab
+temp = readmr('functionalfilename.nii');
+```
+  * Then calculate the difference between the slices
+```matlab
+temp2 = diff(temp.data, 4,1);
+```
+  * Then look at the result
+```matlab
+showsrs2(temp2)
+```
+
+**What are we looking for?** A difference image basically calculates the "difference" between each image, and shows the change as various shades of grey.  So, if we see a single, opaque sheet of grey, this means that there is no change from one slice to the next, meaning that there was no motion, and we are good!  Seeing an outline of a brain, or anything that isn't matte grey, means that there was motion/change from one slice to the next, and this isn't good.  FSL uses McFlirt to correct for motion, and can handle small amounts of it in any direction.  However, what it doesn't like is huge changes that completely reorient the brain, like a drastic twist. We could see something like this with the difference image.

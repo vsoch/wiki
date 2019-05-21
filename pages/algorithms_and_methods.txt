@@ -1,0 +1,22 @@
+=====Classification and Clustering=====
+[[http://mathworld.wolfram.com/K-MeansClusteringAlgorithm.html|KMeans Clustering]] \\
+[[http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm|KNN]] \\
+
+=====Gene Expression=====
+[[http://bioinformatics.oxfordjournals.org/content/22/9/1122.full|Bimax Algorithm]]: for gene expression data
+
+=====Image Analysis=====
+[[http://mathworld.wolfram.com/Autocorrelation.html|Autocorrelation]] \\
+[[http://cmm.ensmp.fr/~beucher/wtshed.html|Watershed Transformation]]: for image segmentation \\
+
+=====Natural Language Processing=====
+[[http://mscanner.stanford.edu/|MSCANNER]]
+
+=====Neuroscience=====
+[[http://smithlab.stanford.edu/Smithlab/Array_Tomography.html|Array Tomography]]
+
+=====Protein Structure Prediction=====
+[[http://feature.stanford.edu/|FEATURE]]
+
+=====Sequence Alignment=====
+[[http://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastHome|BLAST]]

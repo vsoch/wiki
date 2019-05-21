@@ -1,0 +1,54 @@
+# TBSS (Tract Based Spatial Statistics) (from the fmrib website:)
+
+## Introduction
+
+There has been much recent interest in using magnetic resonance diffusion imaging to provide information about anatomical connectivity in the brain, by measuring the anisotropic diffusion of water in white matter tracts. One of the measures most commonly derived from diffusion data is fractional anisotropy (FA), which quantifies how strongly directional the local tract structure is. Many imaging studies are starting to use FA images in voxelwise statistical analyses, in order to localise brain changes related to development, degeneration and disease. However, optimal analysis is compromised by the use of standard registration algorithms; there has not been a satisfactory solution to the question of how to align FA images from multiple subjects in a way that allows for valid conclusions to be drawn from the subsequent voxelwise analysis. Furthermore, the arbitrariness of the choice of spatial smoothing extent has not been resolved. TBSS aims to solve these issues via a) carefully tuned nonlinear registration, followed by b) projection onto an alignment-invariant tract representation (the "mean FA skeleton"). TBSS aims to improve the sensitivity, objectivity and interpretability of analysis of multi-subject diffusion imaging studies. 
+
+## Running TBSS
+
+**Preprocessing and Registration** 
+You can perform these steps easily in the terminal window by typing simple lines of code, but it is recommended to run them by using scripts, because of the processing power of a cluster environment.
+
+1. **Preprocessing:** After we have created all of the DTI_FA.nii and moved them into the Analysis/DESIGN/DTI/FA directory, we need to run TBSS preprocessing.  To do this, navigate to inside of the directory with all the nifti files, and type:
+
+```bash
+tbss_1_preproc *.nii.gz
+```
+
+This is going to erode your FA images slightly and zero the end slices (to remove likely outliers from the diffusion tensor fitting).
+  * The output moves into a new folder called FAi.
+  * Don't worry about losing the original images - the script moves them into a subdirectory called "origdata" 
+  * The overview of your run can be viewed in the overview webpage called "index.html" in the slicesdir folder.  This is good to look over for gross problems with the images.  For the script, see [TBSS Preprocessing and Registration](tbss-preprocessing-and-registration.md)
+
+2. **Registration**
+  * This script runs the nonlinear registration (the tool called FNIRT). We are going to be using the FMRIB58_FA standard-space image (http://www.fmrib.ox.ac.uk/fsl/data/FMRIB58_FA.html) as the target, and will aligning all FA images to a 1x1x1mm standard space.  To do this, we need to navigate to the directory containing the FAi folder and type:
+
+```bash
+tbss_2_reg -T
+```
+
+  * The -T says that we want to use that standard space image.  If you want to use your own target image, type -t imagefile.nii.gz  
+  * This script will take some time to run, about 15 minutes X the number of subjects.  I strongly recommend you break up your subjects into folders of 5-10, and run a single script on each folder.  If you do extremely large groups the job tends to die on the cluster.  For the script, see [TBSS Preprocessiing and Registration](tbss-preprocessing-and-registration.md)
+
+3. **Post-Registration** 
+This script applies the nonlinear transforms found in the previous stage to all subjects to bring them into standard space. 
+This script results in a standard-space version of each subject's FA image.  Next, these FA images are all merged into a single 4D image file called all_FA, created in a new subdirectory called stats.  Next, the mean of all FA images is created, called mean_FA, and this is then fed into the FA skeletonisation program to create mean_FA_skeleton.
+
+To run the script on command line you can type:
+
+```bash
+tbss_3_postreg -S
+```
+
+the -S option derives the mean FA and skeleton from the actual subjects.  If you use -T the FMRIB58_FA mean FA image and its derived skeleton will be used instead.  For the script, see [TBSS Postregistration](tbss-postregistration.md)
+
+4. **Pre-Statistics**
+This script takes care of the last steps necessary before voxelwise analysis. It thresholds the mean FA skeleton image at the chosen threshold - 0.2 is what the fsl site says is the most widely used, accepted value.
+
+```bash
+tbss_4_prestats 0.2
+```
+
+Replace the .2 with another value if you need to change it.
+
+The resulting binary skeleton mask defines the set of voxels used in all subsequent processing. Next a "distance map" is created from the skeleton mask. This is used in the projection of FA onto the skeleton. Finally, the script takes the 4D all_FA image (containing all subjects' aligned FA data) and, for each "timepoint" (i.e., subject ID), projects the FA data onto the mean FA skeleton. This results in a 4D image file containing the (projected) skeletonised FA data. It is this file that we will feed into voxelwise statistics in the next step.  For the script, see [TBSS Prestatistics](tbss-prestatistics.md)

@@ -1,0 +1,58 @@
+# SPM First Level Analysis
+
+## Model Specification and Parameter Estimation (First Level Single Subject Analysis)
+
+### MODEL SPECIFICATION
+To further analyze fMRI data, a design matrix needs to be specified.  The design matrix defines the task design that the imaging data will be modeled to.  The single subject design matrix consists of one row for each scan in the specified session, and one column for each task condition.  In creating the design matrix, an SPM.mat file is created. 
+  - Select SPECIFY 1ST-LEVEL
+  - Click on DIRECTORY and then select SPECIFY FILES: Select the directory where you want the SPM.mat to be saved. 
+  - Double click on UNITS FOR DESIGN: Specify SCANS
+  - Double click on INTERSCAN INTERVAL: The interscan interval is the TR, in seconds, that was used during scanning.  We use an interscan interval of 2.  
+  - Double click on DATA & DESIGN to create NEW “SUBJECT/SESSION
+  - Double click on SCANS to select files: Choose all the realigned, coregistered, normalized, smoothed images, i.e., the swus*.img images
+  - Double click on CONDITIONS to create a NEW “CONDITION”
+  - Double click CONDITION<-X the drop down the options
+  - Double click on NAME<-X and give a name to the first condition
+  - Double click on ONSETS <-X 
+  - Enter the vector of TR (scan) onsets for that condition
+  - Double click on DURATIONS <-X 
+  - Enter the duration in scans
+  - Repeat steps g-h for each condition in your task
+
+Double click on MULTIPLE REGRESSORS under DATA & DESIGN: Select the ART_REGRESSION_OUTLIERS file for that person.  This will have been created by the ART program and saved into each person’s functional folder.  Click THE GREEN ARROW (Run Batch) to generate the design matrix.  The SPM.mat file is now created.
+
+### MODEL ESTIMATION
+
+  - Select ESTIMATE
+  - Double click Select SPM.MAT <-X to specify files
+  - Select the SPM.mat file that was just created in the previous set of steps.
+  - Click THE GREEN ARROW (Run Batch) to run the model estimation
+
+### Results
+Finally!  The results.  We can now specify contrasts that will create `SPMs` (statistical parametric maps) that will show us the brain activity relative to our task.  We can further use the contrast images in second level analyses (t-test, ANOVAs, etc) which we can then extract BOLD data from for further analyses. 
+  - Select RESULTS
+  - Select the SPM.MAT
+  - Select DEFINE NEW CONTRAST
+  - Select T CONTRAST
+  - In the name field, name the contrast whatever you 
+  - In the contrast field, type in the contrast weights, space delimited. '''NOTE:''' The sum of the contrast weights must add to 0.  It’s better practice to make the weights for each direction equal to one.  For example, FACES > SHAPES should be specified as “-1 .25 .25 .25 .25” instead of “-4 1 1 1 1”
+  - Select SUBMIT, then OK if you are satisfied with the contrast.  The select DONE to continue.
+  - MASK WITH OTHER CONTRASTS: Select NO
+  - ROI ANALYSIS: Select NO. '''NOTE:'''  For single subject, you may not have a need for ROI analysis.  For group analysis, this is very important.  You can mask by either ROI or from file (i.e., a main effects of task mask)
+  - TITLE FOR COMPARISON:  You can leave as is or change
+  - P VALUE ADJUSTMENT TO CONTROL: select None
+  - THRESHOLD {T OR P VALUE}:  Enter 0.05
+  - & EXTENT THRESHOLD (VOXELS): This represents how many contiguous voxels need to be considered significant for a cluster to be considered significant.  We typically use 10.
+
+The glass brain with areas of activation representing the contrast is now displayed.  Repeat steps 1-13 for all new contrasts you want to create.
+To see the color overlays, select OVERLAYS then SECTIONS and navigate to the spm/canonical directory and select the single_subj_T1.nii,1
+
+**NOTE:** All of these steps can be batch processed.  Just make sure that CO-REGISTER and NORMALISE are run together for each subject for each functional scan. This is because you are moving the structural image around to fit that task’s mean image, and it will not be in the same space as another task even for that same person.  You can get around this and be able to do them separately (all coregs together and all normalizations together) if you copy the c1 image for that particular subject in to the task folder for each task separately and then use that particular c1 image to do the normalization step.
+
+**THE MOST IMPORTANT THING YOU MUST DO** is to inspect each person’s data visually.  At each step, make sure that the files look as they are supposed to look.  Since for most cases, you will no longer set the origin, look at the T2 scan (especially if your scans are not being read by a neuroradiologist) to make sure that there are no gross abnormalities in the scan (atrophy, tumors, large ventricles).  Once you finish the person’s 1st level, IT IS VERY IMPORTANT that you check to make sure that each person has sufficient coverage in the areas you are interested in investigating.  There are a few ways of doing this.  One way is to use the “CHECK REG” option in SPM and choose the mask.img image of a person (or you can do several at once) with the MNI template anatomical scan called single_subj_T1.nii found in /Applications/MATLAB74/toolbox/spm8/canonical/  This will allow you to see if there is coverage for the areas of interest.  Alternately, you can use a program such as xjView, which can be downloaded free from 
+
+http://www.alivelearn.net/xjview8/blog/download/
+
+This program can compare an anatomical mask of the amygdala generated by the program to each person’s scan.  This method is a faster option than using CHECK REG within SPM.  For instructions, see [xjView](xjview.md).  Also check out [Coverage Checking](coverage-checking.md) for some in house methods.  If there are certain people that have no coverage or particularly poor coverage at the level of the amygdala, for example, these subjects should be excluded.  If there are some subjects that have some coverage, but not complete, you will need to decide what criteria to use for inclusion in the analysis. To create those masks in SPM, the program looks to see if there is a 1 or 0 at a particular voxel.  If there is no signal, it's a 0 and that voxel doesn't get included in the group mask because there is no data to pull from.
+
+Therefore, if even one subject has inadequate coverage in the amygdala, your group map will be determined by that one subject, and it will look as though there was no activity in that region at the group level.

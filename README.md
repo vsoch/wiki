@@ -1,6 +1,10 @@
-> This is an archive of @vsoch pre-graduate school wiki. It was migrated from DocuWiki and now is just markdown.
+> This is an archive of @vsoch pre-graduate school wiki. It was migrated from DocuWiki and now is just markdown. Original pages are in [pages](pages).
+
+<detail>
 
 ![img/legacy.png](img/legacy.png)
+
+</detail>
 
 I have created this wiki to serve as a source of knowledge and documentation, scripts and learning.  If you have any questions, or interesting problems that I might be able to help with, please don't hesitate to contact me!
 

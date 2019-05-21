@@ -1,0 +1,9 @@
+Running out of memory is likely.  You can either get a machine with more memory, allocate more virtual memory, or run matlab in a cluster environment with more memory! To read more about virtual memory on your machine and how to free it up, see http://www.mathworks.com/support/tech-notes/1100/1106.html
+
+=====Increasing Virtual Memory on Windows XP=====
+  - Right-click on My Computer icon and select Properties.
+  - Select the Advanced tab
+  - Select the Settings tab under Performance.
+  - Within the Performance Options GUI, select the Advanced tab.
+  - Click on the Change button to increase the virtual memory.
+  - In the Paging File Size section, select Automatic.

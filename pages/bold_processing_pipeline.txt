@@ -1,0 +1,14 @@
+[[SPM Cluster Processing]]
+
+=====Manual Processing=====
+[[SPM Preprocessing]] \\
+[[SPM Batching]] \\
+[[SPM First Level Analysis]] \\
+[[Coverage Checking]] For any group analysis, the voxels included in the group analysis are the ones that we have signal at for EVERY SUBJECT.  So, if we have one subject with signal loss, this means we will lose that voxel in the group analysis.  We need to be able to identify these subjects that are decreasing the size of the group mask!  Originally, individual registrations had to be checked against an ROI mask in [[xjView]], but now we can run a simple script to check coverage for all subjects.
+
+[[SPM Quality Checks]]
+Before any fMRI data can be used beyond single subject processing, Quality Analysis needs to be conducted, which includes Checking BIAC QA and visually inspecting the data.
+
+[[Fixing Timing Errors]]
+Instructions for manually re-doing the single subject analysis for a run that has errored timing AFTER the entire processing
+pipeline has been completed.  In this case, we are fixing Cards.

@@ -1,0 +1,36 @@
+I have created this wiki to serve as a source of knowledge and documentation, scripts and learning.  If you have any questions, or interesting problems that I might be able to help with, please don't hesitate to contact me!
+
+===== Software and Tools =====
+**Data Analysis** \\
+[[MATLAB]] \\
+[[IMAGING]] Includes SPM and visualization tools \\
+[[GENETICS]] Currently only includes a few custom tools for Plink \\
+[[SPSS]] Now called PASW, for statistical analysis \\
+
+**Data Collection** \\
+[[SURVEYS]] \\
+
+**Operating Systems** \\
+[[WINDOWS]] \\
+
+
+
+===== Academic =====
+**Notes** \\
+[[Computer Science]] \\
+[[Statistics]] \\
+[[Algorithms and Methods]] \\
+[[Online Courses]] \\
+[[http://www.journalogy.net/|Trends in Research]]
+
+**Research** \\
+[[Chiari Malformation]] \\
+[[Array Tomography]] \\
+[[Summer 2011]] What is the connectivity between regions that have been known to have abnormal structure? \\
+[[Fall 2011]] How can we label and query quantitative results across imaging modalities? \\
+[[Winter 2011]] Array Tomography Methods
+
+===== Code =====
+[[Python]] \\
+[[Bash]] \\
+[[SQL]] \\

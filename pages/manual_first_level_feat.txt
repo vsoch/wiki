@@ -1,0 +1,107 @@
+=====Setting-up First-level Analyses with FEAT=====
+Note that if your runs have any differences in their design (e.g., differences in event timing), then you will need to conduct each first-level (i.e., run) analysis independently. This means that you will need to run FEAT six times if you have six distinct runs. You can automate some of the data input from this section by saving the FSF file after setting up the first run and then modifying it for the designs of the second runs.
+
+=====Preprocessing=====
+  * In the GUI, go to the Data tab. Ensure that First-level analysis and Full analysis are selected in the drop down lists at top.
+  * For Number of analyses, indicate 1, unless you have multiple runs with exactly the same timing. Click Select 4D data. You would normally select the NIFTI *.hdr file you created earlier, but since we are creating a template, you should write in "DATA". The Total volumes box should update to reflect your header information. If you need to delete some volumes (e.g., if you did not have [=DISDAQs=]), then indicate that in the box at bottom right. You should also indicate the correct TR (e.g., 2).
+  * In the GUI, go to the Pre-stats tab. Motion correction should read MCFLIRT. B0 unwarping should be left unchecked. Slice timing correction should be Interleaved in almost every case. BET brain extraction should be checked. Spatial smoothing should be 5mm. Intensity normalization should be unchecked.Temporal filtering should be Highpass. MELODIC ICA should be unchecked in most cases.
+  * In the GUI, go to the Stats tab. Use FILM prewhitening should be checked. For Add motion parameters to model you should select No.
+  * In the GUI, go to the Registration tab. Initial structural image should be unchecked. Main structural image should be checked. You would normally select the anatb.hdr file (i.e., the BET brain-extracted anatomical) you created earlier, but in the case of creating a template you can simply enter "ANAT"
+
+=====Design=====
+Entering your design is the most complex aspect of FSL (and every other fMRI analysis program). For most of what we do, you should go to the Stats page, and then click Full Model setup. This will pop up yet another GUI, the General Linear Model.
+  * Indicate how many different explanatory variables (EVs) you have in the box at top. This is typically the number of conditions, potentially including multiple parts of each trial separately (e.g., decision phase followed by outcome phase).
+  * Label your first EV in the box EV name. Then, repeat the next step for each EV.
+  * For basic shape, in most cases, you will choose Custom (3 column format). Information about that format can be found here. You will need to select one file for each condition/event type. For convolution, you can use Double-Gamma HRF, with Phase set to 0. We must create a tab delimited single column text file to describe each EV, and enter the path to that file as EVDIR/TextFileName.txt.  Here are instructions for creating the EV text files:  
+
+  - Start in Excel - you can use an excel sheet as a template to create the text files.  
+  - The first tab in the sheet should have the EVs (explanatory variables) across the top, and timepoints down the side.  
+  - Create your EVs based on thinking ahead to how you want to model your task.  For example, if you have four blocks with 2 different expression types in each block, you might want to create one EV for each expression time in each block (FearBlock1, AngerBlock1, FearBlock2, AngerBlock2, etc) so that you can model both blocks and expression types separately.
+  - You should also include a "What's Happening" column.  For each EV, put a "1" at the timepoints for which the condition is true.  Put zeros in the other spots.  There should be no overlap of 1's horizontally across the file.
+  - Save this excel file under EXPERIMENT/Analysis/(TASK)/Design/(Design Name)/(ORDER)
+  - TASK would be your task name, "Design Name" would be Event or Block, and "Order" should be "1" "2" "3" or "4" or in the case of just one order, create a folder called "1"  This is the folder hierarchy that the processing script is expecting.
+  - Create a new tab for each EV, and copy paste the column for each EV into it's appropriate sheet.  Save each sheet as a Tab delimited Text file in the same directory as your Excel file.  Be sure to save the Excel Sheet once more before closing everything.
+
+  * Orthogonalise will typically be checked. Add temporal derivative will typically be unchecked. Apply temporal filtering should be checked.
+  * Once you have entered all of your EVs, then click on the Contrasts & F-Tests button. Select as many contrasts and F tests as you need. In most cases, you will want to work with the Original EVs. Any EV for which you want to evaluate a main effect should have a 1, with all others 0. If you want a contrast between two EVs, mark one -1 and the other 1.
+
+You can change the paths to actual anatomical and functional data and click "GO" if you want to do a test run.  A progress window will open up in a browser.  For template creation, you will have to go through the design GUI and find all of the places where there will be variations between subjects and between runs. Usually you will need to change most of the file names in the script. These often include the output directory, the 4D data .hdr file, the anatomical image, and the files used for your model set-up when using the 3-column design.  The norms for lab scripts could be as follows:
+  * Anatomical: ANAT
+  * Functional: DATA
+  * Output directory: OUTPUT
+  * Path to EV: EVDIR (so a path to a text file would look like EVDIR/TextFile.txt)
+
+If you need to add anything (such as a T1) you can simply create a new variable name, and be sure to add it to be filled in by the bash script.  The word that you choose should be in all caps, so that it doesn’t match any of the other words in the file. Also, be sure to leave the quotes around filenames there, only replace the path. ALWAYS write down your marker words somewhere.
+
+=====Running First-level Analyses=====
+  * In the GUI, click the Save button.
+  * Save the *.fsf file as design.fsf in the same order directory that you have your Excel file and EVs.
+
+=====Writing a batch script for FSL=====
+If you have a lot of subjects or many runs to do the same analysis to, you will want to run a batch script to avoid tediously running the the rather slow FSL GUI. Batch scripts best work in a cluster environment where you can submit jobs and connect easily to your data.
+
+We entered "ANAT" and "DATA" for our niftis for a reason.  We will put all of our variables in a master python script, and this script will insert these variables into our bash template script.  In the example above, the python would look for everyplace in the template that specified "ANAT" and replace this ANAT with the actual path.
+
+The scripts PREPROCESS_FEAT.py (the python script) would tag team with PREPROCESS_FIGS_TEMPLATE.sh (the bash script), requiring:
+
+  - converted anat and func files (done first by the PREPROCESS_FEAT_TEMPLATE script
+  - the template .fsf we created above, saved under Analysis/(EXPERIMENT)/(TASK)/First_level/Design/(DESIGN NAME)/(ORDER) 
+
+See [[FSL fMRI Analysis]] for details on running this script with your template design.fsf (design file). 
+
+=====Coding Examples=====
+NOTE that you do NOT need to make this from scratch for your design - we have templates under [[FSL fMRI Analysis]].  But you might want an explanation of this code!  An example template used to batch FSL subjects for a FEAT run is shown below:
+
+<code bash>
+!/bin/bash
+# the opening of the script that specifies that it is bash 
+
+# Add a path to your workspace, so it can find fsl, for example
+# loads the fsl program
+export FSLDIR=/usr/local/packages/fsl
+.  ${FSLDIR}/etc/fslconf/fsl.sh
+ 
+# reading variables and setting paths
+SUBJ=$1   # first input argument from command line
+FSLDATADIR=~/some/path/here/Data/FSL/$SUBJ
+ANATFILE=${FSLDATADIR}/anat.nii
+ 
+# A for loop cycling through multiple runs
+for run in 01 02 03 04; do
+ OUTPUT=${FSLDATADIR}/run${run}_output
+ DATA=${FSLDATADIR}/run${run}.hdr
+ echo $OUTPUT
+
+# makes the fsf files from the template fsf file
+ for i in 'design.fsf'; do
+  sed -e 's@OUTPUT@'$OUTPUT'@g' \
+   -e 's@ANAT@'$ANATFILE'@g' \
+   -e 's@ORIENT@'$ORIENT'@g' \
+   -e 's@DATA@'$DATA'@g' <$i> ${FSLDATADIR}/FEAT_${run}.fsf
+ done
+
+# run the analysis using the newly created fsf file
+ feat ${FSLDATADIR}/FEAT_${run}.fsf
+done
+</code>
+
+**The following details** are some good tips, again from the Huettel wiki: \\
+  * The lines that specify "-e" basically tell the script to read through "design.fsf" and look for everywhere that has "ANAT" and replace this text with the variable $ANATFILE, which has the actual filepath, fed in from the python script.
+  * all of the lines with a # at the beginning are comments
+  * the first line #!/bin/bash doesn’t execute, but it tells nedit that the script is a bash script, so nedit can highlight it properly.
+  * the first two non-comments basically tell UNIX about the feat command and other fsl commands so that when you call those commands, UNIX knows where to look
+  * the next line SUBJ=$1 is a variable assignment. $1 refers to the first command line argument, so if you typed ./batchFSL 30933 into the command line then 30933 would be the value of SUBJ. If you later want to refer to a variable, as is done in the next line, type along and whenever you get to a variable name put a $ in front to refer to the variable. If using nedit, the variable name will turn blue when you do this.  In the case of using a python script, we wouldn't want to take anything from the command line, but would again create text variables for the python to substitute with the actual file paths.  For example, it might say ANAT=SUB_ANAT_SUB.
+  * just like everything else in UNIX, variable names are case-sensitive
+  * sometimes UNIX won’t know when your variable name ends. You will notice there is a problem when nedit continues to highlight things blue after the variable name ends. To avoid confusion, you may want to put curly braces {} around your variable names.
+  * now, remember those markers you set up in the design.fsf file? For each one of those, you will need to make a variable that will replace it. If the variable will change for each run, put it inside the loop. Otherwise put it outside.
+  * The line echo $OUTPUT in the example code prints out to the screen the output directory. This just helps the user know how far along the program is. You should probably include some sort of marker to let the user know how many analyses have been completed.
+  * now that you’ve set up variables for each of the markers in the design.fsf file, you will need to put those variables into the file. The sed command helps with this. I’m not sure why it is in a loop, but you can ask chris petty if you’re curious. This code is a revised version of something he wrote. The sed program has many functions, but here we only need it to find the markers in the template.fsf file and replace them with the necessary text.
+  * so, start out by copying the inner loop. If you already copied it when you copied the outer loop, then don’t copy it again.# the -e flag tells the sed program to use it’s find and replace command, so the text after that will tell sed what to find, and what to replace it with. The s@, @ and @g are all markers to the sed program. Don’t remove them. If you have more variables than are in the example code, just copy one of the middle lines into your code. Make sure to leave the backslash(\) there, as it tells UNIX that the line isn’t done.
+  * The marker names (the ones you put in the design.fsf file) are in red in the example code. They will show up green in nedit. Replace these (not the @ symbols) with the markers you used in your template.fsf file
+  * Now replace the words in blue with your variable names.
+  * leave the <$i> as is. If you want to put your FEAT files to be named something other than FEAT_01.fsf, FEAT_02.fsf, etc, feel free to change the last argument however you want. sed will save your file over any files that already exist, so if you want backup files, be sure to save them as something else before running this batch script.
+  * now that sed has made/updated your .fsf files, you need to run your analysis on them, which is exactly what the second to last line does. If you changed the names of the output files from sed, make sure that you also change the input to the feat command. Otherwise your program will try to run analyses that don’t exist.
+
+Once you have completed first level analysis, don't forget: \\
+
+[[First Level FEAT Quality Check]]

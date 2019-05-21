@@ -1,0 +1,4 @@
+  * [[http://eeg.sourceforge.net/mri_orientation_notes.html|MRI Orientation]]
+  * Radiological Orientation: LAS (Left, Anterior, Superior)
+  * Neurological Orientation: RAS (Right, Anterior, Superior)
+  * DICOM format is LPS

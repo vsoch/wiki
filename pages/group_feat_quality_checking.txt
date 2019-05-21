@@ -1,0 +1,30 @@
+You will want to check your group mask to ensure that a good amount of the brain is left in the analysis once FSL does the registration of each individual's brain into standard space and zeros out any voxels where any one subject is missing brain. See [[Quality Checking Tools]] for a broad overview of tools and methods, and [[First Level Feat Quality Check]] for checking the first level reports. 
+
+If you suspect you are losing too much brain, here is a good way to verify what may be happening and identify any "problem" subjects.  This was taken from Russ Poldrack's wiki on FSL Group FEAT.\\
+
+=====Inspecting Multi-level FEAT Analysis=====
+Group level analysis only takes place within voxels that have data from all subjects when projected into standard space. This means that if the first-level registrations into standard space are variable across your subjects, you may be throwing away fair amounts of data in your higher level analyses.\\
+
+To check for this, we can take all of the individual subject mask volumes in standard space and add them up to see where and how much data are missing in our group analysis.\\
+  * First cd into the ppt directory from a terminal window. This will be the most convenient place to reference all of the first level analysis. 
+  * Our first step in combining these masks is to concatenate them using the fslmerge program from the command line. We will create a new 'timeseries' volume called all_left_mask by typing the following (long) command: 
+
+<code bash>
+fslmerge all_left_mask ac/ac_left.feat/reg_standard/mask at/at_left.feat/reg_standard/mask cm/cm_left.feat/reg_standard/mask df/df_left.feat/reg_standard/mask.nii.gz dn/dn_left.feat/reg_standard/mask eg/eg_left.feat/reg_standard/mask.nii.gz
+</code>
+  * You can load this new nii.gz file in FSLView, and press the 'Movie' button to view the masks in sequence. It should be clear that there are differences between the subjects. 
+  * Now we want to add all of the masks together, so that we can see which voxels are being thrown away by only having data from some subjects. To do that, type the following in the terminal: 
+
+<code bash>
+fslmaths all_left_mask.nii.gz -Tmean all_left_mean 
+</code>
+
+  * Now we should have another new volume, this time a single 3D dataset of each of the masks added to one another. If you view this in FSLView, you can see that there is a ring of data that is lost, but it's hard to see just how much data with all of the common voxels also in the volume. To remove those, we can type the following command:
+
+<code bash>
+fslmaths all_left_mean.nii.gz -uthrp 99 all_left_mean_missing
+</code>
+
+This replaces all voxels that are within 99% of the volume maximum value with zeros - effectively eliminating all the voxels that went into the group mask. View this final volume in FSLView to see all of the data that was thrown away in the group analysis. If you click the blue 'i' button on the bottom of the FSLView window, you can change the colormap from grayscale to something like 'hot', which might make it easier to see how the data are distributed. \\
+
+If you have time, try the same process with the right.feat analyses, and compare between the two.

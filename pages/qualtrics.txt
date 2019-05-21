@@ -1,0 +1,164 @@
+=====Overview=====
+[[http://www.qualtrics.com|Qualtrics]] is a survey solution that is very powerful, easy to use, and very widely used amongst companies and research institutions.  It allows you to create surveys of just about every type with every sort of question / branching algorithm that you could imagine.  It allows for the manipulation and visualization of data within the browser, as well as custom export to your software of choice.  It even makes it easy to create surveys for mobile devices.  Qualtrics is the bomb diggity for administering surveys if you are at an institution with access!  The following notes pertain to the formatting of text files for importing questionnaires.
+
+=====Importing Surveys=====
+Here are the formatting rules for importing a survey from a text file into Qualtrics.  I think that it is good practice to have some sort of data dictionary (such as in excel or your software of choice) that keeps track of question numbers, content, coding, and scoring.  A good practice would be to input each survey into your Data Dictionary, and then copy paste the questions into a plain .txt file, and formatting the file to the specifications below.
+
+
+====Import Survey====
+
+There are two options for importing. \\
+
+  - .QSF - The Qualtrics Survey Format is a XML file, which is generated and exported when using the Export Survey feature. 
+  - .TXT - This option can be created in Word, Notepad, or any word processor or text editor that can save as a Text file (.txt). 
+
+The text file supports two different types of formatting: simple and advanced. \\
+
+===Simple .TXT Format===
+Here are the basic instructions on how to set up the text file. \\
+  * A question begins with a number followed by a "." 
+  * Choices are after the question text and a blank line 
+  * Answers are after choices and a blank line 
+  * Insert a page break by "[ [PageBreak] ]" (without the space between the brackets) 
+  * Make question multiple answer by "[ [MultipleAnswer] ]" (without the space between the brackets) 
+
+**Here is an example of a simple .txt formatted file**
+
+1. This is a multiple choice question.  Every question starts with a \\
+number followed by a period. There should be a blank line between \\
+the question text and the choices. \\
+\\
+a \\
+b \\
+c \\
+d \\
+\\
+<nowiki> [[Block:My Block Name]] </nowiki> \\
+\\
+2. This is a multiple choice multiple answer question. \\
+<nowiki> [[MultipleAnswer]] </nowiki> \\
+\\
+a \\
+b \\
+c \\
+d \\
+\\
+<nowiki> [[PageBreak]] </nowiki> \\
+\\
+3. This is a matrix question that has longer question text. \\
+\\
+It is a matrix question because it has two groups of choices. \\
+The question text is on two lines. \\
+\\
+ma \\
+mb \\
+mc \\
+\\
+m1 \\
+m2 \\
+m3 \\
+\\
+4. This is a matrix multiple answer question. \\
+<nowiki> [[MultipleAnswer]] </nowiki> \\
+\\
+ma \\
+mb \\
+mc \\
+\\
+m1 \\
+m2 \\
+m3 \\
+\\
+<nowiki> [[Block]] </nowiki> \\
+\\
+5. What is your gender? \\
+this is a test. \\
+How are you? \\
+\\
+Male \\
+Female \\
+\\
+====Advanced .TXT Format====
+When using the advanced text format each part of the question must be explicitly defined using the <nowiki>"[[<tag>]]"</nowiki> tags. The tags begin with <nowiki>"[["</nowiki> and end with <nowiki>"]]"</nowiki> with no spaces in-between the brackets. \\
+\\
+The file must begin with the <nowiki>[[AdvancedFormat]]</nowiki> tag \\
+  * A question begins with <nowiki>[[Question:<question type>]]</nowiki> tag 
+    * <question type> can be any one of the following: MC, Matrix, TE, CS, RO, DB 
+  * Choices start with <nowiki>[[Choices]]</nowiki> tag and are one per line afterwards 
+  * Answers start with <nowiki>[[Answers]]</nowiki> tag and are one per line afterwards 
+  * Make question multiple answer by <nowiki>[[MultipleAnswer]]</nowiki>
+  * Sets the id of the question (shown as the export tag after import) with <nowiki>[[ID:<question id>]]</nowiki> 
+  * Insert a page break by <nowiki>[[PageBreak]]</nowiki> 
+  * Insert a block by <nowiki>[[Block]]</nowiki> or <nowiki>[[Block:<block name>]]</nowiki> where <block name> is the name of the block.
+\\
+Here is an example of an advanced .txt formatted file. \\
+\\
+<nowiki>[[AdvancedFormat]]</nowiki> \\
+\\
+<nowiki>[[Question:MC]]</nowiki> \\
+<nowiki>[[ID:q1]]</nowiki> \\
+This is a multiple choice question. \\
+\\
+<nowiki>[[Choices]]</nowiki> \\
+a \\
+b \\
+c \\
+d \\
+\\
+<nowiki>[[Question:MC:MultipleAnswer]]</nowiki> \\
+<nowiki>[[ID:q2]]</nowiki> \\
+\\
+This is a multiple choice question multiple answer question. \\
+\\
+<nowiki>[[Choices]]</nowiki> \\
+a \\
+b \\
+c \\
+d \\
+\\
+<nowiki>[[PageBreak]]</nowiki> \\
+\\
+<nowiki>[[Question:Matrix]]</nowiki> \\
+This question is a matrix question. \\
+\\
+It has lots of question text on multiple lines. \\
+\\
+<nowiki>[[Choices]]</nowiki> \\
+ma \\
+mb \\
+mc \\
+\\
+<nowiki>[[Answers]]</nowiki> \\
+m1 \\
+m2 \\
+m3 \\
+\\
+<nowiki>[[Question:Matrix]]</nowiki> \\
+<nowiki>[[MultipleAnswer]]</nowiki> \\
+This question is a matrix multiple answer question. \\
+\\
+It has lots of question text on multiple lines. \\
+\\
+<nowiki>[[Choices]]</nowiki> \\
+ma \\
+mb \\
+mc \\
+\\
+<nowiki>[[Answers]]</nowiki> \\
+m1 \\
+m2 \\
+m3 \\
+\\
+\\
+Here is a list of available tags for the advanced formatted file \\
+  * <nowiki>[[AdvancedFormat]]</nowiki> - specifies the file is an advanced formatted file. \\
+  * <nowiki>[[SimpleFormat]]</nowiki> - specifies the file is a simple formatted file. \\
+  * <nowiki>[[Question:<question type>]]</nowiki> - specifies a question with a specific type. \\ 
+  * <nowiki><question type></nowiki> is one of the following: MC, Matrix, TE, CS, RO, DB. \\
+  * <nowiki>[[Choices]]</nowiki> - specifies the choices for a question (one per line after the tag). \\
+  * <nowiki>[[Answers]]</nowiki> - specifies the answers for a question (one per line after the tag). \\
+  * <nowiki>[[MultipleAnswers]]</nowiki> - specifies that the question should be a multiple answer question. \\
+  * <nowiki>[[ID:<question id>]]</nowiki> - specifies question id and export tag. \\
+  * <nowiki>[[PageBreak]]</nowiki> - specifies a page break. \\
+  * <nowiki>[[Block]]</nowiki> - specifies a block should begin. \\
+  * <nowiki>[[Block:<block name>]]</nowiki> - specifies a block should begin with a specific name. \\

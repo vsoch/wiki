@@ -1,0 +1,30 @@
+Third level analysis is done using the FEAT fmri tool, just as first and second level.
+
+At the top, select "Higher Level Analysis" and "Stats and Post Stats"
+
+Select: \\
+Under **Miscellaneous** \\
+  * Balloon watcher
+  * Progress watcher
+  * Brain/background threshold: 10%
+
+Under **Data** \\
+  * Inputs are lower level FEAT directories (you can only use COPE if you have run 2nd level analysis)
+  * Number of inputs are your number of subjects to include
+  * Under "Select 4D data" a box will pop up for you to select each subject's FEAT folder
+  * Output directory is the name and location where you want your .gfeat folder to go!
+
+Under **Stats** \\
+  * We want Mixed effects, Flame 1
+  * Select "Full model setup" and assure that there is 1 EV, with 1's all the way down the column for each input.  If you have a covariate, set the number of EVs to 2, and put the appropriate value for each variable in the box.  So, if you have three design types and that is your covariate, Design A might be "1", Design B = "2" and Design C = "3"  The values 1, 2, and 3 should go in the boxes. You will want to orthogonalize your covariate with respect to your first EV.  In the contrasts & F-tests tab, if you have no covariate and 1 EV only, you'll just input a 1.  If you have a covariate, you'll want to increase your number of contrasts to 2, and for C1 (to examine the main effect without the influence of the covariate) input a 1 in the first EV column and a 0 in your covariate EV column, and for C2 (to examine the effect of the covariate - if you're interested in looking at this), input a 0 in the first EV column and a 1 in your covariate EV column.
+
+Under **Post Stats** \\
+  * For threshold we want "Uncorrected" at a P value of .05
+  * Background Image: Mean highres
+  * Use actual Z min/max with transparent blobs should be fine
+
+Save the design if you choose, and click "Go" to run!
+
+**The Scripts** \\
+[[simple_group_FEAT]] is the name of the script to run a group FEAT without mask. \\
+[[simple_group_FEAT_mask]] is the name of the script to run with prethreshold masking.

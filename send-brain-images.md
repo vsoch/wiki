@@ -1,0 +1,29 @@
+# Sending Brain Images - Automatic
+
+I have created a script that works in matlab to automatically create brain images.  The script looks at subjects in the Analysis/Processed folder, and compares this list with completed brain images in the Graphics/Brain Images folder.  Subjects that are in the Processed folder but not in the Brain Images folder are added to a list of potential sendees.  Of course if this is modified to work with a different file hierarchy, the script needs to be modified appropriately!
+  * To run the script, make sure that you have it's path added.
+
+```matlab
+addpath(genpath('N:/NAME.01/Path/to/Scripts/'));
+```
+
+  * To run, simply type brain_images on the MATLAB command line.
+
+## How does it work?
+
+  * The script first creates the list of potential sendees - whoever has been newly processed that week and does not have a brain image created yet.
+  * The script then presents this list to the user, and the user can highlight the subjects that he/she wants to send brain images to.
+  * Next, the script looks for the processed anatomical in the subject's anat directory under Processed.  This image will normally always have the same name - however in rare cases when the name is different, for whatever reason, the script will not find the highres, and will present the user with a GUI to select the image that he/she would like to use for that participant. It then prepares two slice views of the highres, crops them, puts them together as a zip, moves the zip to the Graphics/Brain Images folder, and cleans up the old files.
+  * Once all brain image zips have been created, the script prompts the user if he/she wants to send a brain image for each subject, and asks the user to enter the email.  This process is fairly rapid and easy.  In the case that the user mistypes an email, the easiest thing to do is delete the output image, and quickly run the script again. 
+  * As each address in entered, the script sends the email directly from MATLAB.
+
+**The scripts that are needed include** 
+ - [send_brains.m](scripts/send_brains.m)
+ - [crop.m](scripts/crop.m)
+
+**If you would like to see sample output, look at:**
+
+ - [send-brains alpha release (2010)](https://vsoch.github.io/2010/send-brains-send_brains-m-alpha-release/)
+ - [Zip Send to Participant](scripts/22222.zip)
+
+Note that these scripts have the login credentials of the email removed and are anonymized.

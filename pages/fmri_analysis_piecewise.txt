@@ -1,0 +1,68 @@
+=====OVERVIEW=====
+The notes below detail various processing steps in FSL for preprocessing and moving data through first level FEAT analysis.  Please keep in mind that these scripts / notes were intended for study specific data, and were created in late 2009 by a much more inexperienced version of me, and have not necessarily been updated for the latest version of FSL!  Aka, I hope these might be helpful, but please use at your own risk!
+
+=====1) Convert DICOM to NIFTI=====
+**DUKE DATA:** The raw data comes off of the scanner in a format called "dicom" for which there is one image file taken every two seconds, or 1 TR.  During this time, the entire head is scanned, which includes 34 slices.  The first step of preprocessing that must be done to the functional and anatomical data is to convert these dicom files into ONE 4D file called a nifti, that FSL uses for analysis.  
+
+**The Script** \\
+[[Convert DICOM to NIFTII]]
+
+**Quality Check** \\
+[[DICOM to NIFTI Checks]]
+
+After we have all of our niftis, we need to perform a BET brain extraction on the anatomical data, and run QA (Quality Analysis) on the functional data.  
+  
+**PITTSBURGH DATA:** The raw data that we are analyzing from Pittsburgh comes in a format called "dicom" that FSL cannot read.  One dicom image is equal to 1 TR, which equals 2 seconds of scanner time, and is the time it takes to do one complete head scan, which includes 34 slices.  When we convert a bunch of dicom images into a 4D nifti file the dimension that we add is time.  FSL reads nifti but not dicom, which is why the conversion is essential.  To do the conversion without the BXH XCEDE Tools, you can use the "dcm2niiGUI" which is an add-on to a program called [[http://www.cabiatl.com/mricro/mricron/install.html|MRICron]].  Keep in mind that the orientation that FSL wants is LAS, RADIOLOGICAL ORIENTATION. (Right-->Left)  (Posterior-->Anterior) (Inferior-->Superior).  
+  * If dcm2nii isn't on the desktop, browse to My Computer --> MRICron and look for dcm2niiGUI.  
+  * In all steps of processing, the first thing you might want to do is open your experiment excel (organizational) file.
+  * We generally want to convert the anatomical and functional data, so you must identify what folders these are in, and record the folders for each subject as you go.  For example, if I find that my functional data is "faces_3r532" I would put that name at the top of the column identifying the functional data, and write "yes" next to each subject's name that follows that standard.  Any deviation from that I would record the folder name instead of "yes."  Another option is to rename the folder to a standard so that you can run scripts that look for the same folder name, but be sure that no important information is lost in the renaming.
+  * To use MRICron, first go to help --> Preferences and make sure that ALL boxes are checked, and the search folder depth is 0.
+  * Select "4D FSL nifti" for the output
+  * **TO DO THE CONVERSION:** It's a drag and drop interface, so simply drag each folder, one at a time, to the white GUI box, and let it process to create the nifti.  The resulting nifti will be placed in that same folder.  It will not work to process more than one folder at a time.
+  * As you go, be sure to do [[DICOM to NIFTI Checks]]
+
+After we have all of our niftis, we need to perform a BET brain extraction on the anatomical data, and run QA (Quality Analysis) on the functional data.  Let's start with QA.  
+
+=====2) Running QA on the functional data:===== 
+You need to create a bxh header from the dicom images.  To do this, you can:
+  * use [[Dicom to BXH and QA]]
+  * If this is the first time that you are running a script see [[Running Scripts]] for general instructions.  
+  * You would want your QA, or Quality analysis, to find subjects with "bad" motion parameters, or SNR, or SFNR.  
+  * If you run QA and see consistent saturation for a few images and want to re-run QA without these images, you want to use [[QA And Remove Images]]
+  * Once QA runs are complete, you must look at the output.
+
+**The Scripts** \\
+  * [[Dicom to BXH and QA]]
+
+**Quality Check** \\
+  * [[Quality Analysis]]
+
+=====3) Brain Extraction:===== 
+Now we need to run the [[BET]] script on the anatomical(3) nifti.  (This is the brain extraction that is done automatically for the functional data when we run FEAT).  The BET script needs to be set to produce "anat_brain" as the output, which is what FEAT level 1 looks for in the subject's anatomical folder under another folder called "BET".  \\
+
+At the start of analysis for a new dataset, you will want to check a few subjects first to establish a proper fractional intensity threshold for skullstripping, and to ensure that the eyeballs have been removed.  If the eyeballs have not been removed, you will want to add a flag of -S to your BET command in the BET script. If you are still having eyeball problems with certain subjects, you will have to open the image in MriCron or FSLview and manually remove eyeballs slice by slice.
+  * **Important:**  For many T2 scans, MRIcron will spit out TWO images, one ending in 2001, and the other 1001.  The image that ends in 2001 is the one that we want to use, the darker colored of the two. 
+* We record all of our notes for brain extractions under Stage 2 in the excel file.  You must copy paste the subject IDs over from Stage 1 that passed QA.
+* After you've done the brain extractions, you need to do some BET quality checks! [[Checking BET]].  After you've checked a subject, write "yes" or "ok" under the "BET?" column next to the subject name.
+
+**The Script** \\
+  * [[BET]]
+
+**Quality Check** \\ 
+  * [[Checking BET]]
+
+=====4) FEAT Level 1 Analysis:=====
+Now we need to run the FEAT level 1 analysis.  Feat level 1 is like looking for significance within one subject for one run.  To do this, we need
+  * to set up a design using FEAT fmri in FSL (you can use the GUI)
+  * EV text files for each design
+  * then use [[first_level_FEAT]], which outputs each subject to Analysis/FEAT/First_level/$DESIGN/$SUBJECT_ID
+  * See [[Manual First Level FEAT]] for how to create the design file.
+  * Lastly, [[First Level FEAT Quality Check]] must be done before any group analysis.
+
+
+=====Rotational Motion Check with McFlirt:===== 
+Now we need to check rotational motion: look in the .feat output folder under "mc" and then record the average rotational 
+--> motion (in medians) from rot.png, and the relative and absolute mean from the titles with those names.  You can open them with 
+--> notepad.  We want to eliminate subjects with greater than 2 degrees of rotational motion. The record is under "Stage 1" with the other quality checks.
+
+For Level 2 and Group Analysis, please go back to [[FSL FMRI Analysis]] for more information!

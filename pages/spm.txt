@@ -1,0 +1,19 @@
+===Tutorials===
+[[Cluster Pipeline Tutorial]] Includes instructions and examples for submitting matlab scripts (for SPM batch) in a cluster environment. \\
+[[SPM Quality Checks]] \\
+[[Installing SPM]] \\
+[[http://en.wikibooks.org/wiki/SPM/Programming_intro|SPM Programming Intro]] \\
+
+
+===Pipelines===
+[[SPM TIMESERIES]] Includes scripts for extracting groupmap "timeseries" (a bold value for each subject from a group SPM.mat) \\
+[[BOLD Processing Pipeline]] Includes instructions for manual processing and scripts for doing the equivalent on the BIAC Cluster. \\
+[[DTI Processing Pipeline]] Includes instructions for manual processing and scripts for doing the equivalent on the BIAC Cluster. \\
+[[VBM Processing Pipeline]] A few easy scripts for batch VBM analysis, currently available for DNS and FIGS \\
+[[PPI Processing Pipeline]] Includes instructions for cluster processing to run SPM's PPI with a user specified ROI, and then single subject analysis incorporating the PPI variables. \\
+
+===Toolbox===
+[[wfuPickAtlas]] \\
+[[Art and ArtRepair]] \\
+[[Results Reports]] \\
+[[SPM Display]] \\
