@@ -1,0 +1,30 @@
+# Conn
+
+The conn toolbox was developed and is maintained at MIT: http://web.mit.edu/swg/software.htm
+
+While the interface is good for simple queries and a small number of subjects, it is challenging to set up analysis with a massive number of subjects, or ROIs.  In order to reach a group level analysis, all subjects must be specified at the onset, and so it isn't possible to batch preprocess subjects, and then add them selectively to a group analysis.  The toolbox comes with good examples of batch scripts, but it is of course some effort to set up an entire pipeline from scratch, and limited to doing everything (single subject through group analysis) all at once.  
+
+I created a combination of matlab and bash / python scripts that take a list of subjects and will first perform single subject preprocessing in SPM, followed by setting up a group analysis.  Please note that some of the scripts (mostly the submission ones - bash and python) are setup to run from the cluster at Duke, and will need to be modified for whatever environment they are used in!
+
+## Python Submission Script
+
+[RESTRUN.py](restrun.py.md): takes a list of subject IDs, as well as user selection to perform single subject preprocessing and/or group resting connectivity analysis.  If the user has selected single subject processing, it first processes each subject by submitting many iterations of [restSS.sh](restSS.sh.md), and only when these have completed does it move to group analysis and submit [restGP.sh](restGP.sh.md).
+
+## Bash Scripts
+
+[restSS.sh](restSS.sh.md):  (SS = single subject).  Prepares rest data for individual subjects to be run through the rest toolbox pipeline.  It first checks to make sure that data exists for the subject, and also checks if the single subject processing has already been done.  If the data does not exist or the processing has already been done, it exits and prints the error / status to the output file.  In the case that preprocessing has not been done and the raw data exists, it uses the matlab script template conn_restSS.m to perform preprocessing (see below). 
+[restGP.sh](restGP.sh.md): This script is submit after all iterations of restSS.sh have finished.  It first sets up an output directory under Analysis/SPM/Second_level/Rest/conn_(#subjs), and then takes the list of subjects specified by the user and again checks that all preprocessed data (motion regressor file, csf, white, gray matter) and roi files exist.  If anything is missing, the script exits with error, as this would produce an error in the conn toolbox.  It uses conn_restGP.m, a matlab script, to perform the group analysis with the conn toolbox. 
+
+## Matlab Scripts
+
+[connBOX_SS.m](scripts/connBOX_SS.m): Does all preprocessing of the functional rest data for the subjects specified, including reprocessing the raw rest data to make it slice timed, and segmenting the anatomical image into grey, white, and csf, and then normalizing these images with the raw anatomical and rest swu* files to the standard T1 template.
+
+[connBOX_GP.m](scripts/connBOX_GP.m): Takes anatomical and rest processed data located under SPM/Processed/subject rest and anat and runs a group rest analysis with the connectivity toolbox.  The output should not be touched until the output file appears, meaning that the entire analysis is one.  The .mat file is changed from having cluster to local paths after processing so second level analysis can be done within the toolbox on a local machine.  The script that is used to do this is:
+
+[conn_change_paths.m](scripts/conn_change_paths.m): takes the .mat matrix with the conn structures (loaded to run analysis) and changes all cluster paths to local ones.
+
+
+
+
+
+

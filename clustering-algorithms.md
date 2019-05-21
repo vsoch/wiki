@@ -1,0 +1,19 @@
+# Clustering Algorithms
+
+## Hierarchial Clustering
+
+find successive clusters using previously established ones.
+
+**Agglomerative Clustering** starts at the leaves of the tree (each element is considered to be its own cluster) and slowly merges them until there is one cluster (the trunk).  We can think of agglomerative clustering as "bottom up." So...
+
+**Divisive Clustering** is "top down."  We start with one gigantic cluster (the trunk) and break it apart into smaller clusters.
+
+**Partitioning Algorithms** one shot deal - determine all clusters at once
+
+## Specific Clustering Algorithms
+
+ - [DBSCAN Algorithm](http://en.wikipedia.org/wiki/DBSCAN)
+
+## Distance Measure
+
+Distance measures determine how the similarity of two elements is calculated.

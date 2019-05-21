@@ -1,0 +1,41 @@
+# Checking QA
+
+## Checking QA
+QA is important for assessing that there isn't a significant amount of rotational or translational motion, amongst other things.  The standards are outlined at the bottom of the page.  Each lab should discuss their own standards for each parameter with regard to subject inclusion in analysis.
+
+**1)** (At Duke) You will need to first login to the BIAC Dashboard to view the most recent subject Quality Analysis Runs.  You can also use a script to run QA manually.  The main output is an index.html file that can be opened to see all results!
+If you do not see a subject on the dashboard, you can search by entering the exam number in the box on the right of the page.
+
+**2)** Open up your log for recording parameters.  For each of your runs record the SNF, SFNR, and mean intensities under the QA tab for each subject.  The sheet can be set up to automatically calculate 2.5 standard deviations from these values, and flag subjects that are not within 2.5 standard deviations of the mean.
+ 
+  * Also look at the masked intensity graph, show the values by clicking the link at the bottom of the graph, and look for and record any RF spikes (single spikes if they are red, and greater than two spikes for all other colors) in the excel.  Any RF spikes greater than 2 images need to be checked by calculating a difference image (see below).
+  * Look at the graphs that show motion in the x, y, and z directions.  Look for any big spikes, as well as motion that is more than 3 standard deviations over the mean.  Flag any subjects with motion greater than 2mm in the x, y, or z direction.  Checking rotational motion will be done after running the first level FEAT report.
+  * Use the Standard Deviation image towards the bottom of the report to help assess motion.  The red portions of the image represent motion.  It is common to see some around the eyes, and a little around the brain.
+  * The image that is mostly blue shows data outliers.  Look for any colors that aren't in the blue range.
+
+**4)** If we are worried about excessive motion, then we should calculate a difference image using showsrs2 in matlab.  To calculate a difference image:
+  * Open up MATLAB.  Make sure that you have installed the BIAC Tools.  If you don't have these tools you can use any toolbox that allows for loading images and calculating the difference between a timeseries.
+  * Navigate to the functional data folder
+  * Create a temporary variable for your functional data:
+<code matlab>
+temp = readmr('functionalfilename.nii');
+</code>
+  * Then calculate the difference between the slices
+<code matlab>
+temp2 = diff(temp.data, 4,1);
+</code>
+
+  * Then look at the result
+<code matlab>
+showsrs2(temp2)
+</code>
+
+**What are we looking for?** 
+
+A difference image basically calculates the "difference" between each image, and shows the change as various shades of grey.  So, if we see a single, opaque sheet of grey, this means that there is no change from one slice to the next, meaning that there was no motion, and we are good!  Seeing an outline of a brain, or anything that isn't matte grey, means that there was motion/change from one slice to the next, and this isn't good.  FSL uses McFlirt to correct for motion, and can handle small amounts of it in any direction.  However, what it doesn't like is huge changes that completely reorient the brain, like a drastic twist. We could see something like this with the difference image.
+
+## Benchmarks
+
+ - **X,Y,Z Translational Motion:** Nothing greater than 2mm allowed 
+ - **SNR:** Must be within 2.5 standard deviations of the mean 
+ - **SFNR:** Must be within 2.5 standard deviations of the mean 

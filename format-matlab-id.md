@@ -1,0 +1,17 @@
+# Format Matlab ID
+
+This script is very simple.  It takes in a text file with a single list of subject IDs, and formats it for use in MATLAB as a variable.  I chose a single list text file, because it seems that it would be most probably to copy IDs from an excel or SPSS sheet. So if you had a text file with the following IDs:
+<code batch>
+11111_12345
+22222_12345
+33333_12345
+</code>
+You could make sure the script is located somewhere on your matlab path, and run the script by typing:
+<code matlab>
+matlab_id
+</code>
+and then select the text file, and the output in the window would be as follows, which you can copy paste into the command line to set the subjects variable!
+<code matlab>
+subnums={'11111_12345','22222_12345','33333_12345'}
+</code>
+If you want a slightly different formatting, you can just modify the script.  See the script [here](scripts/matlab_ID.m)
