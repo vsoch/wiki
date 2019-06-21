@@ -1,4 +1,4 @@
-> This is an archive of @vsoch pre-graduate school wiki. It was migrated from DocuWiki and now is just markdown. Original pages are in [pages](pages).
+> This is an archive of @vsoch pre-graduate school wiki. It was migrated from DocuWiki and now is just markdown. Original pages are in [pages](https://github.com/vsoch/wiki/tree/master/pages).
 
 <details>
 
